@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Kamino</title>
+
+<script src="../../../../vendor/knitr/header-attrs-2.11/header-attrs.js"></script>
+<script src="../../../../vendor/knitr/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="../../../../vendor/knitr/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="../../../../vendor/knitr/navigation-1.1/tabsets.js"></script>
+<script src="../../../../vendor/knitr/navigation-1.1/codefolding.js"></script>
+<link href="../../../../vendor/knitr/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/highlightjs-9.12.0/highlight.js"></script>
+<link href="../../../../vendor/knitr/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/pagedtable-1.1/js/pagedtable.js"></script>
+<div class="border-bottom">
+  
+  <div class="header">
+    
+  <img src="../../../../assets/logo/logo.svg" alt="" height="36">
+
+  <div class="nav" style="float: right;">
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="home.html" 
+        data-bs-toggle="tooltip" 
+        data-bs-placement="bottom"
+        title="Home">
+        <img src="../../../../assets/icons/campground-solid.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="explorer.html" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom" 
+        title="Search for content">
+        <img src="../../../../assets/icons/compass.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="https://github.com/UN-AVT" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom"
+        title="Project">
+        <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32">
+      </a>
+    </div>
+
+</div>
+</div>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="../../../../assets/styles/content.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<div class="activity">
+<p>INGEST</p>
+</div>
+<div id="world-pm25-levels" class="section level1">
+<h1>World PM25 Levels</h1>
+<div id="ingest-a-sqlite-database" class="section level2">
+<h2>ingest a SQLite database</h2>
+<div class="figure" style="text-align: center">
+<img src="dominik-dancs-unsplash.jpg" alt="Photo by Dominik Dancs on Unsplash" width="60%" />
+<p class="caption">
+Photo by Dominik Dancs on Unsplash
+</p>
+</div>
+<blockquote>
+<p>There’s so much pollution in the air now that if it weren’t for our lungs there’d be no place to put it all…<br />
+— Robert Orben<br />
+</p>
+</blockquote>
+<hr />
+<div id="accessing-the-database" class="section level3">
+<h3>Accessing the database</h3>
+<div id="via-db_connection" class="section level4">
+<h4>via db_connection</h4>
+<pre class="r fold-show"><code>db &lt;- dbDriver(&quot;SQLite&quot;)
+conn &lt;- dbConnect(db,&#39;archetypes/world-pm25/world-pm25.db&#39;)
+
+df &lt;- as.data.frame(dbListTables(conn))
+df</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["dbListTables(conn)"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"pm25"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="explore" class="section level3">
+<h3>Explore</h3>
+<div id="the-pm25-table" class="section level4">
+<h4>the pm25 table</h4>
+<pre class="r fold-show"><code>df_table &lt;- dbReadTable(conn, &#39;pm25&#39;)
+df_table</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["COUNTRY"],"name":[1],"type":["chr"],"align":["left"]},{"label":["ISO3"],"name":[2],"type":["chr"],"align":["left"]},{"label":["YEAR"],"name":[3],"type":["int"],"align":["right"]},{"label":["PM25"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["LATITUDE"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["LONGITUDE"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Afghanistan","2":"AFG","3":"2016","4":"62.854857","5":"33.8297086","6":"66.023936"},{"1":"Albania","2":"ALB","3":"2016","4":"14.634008","5":"41.1359944","6":"20.058835"},{"1":"Algeria","2":"DZA","3":"2016","4":"37.230956","5":"28.1567177","6":"2.675779"},{"1":"American Samoa","2":"ASM","3":"2016","4":"3.763412","5":"-14.2949569","6":"-170.519271"},{"1":"Andorra","2":"AND","3":"2016","4":"10.879472","5":"42.5498906","6":"1.580312"},{"1":"Angola","2":"AGO","3":"2016","4":"36.240479","5":"-12.3023478","6":"17.547732"},{"1":"Antigua and Barbuda","2":"ATG","3":"2016","4":"15.685943","5":"17.2427942","6":"-61.796708"},{"1":"Argentina","2":"ARG","3":"2016","4":"14.148167","5":"-35.3977365","6":"-65.175021"},{"1":"Armenia","2":"ARM","3":"2016","4":"26.972893","5":"40.2912657","6":"44.942898"},{"1":"Australia","2":"AUS","3":"2016","4":"6.126806","5":"-25.7378096","6":"134.487919"},{"1":"Austria","2":"AUT","3":"2016","4":"14.965188","5":"47.5836318","6":"14.140197"},{"1":"Azerbaijan","2":"AZE","3":"2016","4":"32.977620","5":"40.2970514","6":"48.812453"},{"1":"Bahamas","2":"BHS","3":"2016","4":"12.791142","5":"24.3683306","6":"-76.714192"},{"1":"Bahrain","2":"BHR","3":"2016","4":"79.691000","5":"26.0535833","6":"50.531355"},{"1":"Bangladesh","2":"BGD","3":"2016","4":"101.017157","5":"23.8816973","6":"90.261008"},{"1":"Barbados","2":"BRB","3":"2016","4":"18.414813","5":"13.1670550","6":"-59.556427"},{"1":"Belarus","2":"BLR","3":"2016","4":"19.798731","5":"53.5415009","6":"28.060975"},{"1":"Belgium","2":"BEL","3":"2016","4":"16.043432","5":"50.6592781","6":"4.656128"},{"1":"Belize","2":"BLZ","3":"2016","4":"20.181599","5":"17.1981330","6":"-88.694260"},{"1":"Benin","2":"BEN","3":"2016","4":"95.960323","5":"9.6485520","6":"2.342929"},{"1":"Bermuda","2":"BMU","3":"2016","4":"10.474018","5":"32.2952562","6":"-64.775401"},{"1":"Bhutan","2":"BTN","3":"2016","4":"55.798890","5":"27.3890507","6":"90.443044"},{"1":"Bolivia","2":"BOL","3":"2016","4":"22.042692","5":"-16.7065017","6":"-64.664660"},{"1":"Bosnia and Herzegovina","2":"BIH","3":"2016","4":"39.271781","5":"44.1460654","6":"17.780428"},{"1":"Botswana","2":"BWA","3":"2016","4":"23.137204","5":"-22.1881084","6":"23.819775"},{"1":"Brazil","2":"BRA","3":"2016","4":"12.652859","5":"-10.7723463","6":"-53.082532"},{"1":"Brunei","2":"BRN","3":"2016","4":"6.429309","5":"4.5201768","6":"114.742539"},{"1":"Bulgaria","2":"BGR","3":"2016","4":"25.646688","5":"42.7699838","6":"25.234145"},{"1":"Burkina Faso","2":"BFA","3":"2016","4":"110.730802","5":"12.2719954","6":"-1.738260"},{"1":"Burundi","2":"BDI","3":"2016","4":"46.282935","5":"-3.3689704","6":"29.898688"},{"1":"Cambodia","2":"KHM","3":"2016","4":"26.141334","5":"12.7074306","6":"104.914373"},{"1":"Cameroon","2":"CMR","3":"2016","4":"139.705790","5":"5.6977403","6":"12.749120"},{"1":"Canada","2":"CAN","3":"2016","4":"7.525224","5":"61.3531685","6":"-98.273070"},{"1":"Cape Verde","2":"CPV","3":"2016","4":"66.641771","5":"15.9026875","6":"-23.945776"},{"1":"Central African Republic","2":"CAF","3":"2016","4":"66.320233","5":"6.5757215","6":"20.489341"},{"1":"Chad","2":"TCD","3":"2016","4":"95.673609","5":"15.3413358","6":"18.660758"},{"1":"Chile","2":"CHL","3":"2016","4":"21.967115","5":"-37.6586775","6":"-71.342392"},{"1":"China","2":"CHN","3":"2016","4":"56.330148","5":"36.5280492","6":"103.975412"},{"1":"Colombia","2":"COL","3":"2016","4":"17.119388","5":"3.8970162","6":"-73.084213"},{"1":"Comoros","2":"COM","3":"2016","4":"19.146352","5":"-11.8750262","6":"43.677868"},{"1":"Congo","2":"COG","3":"2016","4":"55.832715","5":"-0.8326657","6":"15.245957"},{"1":"Costa Rica","2":"CRI","3":"2016","4":"18.530546","5":"9.9781998","6":"-84.197428"},{"1":"Cote d'Ivoire","2":"CIV","3":"2016","4":"57.771373","5":"7.6222171","6":"-5.555019"},{"1":"Croatia","2":"HRV","3":"2016","4":"19.815608","5":"45.1152752","6":"16.370896"},{"1":"Cuba","2":"CUB","3":"2016","4":"16.624118","5":"21.6335470","6":"-79.035615"},{"1":"Cyprus","2":"CYP","3":"2016","4":"17.866396","5":"35.0552091","6":"33.236121"},{"1":"Czech Republic","2":"CZE","3":"2016","4":"19.178691","5":"49.7353495","6":"15.330877"},{"1":"Democratic Republic of Congo","2":"COD","3":"2016","4":"56.275164","5":"-2.8750148","6":"23.651542"},{"1":"Denmark","2":"DNK","3":"2016","4":"10.328744","5":"56.0001948","6":"9.995481"},{"1":"Djibouti","2":"DJI","3":"2016","4":"71.709298","5":"11.7325362","6":"42.569364"},{"1":"Dominica","2":"DMA","3":"2016","4":"16.873337","5":"15.4217389","6":"-61.355840"},{"1":"Dominican Republic","2":"DOM","3":"2016","4":"23.698196","5":"18.8880774","6":"-70.507722"},{"1":"Ecuador","2":"ECU","3":"2016","4":"13.167685","5":"-1.4309762","6":"-78.718954"},{"1":"Egypt","2":"EGY","3":"2016","4":"126.028232","5":"26.5696154","6":"29.767480"},{"1":"El Salvador","2":"SLV","3":"2016","4":"33.386006","5":"13.7291805","6":"-88.868681"},{"1":"Equatorial Guinea","2":"GNQ","3":"2016","4":"71.179762","5":"1.6858046","6":"10.352445"},{"1":"Eritrea","2":"ERI","3":"2016","4":"50.514481","5":"15.3753198","6":"38.842664"},{"1":"Estonia","2":"EST","3":"2016","4":"5.928305","5":"58.6673177","6":"25.532215"},{"1":"Ethiopia","2":"ETH","3":"2016","4":"49.735306","5":"8.6266746","6":"39.635057"},{"1":"Fiji","2":"FJI","3":"2016","4":"7.658564","5":"-17.4704541","6":"168.400242"},{"1":"Finland","2":"FIN","3":"2016","4":"6.234267","5":"64.5120272","6":"26.278524"},{"1":"France","2":"FRA","3":"2016","4":"11.869338","5":"46.5496708","6":"2.551930"},{"1":"Gabon","2":"GAB","3":"2016","4":"47.394605","5":"-0.6232836","6":"11.782781"},{"1":"Gambia","2":"GMB","3":"2016","4":"95.043871","5":"13.4505884","6":"-15.417430"},{"1":"Georgia","2":"GEO","3":"2016","4":"20.734698","5":"42.1827202","6":"43.494061"},{"1":"Germany","2":"DEU","3":"2016","4":"13.457796","5":"51.1052517","6":"10.392897"},{"1":"Ghana","2":"GHA","3":"2016","4":"54.242586","5":"7.9535911","6":"-1.207289"},{"1":"Greece","2":"GRC","3":"2016","4":"11.298313","5":"39.0785264","6":"22.961907"},{"1":"Greenland","2":"GRL","3":"2016","4":"4.071184","5":"74.7312887","6":"-41.346223"},{"1":"Grenada","2":"GRD","3":"2016","4":"18.498453","5":"12.0922697","6":"-61.689815"},{"1":"Guam","2":"GUM","3":"2016","4":"8.591185","5":"13.4293647","6":"144.761294"},{"1":"Guatemala","2":"GTM","3":"2016","4":"28.522086","5":"15.7012742","6":"-90.365223"},{"1":"Guinea","2":"GIN","3":"2016","4":"46.140921","5":"10.4301199","6":"-10.931240"},{"1":"Guinea-Bissau","2":"GNB","3":"2016","4":"59.164845","5":"12.0336564","6":"-14.950807"},{"1":"Guyana","2":"GUY","3":"2016","4":"19.744074","5":"4.7937064","6":"-58.973768"},{"1":"Haiti","2":"HTI","3":"2016","4":"23.548047","5":"18.9339183","6":"-72.670219"},{"1":"Honduras","2":"HND","3":"2016","4":"29.497511","5":"14.8270019","6":"-86.608985"},{"1":"Hungary","2":"HUN","3":"2016","4":"24.570682","5":"47.1624052","6":"19.414633"},{"1":"Iceland","2":"ISL","3":"2016","4":"7.298390","5":"64.9876731","6":"-18.578753"},{"1":"India","2":"IND","3":"2016","4":"75.800791","5":"22.3174679","6":"79.399161"},{"1":"Indonesia","2":"IDN","3":"2016","4":"16.745982","5":"-2.2131939","6":"117.189662"},{"1":"Iran","2":"IRN","3":"2016","4":"48.954766","5":"32.7380579","6":"54.205461"},{"1":"Iraq","2":"IRQ","3":"2016","4":"73.258727","5":"33.0517771","6":"43.769761"},{"1":"Ireland","2":"IRL","3":"2016","4":"9.168633","5":"53.1811441","6":"-8.128393"},{"1":"Israel","2":"ISR","3":"2016","4":"18.684611","5":"31.3360841","6":"34.960064"},{"1":"Italy","2":"ITA","3":"2016","4":"15.483605","5":"42.7934543","6":"12.073653"},{"1":"Jamaica","2":"JAM","3":"2016","4":"15.071636","5":"18.1639491","6":"-77.318445"},{"1":"Japan","2":"JPN","3":"2016","4":"13.158396","5":"37.6052718","6":"138.029436"},{"1":"Jordan","2":"JOR","3":"2016","4":"37.214260","5":"31.2482299","6":"36.788894"},{"1":"Kazakhstan","2":"KAZ","3":"2016","4":"19.655904","5":"48.0231134","6":"66.648897"},{"1":"Kenya","2":"KEN","3":"2016","4":"16.294931","5":"0.5288608","6":"37.860444"},{"1":"Kiribati","2":"KIR","3":"2016","4":"4.086360","5":"1.3487966","6":"-102.003990"},{"1":"Kuwait","2":"KWT","3":"2016","4":"110.957217","5":"29.3406795","6":"47.609774"},{"1":"Kyrgyzstan","2":"KGZ","3":"2016","4":"17.910304","5":"41.4601072","6":"74.544567"},{"1":"Laos","2":"LAO","3":"2016","4":"27.672589","5":"18.5089730","6":"103.770387"},{"1":"Latvia","2":"LVA","3":"2016","4":"14.588007","5":"56.8587351","6":"24.921681"},{"1":"Lebanon","2":"LBN","3":"2016","4":"32.564830","5":"33.9212361","6":"35.887535"},{"1":"Lesotho","2":"LSO","3":"2016","4":"26.918225","5":"-29.5721092","6":"28.250745"},{"1":"Liberia","2":"LBR","3":"2016","4":"17.332335","5":"6.4434268","6":"-9.315313"},{"1":"Libya","2":"LBY","3":"2016","4":"63.716760","5":"27.0274007","6":"18.032525"},{"1":"Lithuania","2":"LTU","3":"2016","4":"16.717858","5":"55.3361552","6":"23.902568"},{"1":"Luxembourg","2":"LUX","3":"2016","4":"16.097276","5":"49.7813108","6":"6.100315"},{"1":"Macedonia","2":"MKD","3":"2016","4":"31.921413","5":"41.6019052","6":"21.706349"},{"1":"Madagascar","2":"MDG","3":"2016","4":"21.474965","5":"-19.3832650","6":"46.699786"},{"1":"Malawi","2":"MWI","3":"2016","4":"28.259823","5":"-13.2291126","6":"34.314959"},{"1":"Malaysia","2":"MYS","3":"2016","4":"17.607715","5":"3.7904980","6":"109.715677"},{"1":"Maldives","2":"MDV","3":"2016","4":"26.861886","5":"3.2097322","6":"73.194876"},{"1":"Mali","2":"MLI","3":"2016","4":"92.210117","5":"17.3459051","6":"-3.521931"},{"1":"Malta","2":"MLT","3":"2016","4":"12.140844","5":"35.9282048","6":"14.397423"},{"1":"Marshall Islands","2":"MHL","3":"2016","4":"11.086070","5":"9.6555721","6":"168.710967"},{"1":"Mauritania","2":"MRT","3":"2016","4":"123.634584","5":"20.2574144","6":"-10.331872"},{"1":"Mauritius","2":"MUS","3":"2016","4":"14.463053","5":"-20.2661645","6":"57.730802"},{"1":"Mexico","2":"MEX","3":"2016","4":"18.829104","5":"23.9322756","6":"-102.527700"},{"1":"Micronesia (country)","2":"FSM","3":"2016","4":"8.667211","5":"7.0970175","6":"155.451894"},{"1":"Moldova","2":"MDA","3":"2016","4":"19.943213","5":"47.2185926","6":"28.474748"},{"1":"Mongolia","2":"MNG","3":"2016","4":"29.685001","5":"46.8393530","6":"103.069005"},{"1":"Montenegro","2":"MNE","3":"2016","4":"20.355690","5":"42.7841712","6":"19.270929"},{"1":"Morocco","2":"MAR","3":"2016","4":"25.411985","5":"31.8563437","6":"-6.281689"},{"1":"Mozambique","2":"MOZ","3":"2016","4":"20.987227","5":"-17.2628063","6":"35.552962"},{"1":"Myanmar","2":"MMR","3":"2016","4":"48.811359","5":"21.1683871","6":"96.519632"},{"1":"Namibia","2":"NAM","3":"2016","4":"25.892444","5":"-22.1430257","6":"17.223600"},{"1":"Nepal","2":"NPL","3":"2016","4":"78.497133","5":"28.2661749","6":"83.922203"},{"1":"Netherlands","2":"NLD","3":"2016","4":"15.230050","5":"52.2776412","6":"5.683579"},{"1":"New Zealand","2":"NZL","3":"2016","4":"5.525447","5":"-41.7805188","6":"171.726953"},{"1":"Nicaragua","2":"NIC","3":"2016","4":"22.708849","5":"12.8389899","6":"-85.029400"},{"1":"Niger","2":"NER","3":"2016","4":"203.743892","5":"17.4160574","6":"9.402022"},{"1":"Nigeria","2":"NGA","3":"2016","4":"122.478442","5":"9.5833100","6":"8.089949"},{"1":"North Korea","2":"PRK","3":"2016","4":"36.015276","5":"40.1448244","6":"127.180156"},{"1":"Northern Mariana Islands","2":"MNP","3":"2016","4":"11.286679","5":"15.6403483","6":"145.623933"},{"1":"Norway","2":"NOR","3":"2016","4":"7.874068","5":"64.4085258","6":"14.078812"},{"1":"Oman","2":"OMN","3":"2016","4":"77.962178","5":"20.6038718","6":"56.104260"},{"1":"Pakistan","2":"PAK","3":"2016","4":"75.750742","5":"29.3600447","6":"68.807296"},{"1":"Palestine","2":"PSE","3":"2016","4":"18.901415","5":"31.9138167","6":"35.213051"},{"1":"Panama","2":"PAN","3":"2016","4":"14.125998","5":"8.5103184","6":"-80.080033"},{"1":"Papua New Guinea","2":"PNG","3":"2016","4":"13.677883","5":"-6.4795514","6":"145.221748"},{"1":"Paraguay","2":"PRY","3":"2016","4":"23.693054","5":"-23.2349152","6":"-58.393887"},{"1":"Peru","2":"PER","3":"2016","4":"26.054596","5":"-9.1768807","6":"-74.364226"},{"1":"Philippines","2":"PHL","3":"2016","4":"23.213494","5":"11.7587946","6":"122.874427"},{"1":"Poland","2":"POL","3":"2016","4":"25.599913","5":"52.1242625","6":"19.401841"},{"1":"Portugal","2":"PRT","3":"2016","4":"9.491198","5":"39.6194322","6":"-8.347785"},{"1":"Puerto Rico","2":"PRI","3":"2016","4":"20.055289","5":"18.2288310","6":"-66.469872"},{"1":"Qatar","2":"QAT","3":"2016","4":"148.241398","5":"25.2714319","6":"51.205309"},{"1":"Romania","2":"ROU","3":"2016","4":"19.064415","5":"45.8454110","6":"24.986389"},{"1":"Russia","2":"RUS","3":"2016","4":"15.500536","5":"61.9269698","6":"96.619060"},{"1":"Rwanda","2":"RWA","3":"2016","4":"52.790130","5":"-1.9981175","6":"29.916791"},{"1":"Saint Lucia","2":"LCA","3":"2016","4":"17.347826","5":"13.9066010","6":"-60.966650"},{"1":"Saint Vincent and the Grenadines","2":"VCT","3":"2016","4":"17.374320","5":"13.1778392","6":"-61.214345"},{"1":"Samoa","2":"WSM","3":"2016","4":"3.857073","5":"-13.7313053","6":"-172.193013"},{"1":"Sao Tome and Principe","2":"STP","3":"2016","4":"15.427657","5":"0.4719396","6":"6.741766"},{"1":"Saudi Arabia","2":"SAU","3":"2016","4":"187.871361","5":"24.1246674","6":"44.546097"},{"1":"Senegal","2":"SEN","3":"2016","4":"56.766336","5":"14.3568838","6":"-14.467596"},{"1":"Serbia","2":"SRB","3":"2016","4":"18.846789","5":"44.0332203","6":"20.799018"},{"1":"Seychelles","2":"SYC","3":"2016","4":"14.838850","5":"-6.3221654","6":"52.239775"},{"1":"Sierra Leone","2":"SLE","3":"2016","4":"42.130671","5":"8.5650852","6":"-11.791360"},{"1":"Singapore","2":"SGP","3":"2016","4":"25.028502","5":"1.4134382","6":"104.060145"},{"1":"Slovakia","2":"SVK","3":"2016","4":"20.330907","5":"48.7078745","6":"19.499080"},{"1":"Slovenia","2":"SVN","3":"2016","4":"17.823509","5":"46.1118467","6":"14.818218"},{"1":"Solomon Islands","2":"SLB","3":"2016","4":"8.515828","5":"-8.9260013","6":"159.681954"},{"1":"Somalia","2":"SOM","3":"2016","4":"23.888288","5":"6.0587441","6":"45.861008"},{"1":"South Africa","2":"ZAF","3":"2016","4":"35.912477","5":"-29.0027821","6":"25.094099"},{"1":"South Korea","2":"KOR","3":"2016","4":"28.681824","5":"36.3735578","6":"127.842274"},{"1":"South Sudan","2":"SSD","3":"2016","4":"48.703124","5":"7.3007154","6":"30.316881"},{"1":"Spain","2":"ESP","3":"2016","4":"9.960824","5":"40.2447337","6":"-3.623941"},{"1":"Sri Lanka","2":"LKA","3":"2016","4":"25.635208","5":"7.6135943","6":"80.703895"},{"1":"Sudan","2":"SDN","3":"2016","4":"77.721072","5":"15.9958455","6":"29.952790"},{"1":"Suriname","2":"SUR","3":"2016","4":"21.532473","5":"4.1249668","6":"-55.903727"},{"1":"Swaziland","2":"SWZ","3":"2016","4":"24.151815","5":"-26.5644872","6":"31.506981"},{"1":"Sweden","2":"SWE","3":"2016","4":"5.195282","5":"62.7902457","6":"16.760076"},{"1":"Switzerland","2":"CHE","3":"2016","4":"10.512087","5":"46.8101404","6":"8.210155"},{"1":"Tajikistan","2":"TJK","3":"2016","4":"61.354304","5":"38.5232166","6":"71.045677"},{"1":"Tanzania","2":"TZA","3":"2016","4":"22.349307","5":"-6.2681692","6":"34.819667"},{"1":"Thailand","2":"THA","3":"2016","4":"23.172590","5":"15.1000805","6":"101.009831"},{"1":"Timor","2":"TLS","3":"2016","4":"17.000534","5":"-8.8242439","6":"125.856336"},{"1":"Togo","2":"TGO","3":"2016","4":"84.144390","5":"8.5384148","6":"0.978661"},{"1":"Tonga","2":"TON","3":"2016","4":"3.993594","5":"-20.2938653","6":"-174.933545"},{"1":"Trinidad and Tobago","2":"TTO","3":"2016","4":"16.812273","5":"10.4633007","6":"-61.266471"},{"1":"Tunisia","2":"TUN","3":"2016","4":"35.565679","5":"34.1165978","6":"9.577458"},{"1":"Turkey","2":"TUR","3":"2016","4":"37.253918","5":"39.0601468","6":"35.171626"},{"1":"Turkmenistan","2":"TKM","3":"2016","4":"37.741761","5":"39.2141552","6":"58.392527"},{"1":"Uganda","2":"UGA","3":"2016","4":"73.511723","5":"1.2804581","6":"32.392429"},{"1":"Ukraine","2":"UKR","3":"2016","4":"19.206062","5":"49.0052626","6":"31.401762"},{"1":"United Arab Emirates","2":"ARE","3":"2016","4":"105.123736","5":"23.9006196","6":"54.342697"},{"1":"United Kingdom","2":"GBR","3":"2016","4":"11.520287","5":"54.1291641","6":"-2.898248"},{"1":"United States","2":"USA","3":"2016","4":"9.196934","5":"45.7006498","6":"-112.528404"},{"1":"United States Virgin Islands","2":"VIR","3":"2016","4":"18.381432","5":"17.9316342","6":"-64.797565"},{"1":"Uruguay","2":"URY","3":"2016","4":"11.523398","5":"-32.8095709","6":"-56.011605"},{"1":"Uzbekistan","2":"UZB","3":"2016","4":"46.691076","5":"41.7646192","6":"63.151136"},{"1":"Vanuatu","2":"VUT","3":"2016","4":"8.848735","5":"-16.2223245","6":"167.691386"},{"1":"Venezuela","2":"VEN","3":"2016","4":"26.331181","5":"7.1265543","6":"-66.161660"},{"1":"Vietnam","2":"VNM","3":"2016","4":"26.285906","5":"16.6027471","6":"106.313048"},{"1":"Yemen","2":"YEM","3":"2016","4":"72.553865","5":"15.9041143","6":"47.591302"},{"1":"Zambia","2":"ZMB","3":"2016","4":"30.550295","5":"-13.4595770","6":"27.795929"},{"1":"Zimbabwe","2":"ZWE","3":"2016","4":"24.513035","5":"-18.9985306","6":"29.877961"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="close" class="section level3">
+<h3>Close</h3>
+<div id="the-database-connection." class="section level4">
+<h4>the database connection.</h4>
+<pre class="r fold-show"><code>dbDisconnect(conn)</code></pre>
+</div>
+</div>
+<div id="references" class="section level3">
+<h3>References</h3>
+<div id="citations-for-narrative-and-data-sources" class="section level4">
+<h4>citations for narrative and data sources</h4>
+<ul>
+<li>Data Source:
+<ul>
+<li>World Health Organization,</li>
+<li>SDG Indicator 11.6.2 Concentrations of fine particulate matter (PM2.5)</li>
+<li><a href="https://www.who.int/data/gho/data/indicators/indicator-details/GHO/concentrations-of-fine-particulate-matter-(pm2-5)" class="uri">https://www.who.int/data/gho/data/indicators/indicator-details/GHO/concentrations-of-fine-particulate-matter-(pm2-5)</a></li>
+</ul></li>
+</ul>
+<script type="text/javascript">
+
+// Must be included to position footer
+$(function() {
+  $('.main-container').after($('.footer'));
+})
+
+</script>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Footer-->
+<div class="footer text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Use</div>
+        <p class="footer-text text-center">This work is licensed under<br>Attribution 4.0 International<br><strong>CC BY 4.0</strong></p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Source</div>
+        <p class="footer-text text-center">
+          <a href="https://github.com/UN-AVT/kamino-web" class="centered">
+          <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32" style="margin-top: 0px;">
+          </a>
+        </p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Creation</div>
+        <p class="footer-text text-center">Hand crafted with ♥ by<br>the <strong>Kamino Crew</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+
+</body>
+</html>

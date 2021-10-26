@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Kamino</title>
+
+<script src="../../../../vendor/knitr/header-attrs-2.11/header-attrs.js"></script>
+<script src="../../../../vendor/knitr/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="../../../../vendor/knitr/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="../../../../vendor/knitr/navigation-1.1/tabsets.js"></script>
+<script src="../../../../vendor/knitr/navigation-1.1/codefolding.js"></script>
+<link href="../../../../vendor/knitr/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/highlightjs-9.12.0/highlight.js"></script>
+<link href="../../../../vendor/knitr/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/pagedtable-1.1/js/pagedtable.js"></script>
+<div class="border-bottom">
+  
+  <div class="header">
+    
+  <img src="../../../../assets/logo/logo.svg" alt="" width="42">
+
+  <div class="nav" style="float: right;">
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="home.html" 
+        data-bs-toggle="tooltip" 
+        data-bs-placement="bottom"
+        title="Home">
+        <img src="../../../../assets/icons/campground-solid.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="explorer.html" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom" 
+        title="Search for content">
+        <img src="../../../../assets/icons/compass.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="https://github.com/UN-AVT" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom"
+        title="Project">
+        <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32">
+      </a>
+    </div>
+
+</div>
+</div>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="../../../../assets/styles/content.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<div class="activity">
+<p>WRANGLERS</p>
+</div>
+<div id="prison-population" class="section level1">
+<h1>Prison Population</h1>
+<div id="transform-long-to-wide" class="section level2">
+<h2>Transform: Long to Wide</h2>
+<div class="figure" style="text-align: center">
+<img src="emiliano-bar-unsplash.jpg" alt="Photo by Emiliano Bar on Unsplash" width="60%" />
+<p class="caption">
+Photo by Emiliano Bar on Unsplash
+</p>
+</div>
+<div class="figure-text">
+Alcatraz Prison
+</div>
+<blockquote>
+<p>In my country we go to prison first and then become President…<br />
+— Nelson Mandela<br />
+</p>
+</blockquote>
+<hr />
+<div id="wide-and-long-data-are-two-terms-used-to-represent-different-presentations-of-tabular-data.-in-the-wide-format-each-response-variable-is-in-a-separate-column.-data-stored-in-long-form-has-a-single-column-for-each-variable-in-the-system." class="section level4">
+<h4>Wide and Long Data are two terms used to represent different presentations of tabular data. In the wide format, each response variable is in a separate column. Data stored in long form has a single column for each variable in the system.</h4>
+</div>
+<div id="wheter-the-wide-or-long-format-is-appropriate-is-dependent-on-the-model-or-analytics-youre-trying-to-process.-the-long-format-seems-to-be-the-popular-choice-in-most-cases-because-you-want-each-unit-of-observation-to-be-its-own-row.-however-in-most-survey-research-or-social-sciences-the-wide-format-seems-to-be-a-popular-choice.-thus-it-is-necessary-for-us-to-learn-how-to-transform-between-the-two-tabular-formats." class="section level4">
+<h4>Wheter the wide or long format is appropriate is dependent on the model or analytics you’re trying to process. The long format seems to be the popular choice in most cases because you want each unit of observation to be its own row. However, in most survey research or social sciences, the wide format seems to be a popular choice. Thus, it is necessary for us to learn how to transform between the two tabular formats.</h4>
+</div>
+<div id="load-data" class="section level3">
+<h3>Load data</h3>
+<div id="here-we-have-a-long-data-format." class="section level4">
+<h4>Here we have a long data format.</h4>
+<pre class="r fold-hide"><code>df&lt;-read.csv(&#39;./archetypes/Regional_estimate_Full_Data_data.csv&#39;, header = TRUE, stringsAsFactors = FALSE)
+
+df1 &lt;- df[1:120,] %&gt;% 
+  select(Region, Year, Regional.Estimate) 
+
+df1</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Year"],"name":[2],"type":["int"],"align":["right"]},{"label":["Regional.Estimate"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Americas","2":"2000","3":"357.41961","_rn_":"1"},{"1":"Americas","2":"2001","3":"356.59659","_rn_":"2"},{"1":"Americas","2":"2002","3":"356.86419","_rn_":"3"},{"1":"Americas","2":"2003","3":"354.27618","_rn_":"4"},{"1":"Americas","2":"2004","3":"358.77303","_rn_":"5"},{"1":"Americas","2":"2005","3":"364.10147","_rn_":"6"},{"1":"Americas","2":"2006","3":"371.74447","_rn_":"7"},{"1":"Americas","2":"2007","3":"376.99354","_rn_":"8"},{"1":"Americas","2":"2008","3":"380.70657","_rn_":"9"},{"1":"Americas","2":"2009","3":"379.75310","_rn_":"10"},{"1":"Americas","2":"2010","3":"379.50469","_rn_":"11"},{"1":"Americas","2":"2011","3":"381.98700","_rn_":"12"},{"1":"Americas","2":"2012","3":"384.10449","_rn_":"13"},{"1":"Americas","2":"2013","3":"386.54887","_rn_":"14"},{"1":"Americas","2":"2014","3":"386.16917","_rn_":"15"},{"1":"Americas","2":"2015","3":"387.88528","_rn_":"16"},{"1":"Americas","2":"2016","3":"387.14622","_rn_":"17"},{"1":"Americas","2":"2017","3":"385.84195","_rn_":"18"},{"1":"Americas","2":"2018","3":"383.67496","_rn_":"19"},{"1":"Americas","2":"2019","3":"378.91872","_rn_":"20"},{"1":"Asia","2":"2000","3":"102.17516","_rn_":"21"},{"1":"Asia","2":"2001","3":"102.84084","_rn_":"22"},{"1":"Asia","2":"2002","3":"103.54422","_rn_":"23"},{"1":"Asia","2":"2003","3":"104.08183","_rn_":"24"},{"1":"Asia","2":"2004","3":"104.44796","_rn_":"25"},{"1":"Asia","2":"2005","3":"105.37476","_rn_":"26"},{"1":"Asia","2":"2006","3":"108.65680","_rn_":"27"},{"1":"Asia","2":"2007","3":"109.08646","_rn_":"28"},{"1":"Asia","2":"2008","3":"110.40497","_rn_":"29"},{"1":"Asia","2":"2009","3":"107.32950","_rn_":"30"},{"1":"Asia","2":"2010","3":"106.06165","_rn_":"31"},{"1":"Asia","2":"2011","3":"106.44828","_rn_":"32"},{"1":"Asia","2":"2012","3":"106.85879","_rn_":"33"},{"1":"Asia","2":"2013","3":"108.57349","_rn_":"34"},{"1":"Asia","2":"2014","3":"108.55390","_rn_":"35"},{"1":"Asia","2":"2015","3":"107.54767","_rn_":"36"},{"1":"Asia","2":"2016","3":"108.98327","_rn_":"37"},{"1":"Asia","2":"2017","3":"113.61457","_rn_":"38"},{"1":"Asia","2":"2018","3":"115.57598","_rn_":"39"},{"1":"Asia","2":"2019","3":"117.16733","_rn_":"40"},{"1":"Africa","2":"2000","3":"116.08735","_rn_":"41"},{"1":"Africa","2":"2001","3":"113.30110","_rn_":"42"},{"1":"Africa","2":"2002","3":"110.81223","_rn_":"43"},{"1":"Africa","2":"2003","3":"108.27966","_rn_":"44"},{"1":"Africa","2":"2004","3":"108.46755","_rn_":"45"},{"1":"Africa","2":"2005","3":"102.24136","_rn_":"46"},{"1":"Africa","2":"2006","3":"102.35164","_rn_":"47"},{"1":"Africa","2":"2007","3":"100.76562","_rn_":"48"},{"1":"Africa","2":"2008","3":"102.29216","_rn_":"49"},{"1":"Africa","2":"2009","3":"101.79897","_rn_":"50"},{"1":"Africa","2":"2010","3":"98.28915","_rn_":"51"},{"1":"Africa","2":"2011","3":"95.25702","_rn_":"52"},{"1":"Africa","2":"2012","3":"91.75669","_rn_":"53"},{"1":"Africa","2":"2013","3":"93.93616","_rn_":"54"},{"1":"Africa","2":"2014","3":"92.72332","_rn_":"55"},{"1":"Africa","2":"2015","3":"93.68606","_rn_":"56"},{"1":"Africa","2":"2016","3":"94.31257","_rn_":"57"},{"1":"Africa","2":"2017","3":"94.40047","_rn_":"58"},{"1":"Africa","2":"2018","3":"93.69668","_rn_":"59"},{"1":"Africa","2":"2019","3":"91.86543","_rn_":"60"},{"1":"Europe","2":"2000","3":"207.14558","_rn_":"61"},{"1":"Europe","2":"2001","3":"210.31885","_rn_":"62"},{"1":"Europe","2":"2002","3":"214.20223","_rn_":"63"},{"1":"Europe","2":"2003","3":"218.96212","_rn_":"64"},{"1":"Europe","2":"2004","3":"225.82295","_rn_":"65"},{"1":"Europe","2":"2005","3":"231.87883","_rn_":"66"},{"1":"Europe","2":"2006","3":"235.11356","_rn_":"67"},{"1":"Europe","2":"2007","3":"235.74097","_rn_":"68"},{"1":"Europe","2":"2008","3":"236.24102","_rn_":"69"},{"1":"Europe","2":"2009","3":"234.88463","_rn_":"70"},{"1":"Europe","2":"2010","3":"229.71076","_rn_":"71"},{"1":"Europe","2":"2011","3":"221.17234","_rn_":"72"},{"1":"Europe","2":"2012","3":"212.03365","_rn_":"73"},{"1":"Europe","2":"2013","3":"204.93022","_rn_":"74"},{"1":"Europe","2":"2014","3":"197.54270","_rn_":"75"},{"1":"Europe","2":"2015","3":"188.07018","_rn_":"76"},{"1":"Europe","2":"2016","3":"182.25832","_rn_":"77"},{"1":"Europe","2":"2017","3":"177.72082","_rn_":"78"},{"1":"Europe","2":"2018","3":"171.51716","_rn_":"79"},{"1":"Europe","2":"2019","3":"166.18161","_rn_":"80"},{"1":"Oceania","2":"2000","3":"112.46582","_rn_":"81"},{"1":"Oceania","2":"2001","3":"112.57471","_rn_":"82"},{"1":"Oceania","2":"2002","3":"113.05034","_rn_":"83"},{"1":"Oceania","2":"2003","3":"113.98934","_rn_":"84"},{"1":"Oceania","2":"2004","3":"115.88868","_rn_":"85"},{"1":"Oceania","2":"2005","3":"120.13112","_rn_":"86"},{"1":"Oceania","2":"2006","3":"123.07502","_rn_":"87"},{"1":"Oceania","2":"2007","3":"124.60533","_rn_":"88"},{"1":"Oceania","2":"2008","3":"124.76145","_rn_":"89"},{"1":"Oceania","2":"2009","3":"128.70757","_rn_":"90"},{"1":"Oceania","2":"2010","3":"128.66092","_rn_":"91"},{"1":"Oceania","2":"2011","3":"122.18376","_rn_":"92"},{"1":"Oceania","2":"2012","3":"120.61912","_rn_":"93"},{"1":"Oceania","2":"2013","3":"123.66064","_rn_":"94"},{"1":"Oceania","2":"2014","3":"134.77923","_rn_":"95"},{"1":"Oceania","2":"2015","3":"140.82112","_rn_":"96"},{"1":"Oceania","2":"2016","3":"148.81710","_rn_":"97"},{"1":"Oceania","2":"2017","3":"154.70991","_rn_":"98"},{"1":"Oceania","2":"2018","3":"155.86907","_rn_":"99"},{"1":"Oceania","2":"2019","3":"157.64603","_rn_":"100"},{"1":"World","2":"2000","3":"151.12559","_rn_":"101"},{"1":"World","2":"2001","3":"151.27799","_rn_":"102"},{"1":"World","2":"2002","3":"151.70278","_rn_":"103"},{"1":"World","2":"2003","3":"151.71502","_rn_":"104"},{"1":"World","2":"2004","3":"153.18153","_rn_":"105"},{"1":"World","2":"2005","3":"154.11206","_rn_":"106"},{"1":"World","2":"2006","3":"157.33234","_rn_":"107"},{"1":"World","2":"2007","3":"157.95204","_rn_":"108"},{"1":"World","2":"2008","3":"159.32591","_rn_":"109"},{"1":"World","2":"2009","3":"156.93173","_rn_":"110"},{"1":"World","2":"2010","3":"154.85117","_rn_":"111"},{"1":"World","2":"2011","3":"153.81525","_rn_":"112"},{"1":"World","2":"2012","3":"152.63500","_rn_":"113"},{"1":"World","2":"2013","3":"153.39964","_rn_":"114"},{"1":"World","2":"2014","3":"152.23941","_rn_":"115"},{"1":"World","2":"2015","3":"150.88325","_rn_":"116"},{"1":"World","2":"2016","3":"151.00854","_rn_":"117"},{"1":"World","2":"2017","3":"153.00778","_rn_":"118"},{"1":"World","2":"2018","3":"152.97558","_rn_":"119"},{"1":"World","2":"2019","3":"152.28488","_rn_":"120"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="there-are-several-methods-to-transform-from-long-to-wide.-lets-test-a-few-libraries." class="section level4">
+<h4>There are several methods to transform from long to wide. Let’s test a few libraries.</h4>
+</div>
+</div>
+<div id="lets-try-pivot_wider-from-librarytidyr.-this-returns-a-data-frame." class="section level3">
+<h3>Let’s try pivot_wider from library(tidyr). This returns a data frame.</h3>
+<pre class="r fold-show"><code>data_wide &lt;- pivot_wider(data = df1, names_from = Year, values_from = Regional.Estimate)
+data_wide</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["2000"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["2001"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["2002"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["2003"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["2004"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["2005"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["2006"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["2007"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["2008"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["2009"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["2010"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["2011"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["2012"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["2013"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["2014"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["2015"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["2016"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["2017"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["2018"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["2019"],"name":[21],"type":["dbl"],"align":["right"]}],"data":[{"1":"Americas","2":"357.4196","3":"356.5966","4":"356.8642","5":"354.2762","6":"358.7730","7":"364.1015","8":"371.7445","9":"376.9935","10":"380.7066","11":"379.7531","12":"379.50469","13":"381.98700","14":"384.10449","15":"386.54887","16":"386.16917","17":"387.88528","18":"387.14622","19":"385.84195","20":"383.67496","21":"378.91872"},{"1":"Asia","2":"102.1752","3":"102.8408","4":"103.5442","5":"104.0818","6":"104.4480","7":"105.3748","8":"108.6568","9":"109.0865","10":"110.4050","11":"107.3295","12":"106.06165","13":"106.44828","14":"106.85879","15":"108.57349","16":"108.55390","17":"107.54767","18":"108.98327","19":"113.61457","20":"115.57598","21":"117.16733"},{"1":"Africa","2":"116.0873","3":"113.3011","4":"110.8122","5":"108.2797","6":"108.4676","7":"102.2414","8":"102.3516","9":"100.7656","10":"102.2922","11":"101.7990","12":"98.28915","13":"95.25702","14":"91.75669","15":"93.93616","16":"92.72332","17":"93.68606","18":"94.31257","19":"94.40047","20":"93.69668","21":"91.86543"},{"1":"Europe","2":"207.1456","3":"210.3188","4":"214.2022","5":"218.9621","6":"225.8230","7":"231.8788","8":"235.1136","9":"235.7410","10":"236.2410","11":"234.8846","12":"229.71076","13":"221.17234","14":"212.03365","15":"204.93022","16":"197.54270","17":"188.07018","18":"182.25832","19":"177.72082","20":"171.51716","21":"166.18161"},{"1":"Oceania","2":"112.4658","3":"112.5747","4":"113.0503","5":"113.9893","6":"115.8887","7":"120.1311","8":"123.0750","9":"124.6053","10":"124.7615","11":"128.7076","12":"128.66092","13":"122.18376","14":"120.61912","15":"123.66064","16":"134.77923","17":"140.82112","18":"148.81710","19":"154.70991","20":"155.86907","21":"157.64603"},{"1":"World","2":"151.1256","3":"151.2780","4":"151.7028","5":"151.7150","6":"153.1815","7":"154.1121","8":"157.3323","9":"157.9520","10":"159.3259","11":"156.9317","12":"154.85117","13":"153.81525","14":"152.63500","15":"153.39964","16":"152.23941","17":"150.88325","18":"151.00854","19":"153.00778","20":"152.97558","21":"152.28488"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div id="next-we-have-the-function-spread." class="section level4">
+<h4>Next we have the function spread().</h4>
+<pre class="r fold-show"><code>data_wide2 &lt;- spread(data = df1, key = Year, value = Regional.Estimate)
+data_wide2</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["2000"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["2001"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["2002"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["2003"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["2004"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["2005"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["2006"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["2007"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["2008"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["2009"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["2010"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["2011"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["2012"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["2013"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["2014"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["2015"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["2016"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["2017"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["2018"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["2019"],"name":[21],"type":["dbl"],"align":["right"]}],"data":[{"1":"Africa","2":"116.0873","3":"113.3011","4":"110.8122","5":"108.2797","6":"108.4676","7":"102.2414","8":"102.3516","9":"100.7656","10":"102.2922","11":"101.7990","12":"98.28915","13":"95.25702","14":"91.75669","15":"93.93616","16":"92.72332","17":"93.68606","18":"94.31257","19":"94.40047","20":"93.69668","21":"91.86543"},{"1":"Americas","2":"357.4196","3":"356.5966","4":"356.8642","5":"354.2762","6":"358.7730","7":"364.1015","8":"371.7445","9":"376.9935","10":"380.7066","11":"379.7531","12":"379.50469","13":"381.98700","14":"384.10449","15":"386.54887","16":"386.16917","17":"387.88528","18":"387.14622","19":"385.84195","20":"383.67496","21":"378.91872"},{"1":"Asia","2":"102.1752","3":"102.8408","4":"103.5442","5":"104.0818","6":"104.4480","7":"105.3748","8":"108.6568","9":"109.0865","10":"110.4050","11":"107.3295","12":"106.06165","13":"106.44828","14":"106.85879","15":"108.57349","16":"108.55390","17":"107.54767","18":"108.98327","19":"113.61457","20":"115.57598","21":"117.16733"},{"1":"Europe","2":"207.1456","3":"210.3188","4":"214.2022","5":"218.9621","6":"225.8230","7":"231.8788","8":"235.1136","9":"235.7410","10":"236.2410","11":"234.8846","12":"229.71076","13":"221.17234","14":"212.03365","15":"204.93022","16":"197.54270","17":"188.07018","18":"182.25832","19":"177.72082","20":"171.51716","21":"166.18161"},{"1":"Oceania","2":"112.4658","3":"112.5747","4":"113.0503","5":"113.9893","6":"115.8887","7":"120.1311","8":"123.0750","9":"124.6053","10":"124.7615","11":"128.7076","12":"128.66092","13":"122.18376","14":"120.61912","15":"123.66064","16":"134.77923","17":"140.82112","18":"148.81710","19":"154.70991","20":"155.86907","21":"157.64603"},{"1":"World","2":"151.1256","3":"151.2780","4":"151.7028","5":"151.7150","6":"153.1815","7":"154.1121","8":"157.3323","9":"157.9520","10":"159.3259","11":"156.9317","12":"154.85117","13":"153.81525","14":"152.63500","15":"153.39964","16":"152.23941","17":"150.88325","18":"151.00854","19":"153.00778","20":"152.97558","21":"152.28488"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="lets-try-another-popular-packaage-called-reshape2.-function-acast-will-return-a-matrix-while-dcast-will-return-a-dataframe." class="section level4">
+<h4>Let’s try another popular packaage called reshape2. Function acast() will return a matrix while dcast() will return a dataframe.</h4>
+<pre class="r fold-show"><code>data_wide3 &lt;- dcast(df1, Region ~ Year, value.var=&quot;Regional.Estimate&quot;)
+data_wide3</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Region"],"name":[1],"type":["chr"],"align":["left"]},{"label":["2000"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["2001"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["2002"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["2003"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["2004"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["2005"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["2006"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["2007"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["2008"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["2009"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["2010"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["2011"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["2012"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["2013"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["2014"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["2015"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["2016"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["2017"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["2018"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["2019"],"name":[21],"type":["dbl"],"align":["right"]}],"data":[{"1":"Africa","2":"116.0873","3":"113.3011","4":"110.8122","5":"108.2797","6":"108.4676","7":"102.2414","8":"102.3516","9":"100.7656","10":"102.2922","11":"101.7990","12":"98.28915","13":"95.25702","14":"91.75669","15":"93.93616","16":"92.72332","17":"93.68606","18":"94.31257","19":"94.40047","20":"93.69668","21":"91.86543"},{"1":"Americas","2":"357.4196","3":"356.5966","4":"356.8642","5":"354.2762","6":"358.7730","7":"364.1015","8":"371.7445","9":"376.9935","10":"380.7066","11":"379.7531","12":"379.50469","13":"381.98700","14":"384.10449","15":"386.54887","16":"386.16917","17":"387.88528","18":"387.14622","19":"385.84195","20":"383.67496","21":"378.91872"},{"1":"Asia","2":"102.1752","3":"102.8408","4":"103.5442","5":"104.0818","6":"104.4480","7":"105.3748","8":"108.6568","9":"109.0865","10":"110.4050","11":"107.3295","12":"106.06165","13":"106.44828","14":"106.85879","15":"108.57349","16":"108.55390","17":"107.54767","18":"108.98327","19":"113.61457","20":"115.57598","21":"117.16733"},{"1":"Europe","2":"207.1456","3":"210.3188","4":"214.2022","5":"218.9621","6":"225.8230","7":"231.8788","8":"235.1136","9":"235.7410","10":"236.2410","11":"234.8846","12":"229.71076","13":"221.17234","14":"212.03365","15":"204.93022","16":"197.54270","17":"188.07018","18":"182.25832","19":"177.72082","20":"171.51716","21":"166.18161"},{"1":"Oceania","2":"112.4658","3":"112.5747","4":"113.0503","5":"113.9893","6":"115.8887","7":"120.1311","8":"123.0750","9":"124.6053","10":"124.7615","11":"128.7076","12":"128.66092","13":"122.18376","14":"120.61912","15":"123.66064","16":"134.77923","17":"140.82112","18":"148.81710","19":"154.70991","20":"155.86907","21":"157.64603"},{"1":"World","2":"151.1256","3":"151.2780","4":"151.7028","5":"151.7150","6":"153.1815","7":"154.1121","8":"157.3323","9":"157.9520","10":"159.3259","11":"156.9317","12":"154.85117","13":"153.81525","14":"152.63500","15":"153.39964","16":"152.23941","17":"150.88325","18":"151.00854","19":"153.00778","20":"152.97558","21":"152.28488"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="there-are-tons-of-other-functions-such-as-plyrdaply-basextabs-basereshape-baseunstack" class="section level4">
+<h4>There are tons of other functions such as plyr::daply(), base::xtabs(), base::reshape, base::unstack</h4>
+</div>
+</div>
+<div id="references" class="section level3">
+<h3>References</h3>
+<div id="the-citations-and-data-sources-used-for-this-case-can-be-found-on-the-united-nations-office-on-drugs-and-crime-data-repository" class="section level4">
+<h4>The citations and data sources used for this case can be found on the United Nations Office on Drugs and Crime <a href="https://dataunodc.un.org/" target="_blank">data repository</a></h4>
+<script type="text/javascript">
+
+// Must be included to position footer
+$(function() {
+  $('.main-container').after($('.footer'));
+})
+
+</script>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Footer-->
+<div class="footer text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Use</div>
+        <p class="footer-text text-center">This work is licensed under<br>Attribution 4.0 International<br><strong>CC BY 4.0</strong></p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Source</div>
+        <p class="footer-text text-center">
+          <a href="https://github.com/UN-AVT/kamino-web" class="centered">
+          <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32" style="margin-top: 0px;">
+          </a>
+        </p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Creation</div>
+        <p class="footer-text text-center">Hand crafted with ♥ by<br>the <strong>Kamino Crew</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+
+</body>
+</html>

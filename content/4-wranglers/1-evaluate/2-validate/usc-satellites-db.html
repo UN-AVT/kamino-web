@@ -1,0 +1,2289 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Kamino</title>
+
+<script src="../../../../vendor/knitr/header-attrs-2.11/header-attrs.js"></script>
+<script src="../../../../vendor/knitr/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="../../../../vendor/knitr/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="../../../../vendor/knitr/navigation-1.1/tabsets.js"></script>
+<script src="../../../../vendor/knitr/navigation-1.1/codefolding.js"></script>
+<link href="../../../../vendor/knitr/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/highlightjs-9.12.0/highlight.js"></script>
+<link href="../../../../vendor/knitr/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="../../../../vendor/knitr/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../../../vendor/knitr/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<div class="border-bottom">
+  
+  <div class="header">
+    
+  <img src="../../../../assets/logo/logo.svg" alt="" height="36">
+
+  <div class="nav" style="float: right;">
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="home.html" 
+        data-bs-toggle="tooltip" 
+        data-bs-placement="bottom"
+        title="Home">
+        <img src="../../../../assets/icons/campground-solid.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="explorer.html" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom" 
+        title="Search for content">
+        <img src="../../../../assets/icons/compass.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="https://github.com/UN-AVT" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom"
+        title="Project">
+        <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32">
+      </a>
+    </div>
+
+</div>
+</div>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="../../../../assets/styles/content.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<div class="activity">
+<p>WRANGLERS</p>
+</div>
+<div id="usc-satellites" class="section level1">
+<h1>USC Satellites</h1>
+<div id="validate" class="section level2">
+<h2>Validate</h2>
+<div class="figure" style="text-align: center">
+<img src="photo-satellite.jpg" alt="Photo by Nasa on Unsplash" width="60%" />
+<p class="caption">
+Photo by Nasa on Unsplash
+</p>
+</div>
+<div class="figure-text">
+Satellite in Orbit
+</div>
+<blockquote>
+<p>If I had a spreadsheet on my computer, it looked like I was busy…<br />
+— Nate Silver<br />
+</p>
+</blockquote>
+<hr />
+<pre class="r fold-hide"><code>df &lt;- read.csv(&#39;./archetypes/usc-satellites-db/usc-satellites-db.csv&#39;, header = TRUE, stringsAsFactors = FALSE)
+df&lt;-df[1:20,]</code></pre>
+<!-- FOR DISPLAY ONLY -->
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Name.of.Satellite..Alternate.Names"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Country.Org.of.UN.Registry"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Country.of.Operator.Owner"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Operator.Owner"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Users"],"name":[5],"type":["chr"],"align":["left"]},{"label":["Purpose"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Detailed.Purpose"],"name":[7],"type":["chr"],"align":["left"]},{"label":["Class.of.Orbit"],"name":[8],"type":["chr"],"align":["left"]},{"label":["Type.of.Orbit"],"name":[9],"type":["chr"],"align":["left"]},{"label":["Longitude.of.GEO..degrees."],"name":[10],"type":["dbl"],"align":["right"]},{"label":["Perigee..km."],"name":[11],"type":["int"],"align":["right"]},{"label":["Apogee..km."],"name":[12],"type":["int"],"align":["right"]},{"label":["Eccentricity"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["Inclination..degrees."],"name":[14],"type":["dbl"],"align":["right"]},{"label":["Period..minutes."],"name":[15],"type":["chr"],"align":["left"]},{"label":["Launch.Mass..kg.."],"name":[16],"type":["chr"],"align":["left"]},{"label":["Dry.Mass..kg.."],"name":[17],"type":["chr"],"align":["left"]},{"label":["Power..watts."],"name":[18],"type":["chr"],"align":["left"]},{"label":["Date.of.Launch"],"name":[19],"type":["chr"],"align":["left"]},{"label":["Expected.Lifetime"],"name":[20],"type":["chr"],"align":["left"]},{"label":["Contractor"],"name":[21],"type":["chr"],"align":["left"]},{"label":["Country.of.Contractor"],"name":[22],"type":["chr"],"align":["left"]},{"label":["Launch.Site"],"name":[23],"type":["chr"],"align":["left"]},{"label":["Launch.Vehicle"],"name":[24],"type":["chr"],"align":["left"]},{"label":["COSPAR.Number"],"name":[25],"type":["chr"],"align":["left"]},{"label":["NORAD.Number"],"name":[26],"type":["int"],"align":["right"]},{"label":["Comments"],"name":[27],"type":["chr"],"align":["left"]},{"label":["xfield"],"name":[28],"type":["int"],"align":["right"]}],"data":[{"1":"Aalto-1","2":"NR (10/17)","3":"Finland","4":"University of Aalto","5":"Civil","6":"Technology Development","7":"","8":"LEO","9":"","10":"0.00","11":"497","12":"517","13":"0.001454122","14":"97.45","15":"94.7","16":"5","17":"","18":"4.5","19":"2017-06-23T00:00","20":"2 yrs.","21":"University of Aalto","22":"Finland","23":"Satish Dhawan Space Centre","24":"PSLV","25":"2017-036L","26":"42775","27":"Technology development and education.","28":"174","_rn_":"1"},{"1":"AAUSat-4","2":"NR (12/16)","3":"Denmark","4":"University of Aalborg","5":"Civil","6":"Earth Observation","7":"Automatic Identification System (AIS)","8":"LEO","9":"Sun-Synchronous","10":"0.00","11":"442","12":"687","13":"0.017665297","14":"98.20","15":"95.9","16":"1","17":"","18":"","19":"2016-04-25T00:00","20":"","21":"University of Aalborg","22":"Denmark","23":"Guiana Space Center","24":"Soyuz 2.1a","25":"2016-025E","26":"41460","27":"Carries AIS system.","28":"116","_rn_":"2"},{"1":"ABS-2 (Koreasat-8, ST-3)","2":"NR","3":"Multinational","4":"Asia Broadcast Satellite Ltd.","5":"Commercial","6":"Communications","7":"","8":"GEO","9":"","10":"75.00","11":"35778","12":"35793","13":"0.000178000","14":"0.08","15":"1436.03","16":"6,330","17":"","18":"16,000","19":"2014-02-06T00:00","20":"15 yrs.","21":"Space Systems/Loral","22":"USA","23":"Guiana Space Center","24":"Ariane  5 ECA","25":"2014-006A","26":"39508","27":"32 C-band, 51 Ku-band, and 6 Ka-band transponders. $214 million lawsuit for bad beam.","28":"37","_rn_":"3"},{"1":"ABS-2A","2":"NR (12/16)","3":"Multinational","4":"Asia Broadcast Satellite Ltd.","5":"Commercial","6":"Communications","7":"","8":"GEO","9":"","10":"-75.00","11":"35700","12":"35700","13":"0.000000000","14":"0.00","15":"1436.1","16":"1,800","17":"","18":"","19":"2016-06-15T00:00","20":"15 yrs.","21":"Boeing Satellite Systems","22":"USA","23":"Cape Canaveral","24":"Falcon 9","25":"2016-038A","26":"41588","27":"","28":"167","_rn_":"4"},{"1":"ABS-3 (Agila 2, Mabuhay 1)","2":"Philippines","3":"Multinational","4":"Asia Broadcast Satellite Ltd.","5":"Commercial","6":"Communications","7":"","8":"GEO","9":"","10":"146.06","11":"35769","12":"35802","13":"0.000391000","14":"0.05","15":"1436.07","16":"3,775","17":"1,800","18":"9,000","19":"1997-08-19T00:00","20":"15 yrs.","21":"Space Systems/Loral","22":"USA","23":"Xichang Satellite Launch Center","24":"Long March CZ3B","25":"1997-042A","26":"24901","27":"Most powerful telecommunications satellite in service in the Asia-Pacific region; 30 C-band, 24 Ku-band transponders; 190 high fidelity channels and 50,000 simultaneous telephone links.","28":"231","_rn_":"5"},{"1":"ABS-3A","2":"NR","3":"Multinational","4":"Asia Broadcast Satellite Ltd.","5":"Commercial","6":"Communications","7":"","8":"GEO","9":"","10":"-3.00","11":"35788","12":"35803","13":"0.000178000","14":"0.10","15":"1436","16":"2,000","17":"","18":"","19":"2015-03-02T00:00","20":"15 yrs.","21":"Boeing Satellite Systems","22":"USA","23":"Cape Canaveral","24":"Falcon 9","25":"2015-010A","26":"40424","27":"Coverage of Americas Europe and Africa.","28":"61","_rn_":"6"},{"1":"ABS-4 (ABS-2i, MBSat, Mobile Broadcasting Satellite, Han Byul)","2":"NR","3":"Multinational","4":"Asia Broadcast Satellite Ltd.","5":"Commercial","6":"Communications","7":"","8":"GEO","9":"","10":"75.00","11":"35780","12":"35793","13":"0.000154000","14":"0.01","15":"1436.1","16":"4,143","17":"1,700","18":"7,400","19":"2004-03-13T00:00","20":"12 yrs.","21":"Space Systems/Loral","22":"USA","23":"Cape Canaveral","24":"Atlas 3","25":"2004-007A","26":"28184","27":"Purchased by ABS in 2013.","28":"73","_rn_":"7"},{"1":"ABS-6 (ABS-1, LMI-1, Lockheed Martin-Intersputnik-1)","2":"NR","3":"Multinational","4":"Asia Broadcast Satellite Ltd.","5":"Commercial","6":"Communications","7":"","8":"GEO","9":"","10":"159.00","11":"35777","12":"35794","13":"0.000202000","14":"0.01","15":"1436.08","16":"2,894","17":"1,730","18":"6,800 (EOL)","19":"1999-09-26T00:00","20":"15 yrs.","21":"Lockheed Martin","22":"USA","23":"Baikonur Cosmodrome","24":"Proton","25":"1999-053A","26":"25924","27":"28 C-band, 16 Ku-band; business services, public voice and data services, broadcasting, direct-to-home; Eastern Europe, CIS, South and Southeast Asia, Africa, Middle East, Australia.","28":"269","_rn_":"8"},{"1":"ABS-7 (Koreasat 3, Mugungwha 3)","2":"South Korea","3":"Multinational","4":"Asia Broadcast Satellite Ltd.","5":"Commercial","6":"Communications","7":"","8":"GEO","9":"","10":"116.18","11":"35780","12":"35791","13":"0.000130000","14":"0.01","15":"1436.06","16":"3,500","17":"1,800","18":"4,800","19":"1999-09-04T00:00","20":"15 yrs.","21":"Lockheed Martin Astro Space","22":"USA","23":"Guiana Space Center","24":"Ariane","25":"1999-046A","26":"25894","27":"30 Ku-band, 6 Ka-band; Korean peninsula, the Japanese archipelago, and parts of China and Russia.","28":"247","_rn_":"9"},{"1":"Advanced Orion 2 (Mentor, NROL 6, USA 139)","2":"USA","3":"USA","4":"National Reconnaissance Office (NRO)","5":"Military","6":"Earth Observation","7":"Electronic Intelligence","8":"GEO","9":"","10":"-26.00","11":"35560","12":"36013","13":"0.005372837","14":"7.72","15":"1436.14","16":"4,500","17":"","18":"","19":"1998-05-09T00:00","20":"","21":"TRW Space and Electronics","22":"USA","23":"Cape Canaveral","24":"Titan IVA","25":"1998-029A","26":"25336","27":"ELINT.","28":"129","_rn_":"10"},{"1":"Advanced Orion 3 (Mentor, NROL 19, USA 171)","2":"USA","3":"USA","4":"National Reconnaissance Office (NRO)","5":"Military","6":"Earth Observation","7":"Electronic Intelligence","8":"GEO","9":"","10":"95.40","11":"35589","12":"35984","13":"0.004684924","14":"3.20","15":"1436.1","16":"4,500","17":"","18":"","19":"2003-09-09T00:00","20":"","21":"TRW Space and Electronics","22":"USA","23":"Cape Canaveral","24":"Titan IV","25":"2003-041A","26":"27937","27":"Electronic intelligence (ELINT).","28":"252","_rn_":"11"},{"1":"Advanced Orion 4 (Mentor, NRO L-26, USA 202)","2":"USA","3":"USA","4":"National Reconnaissance Office (NRO)","5":"Military","6":"Earth Observation","7":"Electronic Intelligence","8":"GEO","9":"","10":"44.00","11":"35714","12":"35937","13":"0.002642462","14":"2.89","15":"1438.8","16":"5,000","17":"","18":"","19":"2009-01-18T00:00","20":"","21":"National Reconnaissance Laboratory (?)","22":"USA","23":"Cape Canaveral","24":"Delta 4 Heavy","25":"2009-001A","26":"33490","27":"ELINT.","28":"18","_rn_":"12"},{"1":"Advanced Orion 5 (Mentor, NRO L-32, USA 223)","2":"USA","3":"USA","4":"National Reconnaissance Office (NRO)","5":"Military","6":"Earth Observation","7":"Electronic Intelligence","8":"GEO","9":"","10":"100.90","11":"35500","12":"35500","13":"0.000000000","14":"0.00","15":"1436","16":"5,000","17":"","18":"","19":"2010-11-21T00:00","20":"","21":"National Reconnaissance Laboratory (?)","22":"USA","23":"Cape Canaveral","24":"Delta 4 Heavy","25":"2010-063A","26":"37232","27":"ELINT.","28":"325","_rn_":"13"},{"1":"Advanced Orion 6 (Mentor, NRO L-15, USA 237)","2":"USA","3":"USA","4":"National Reconnaissance Office (NRO)","5":"Military","6":"Earth Observation","7":"Electronic Intelligence","8":"GEO","9":"","10":"60.00","11":"35771","12":"35805","13":"0.000403000","14":"0.00","15":"1436.1","16":"5,000","17":"","18":"","19":"2012-06-29T00:00","20":"","21":"National Reconnaissance Laboratory(?)","22":"USA","23":"Cape Canaveral","24":"Delta 4 Heavy","25":"2012-034A","26":"38528","27":"ELINT.","28":"181","_rn_":"14"},{"1":"Advanced Orion 7 (Mentor, NRO L-37, USA 268)","2":"NR (12/16)","3":"USA","4":"National Reconnaissance Office (NRO)","5":"Military","6":"Earth Observation","7":"Electronic Intelligence","8":"GEO","9":"","10":"102.60","11":"35613","12":"35903","13":"0.003441891","14":"7.51","15":"1437.19","16":"5,000","17":"","18":"","19":"2016-06-11T00:00","20":"","21":"National Reconnaissance Laboratory(?)","22":"USA","23":"Cape Canaveral","24":"Delta 4 Heavy","25":"2016-036A","26":"41584","27":"ELINT.","28":"163","_rn_":"15"},{"1":"AEHF-2 (Advanced Extremely High Frequency satellite-2, USA 235)","2":"USA","3":"USA","4":"US Air Force","5":"Military","6":"Communications","7":"","8":"GEO","9":"","10":"-120.00","11":"35772","12":"35801","13":"0.000344000","14":"2.34","15":"1436.1","16":"6,169","17":"","18":"","19":"2012-05-03T00:00","20":"14 yrs.","21":"Lockheed Martin Space Systems","22":"USA","23":"Cape Canaveral","24":"Atlas 5","25":"2012-019A","26":"38254","27":"Second in constellation.","28":"124","_rn_":"16"},{"1":"AEHF-3 (Advanced Extremely High Frequency satellite-3, USA 246)","2":"NR","3":"USA","4":"US Air Force","5":"Military","6":"Communications","7":"","8":"GEO","9":"","10":"NA","11":"35700","12":"35803","13":"0.001222654","14":"4.20","15":"1436.1","16":"6,169","17":"","18":"","19":"2013-09-18T00:00","20":"14 yrs.","21":"Lockheed Martin Space Systems","22":"USA","23":"Cape Canaveral","24":"Atlas 5","25":"2013-050A","26":"39256","27":"Third in constellation.","28":"261","_rn_":"17"},{"1":"Aeneas","2":"USA","3":"USA","4":"Department of Homeland Security","5":"Government","6":"Technology Development","7":"","8":"LEO","9":"Equatorial","10":"0.00","11":"480","12":"790","13":"0.022127052","14":"0.02","15":"97.4","16":"3","17":"","18":"","19":"2012-09-13T00:00","20":"","21":"University of Southern California","22":"USA","23":"Vandenberg AFB","24":"Atlas 5","25":"2012-048C","26":"38760","27":"Demonsration program to track cargo containers worldwide.","28":"257","_rn_":"18"},{"1":"Aerocube 4.5A","2":"USA","3":"USA","4":"Aerospace Corporation","5":"Commercial","6":"Technology Development","7":"","8":"LEO","9":"Non-Polar Inclined","10":"0.00","11":"495","12":"791","13":"0.021103665","14":"64.60","15":"97.5","16":"5","17":"","18":"","19":"2012-09-13T00:00","20":"","21":"Aerospace Corporation","22":"USA","23":"Vandenberg AFB","24":"Atlas 5","25":"2012-048K","26":"38767","27":"","28":"257","_rn_":"19"},{"1":"Aerocube 4.5B","2":"USA","3":"USA","4":"Aerospace Corporation","5":"Commercial","6":"Technology Development","7":"","8":"LEO","9":"Non-Polar Inclined","10":"0.00","11":"499","12":"792","13":"0.020882332","14":"64.60","15":"97.6","16":"5","17":"","18":"","19":"2012-09-13T00:00","20":"","21":"Aerospace Corporation","22":"USA","23":"Vandenberg AFB","24":"Atlas 5","25":"2012-048L","26":"38768","27":"","28":"257","_rn_":"20"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div id="is-alpha" class="section level3">
+<h3>Is alpha</h3>
+<div id="checking-if-the-cells-in-the-first-column-contain-letters-and-only-letters-a-za-z." class="section level4">
+<h4>Checking if the cells in the first column contain letters, and only letters (a-zA-Z).</h4>
+<pre class="r"><code>a &lt;- df$Name.of.Satellite..Alternate.Names
+
+df_1 &lt;- grepl(&quot;^[A-Za-z]+$&quot;, a, perl = T)</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [13] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</code></pre>
+</div>
+<div id="as-you-can-see-only-cell-18-contains-only-letters-the-other-cells-contain-numbers-or-other-characters." class="section level4">
+<h4>As you can see, only cell 18 contains only letters, the other cells contain numbers or other characters.</h4>
+<!-- FOR DISPLAY ONLY -->
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:350px; ">
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Country.Org.of.UN.Registry
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+is_alpha
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Aalto-1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AAUSat-4
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ABS-2 (Koreasat-8, ST-3)
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ABS-2A
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ABS-3 (Agila 2, Mabuhay 1)
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ABS-3A
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ABS-4 (ABS-2i, MBSat, Mobile Broadcasting Satellite, Han Byul)
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ABS-6 (ABS-1, LMI-1, Lockheed Martin-Intersputnik-1)
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ABS-7 (Koreasat 3, Mugungwha 3)
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Advanced Orion 2 (Mentor, NROL 6, USA 139)
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Advanced Orion 3 (Mentor, NROL 19, USA 171)
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Advanced Orion 4 (Mentor, NRO L-26, USA 202)
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Advanced Orion 5 (Mentor, NRO L-32, USA 223)
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Advanced Orion 6 (Mentor, NRO L-15, USA 237)
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Advanced Orion 7 (Mentor, NRO L-37, USA 268)
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AEHF-2 (Advanced Extremely High Frequency satellite-2, USA 235)
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AEHF-3 (Advanced Extremely High Frequency satellite-3, USA 246)
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+Aeneas
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aerocube 4.5A
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Aerocube 4.5B
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="is-alphanumeric" class="section level3">
+<h3>Is alphanumeric</h3>
+<div id="checking-if-the-cells-in-the-second-column-contain-only-letters-or-numbers." class="section level4">
+<h4>Checking if the cells in the second column contain only letters or numbers.</h4>
+<pre class="r"><code>a &lt;- df$Country.Org.of.UN.Registry
+df_2 &lt;- grepl(&quot;^[0-9A-Za-z]+$&quot;, a, perl = T)</code></pre>
+<pre><code>##  [1] FALSE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE
+## [13]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+</div>
+<div id="as-you-can-see-some-rows-contain-other-characters-than-just-letters-and-numbers." class="section level4">
+<h4>As you can see, some rows contain other characters than just letters and numbers.</h4>
+<!-- FOR DISPLAY ONLY -->
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:350px; ">
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Country.Org.of.UN.Registry
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+is_alpha
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+NR (10/17)
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+NR (12/16)
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NR
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+NR (12/16)
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Philippines
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NR
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NR
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NR
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+South Korea
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+NR (12/16)
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NR
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+USA
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="is-numeric" class="section level3">
+<h3>Is numeric</h3>
+<div id="check-if-the-column-eccentricity-is-numeric." class="section level4">
+<h4>Check if the column “Eccentricity” is numeric.</h4>
+<pre class="r"><code>is.numeric(df$Eccentricity)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+</div>
+<div id="is-decimal" class="section level3">
+<h3>Is decimal</h3>
+<div id="now-we-know-eccentricity-is-numeric-but-is-it-decimal" class="section level4">
+<h4>Now we know “Eccentricity” is numeric, but is it decimal?</h4>
+<pre class="r"><code>e&lt;-df$Eccentricity
+
+df_3&lt;-is.decimal(e)</code></pre>
+<pre><code>##  [1]  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+## [13] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+</div>
+<div id="as-you-can-see-0-is-not-decimal." class="section level4">
+<h4>As you can see, 0 is not decimal.</h4>
+<!-- FOR DISPLAY ONLY -->
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:350px; ">
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Eccentricity
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+is_decimal
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0.0014541
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0176653
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0001780
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+0.0000000
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0003910
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0001780
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0001540
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0002020
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0001300
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0053728
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0046849
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0026425
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+0.0000000
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0004030
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0034419
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0003440
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0012227
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0221271
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0211037
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0.0208823
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="is-integer" class="section level3">
+<h3>Is integer</h3>
+<div id="checking-if-the-cells-of-column-xfield-are-integers." class="section level4">
+<h4>Checking if the cells of column “xfield” are integers.</h4>
+<pre class="r"><code>is.integer(df$xfield)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+</div>
+<div id="is-divisible-by" class="section level3">
+<h3>Is divisible by</h3>
+<div id="checking-if-an-integer-is-divisible-by-another.-we-know-xfield-is-made-of-integers-lets-check-if-all-these-cells-are-divisible-by-3." class="section level4">
+<h4>Checking if an integer is divisible by another. We know ‘xfield’ is made of integers, let’s check if all these cells are divisible by 3.</h4>
+<pre class="r"><code>d&lt;-df$xfield%%3==0</code></pre>
+<pre><code>##  [1]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE
+## [13] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</code></pre>
+</div>
+<div id="as-you-can-see-not-all-rows-can-divide-by-3." class="section level4">
+<h4>As you can see, not all rows can divide by 3.</h4>
+<!-- FOR DISPLAY ONLY -->
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:350px; ">
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+xfield
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+is_divisible_by_3
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+1
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+174
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+116
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+37
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+167
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+1
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+231
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+61
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+73
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+269
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+247
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+1
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+129
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+1
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+252
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+1
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+325
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+181
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+163
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+124
+</td>
+</tr>
+<tr>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+1
+</td>
+<td style="text-align:right;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+261
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+257
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+257
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+257
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="is-date" class="section level3">
+<h3>Is date</h3>
+<div id="checking-if-the-column-date.of.launch-is-of-date-type." class="section level4">
+<h4>Checking if the column “Date.of.Launch” is of date type.</h4>
+<pre class="r"><code>c &lt;- df$Date.of.Launch
+
+class(c)==&#39;Date&#39;</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="if-not-we-can-use-as.date-to-change-the-type-and-check-again." class="section level4">
+<h4>If not, we can use as.Date to change the type and check again.</h4>
+<pre class="r"><code>d &lt;- as.Date(c)
+class(d) == &#39;Date&#39;</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+</div>
+<div id="is-length" class="section level3">
+<h3>Is length</h3>
+<div id="checking-if-the-column-cospar.number-has-the-same-length-for-each-cell-that-they-are-they-all-equal-to-9" class="section level4">
+<h4>Checking if the column “COSPAR.Number” has the same length for each cell, that they are they all equal to 9?</h4>
+<pre class="r"><code>nchar(df$COSPAR.Number)==9</code></pre>
+<pre><code>##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+## [16] TRUE TRUE TRUE TRUE TRUE</code></pre>
+</div>
+</div>
+<div id="is-empty" class="section level3">
+<h3>Is empty</h3>
+<div id="checking-if-the-column-detailed.purpose-column-has-any-cells-with-lenght-zero." class="section level4">
+<h4>Checking if the column “Detailed.Purpose” column has any cells with lenght zero.</h4>
+<pre class="r"><code>df_4 &lt;- nchar(df$Detailed.Purpose)==0</code></pre>
+<pre><code>##  [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE
+## [13] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+</div>
+<div id="as-you-can-see-there-are-many-empty-rows." class="section level4">
+<h4>As you can see, there are many empty rows.</h4>
+<!-- FOR DISPLAY ONLY -->
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:350px; ">
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Detailed.Purpose
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+is_empty
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+Automatic Identification System (AIS)
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+Electronic Intelligence
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+Electronic Intelligence
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+Electronic Intelligence
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+Electronic Intelligence
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+Electronic Intelligence
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+Electronic Intelligence
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #E2B9B3 !important;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="is-latlong" class="section level3">
+<h3>Is LatLong</h3>
+<div id="check-if-the-string-is-a-valid-latitude-longitude-coordinate-in-the-format-latlong-or-lat-long." class="section level4">
+<h4>Check if the string is a valid latitude-longitude coordinate in the format lat,long or lat, long.</h4>
+</div>
+<div id="the-latitude-of-the-location.-may-range-from--90.0-to-90.0.-the-longitude-of-the-location.-may-range-from--180.0-to-180.0." class="section level4">
+<h4>The latitude of the location. May range from -90.0 to 90.0. The longitude of the location. May range from -180.0 to 180.0.</h4>
+</div>
+<div id="lets-check-if-longitude.of.geo..degrees.-column-fit-the-requirement." class="section level4">
+<h4>Let’s check if “Longitude.of.GEO..degrees.” column fit the requirement.</h4>
+<pre class="r"><code>df$Longitude.of.GEO..degrees.&lt;180.0 |df$Longitude.of.GEO..degrees.&gt;-180.0</code></pre>
+<pre><code>##  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+## [16] TRUE   NA TRUE TRUE TRUE</code></pre>
+</div>
+<div id="as-you-can-see-except-one-na-value-the-rest-fit-the-longitude-requirement." class="section level4">
+<h4>As you can see, except one NA value, the rest fit the longitude requirement.</h4>
+</div>
+</div>
+<div id="is-logical" class="section level3">
+<h3>Is logical</h3>
+<div id="check-if-the-column-type.of.orbit-is-logical." class="section level4">
+<h4>Check if the column “Type.of.Orbit” is logical.</h4>
+<pre class="r"><code>is.logical(df$Type.of.Orbit)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="lets-check-another-dataset." class="section level4">
+<h4>Let’s check another dataset.</h4>
+<pre class="r"><code>df_11 &lt;- read.csv(&#39;./archetypes/economic-growth-happiness/economic-growth-does-not-guarantee-rising-happiness.csv&#39;)
+df_11 &lt;- df_11[1:20,]</code></pre>
+<!-- FOR DISPLAY ONLY -->
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:350px; ">
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+name
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+iso
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+happy
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+gdp.pc
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+pop
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+obs
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+year
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+quadrant
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+paradox
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+pop.break
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+pop.levels
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:left;">
+AF
+</td>
+<td style="text-align:right;">
+3.067623
+</td>
+<td style="text-align:right;">
+1800.8124
+</td>
+<td style="text-align:right;">
+20626224
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-fall
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+TRUE
+</td>
+<td style="text-align:left;">
+&lt;25m
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Argentina
+</td>
+<td style="text-align:left;">
+AR
+</td>
+<td style="text-align:right;">
+6.013036
+</td>
+<td style="text-align:right;">
+18486.8570
+</td>
+<td style="text-align:right;">
+33169981
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-fall
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+TRUE
+</td>
+<td style="text-align:left;">
+25m-100m
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Australia
+</td>
+<td style="text-align:left;">
+OS
+</td>
+<td style="text-align:right;">
+7.215276
+</td>
+<td style="text-align:right;">
+44934.6136
+</td>
+<td style="text-align:right;">
+19981907
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-fall
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+TRUE
+</td>
+<td style="text-align:left;">
+&lt;25m
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Austria
+</td>
+<td style="text-align:left;">
+AT
+</td>
+<td style="text-align:right;">
+7.283451
+</td>
+<td style="text-align:right;">
+45602.0216
+</td>
+<td style="text-align:right;">
+7553394
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-rise
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+FALSE
+</td>
+<td style="text-align:left;">
+&lt;25m
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Azerbaijan
+</td>
+<td style="text-align:left;">
+AZ
+</td>
+<td style="text-align:right;">
+5.198041
+</td>
+<td style="text-align:right;">
+15943.5658
+</td>
+<td style="text-align:right;">
+7573783
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-rise
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+FALSE
+</td>
+<td style="text-align:left;">
+&lt;25m
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bangladesh
+</td>
+<td style="text-align:left;">
+BD
+</td>
+<td style="text-align:right;">
+4.466087
+</td>
+<td style="text-align:right;">
+3569.4709
+</td>
+<td style="text-align:right;">
+115125223
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-fall
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+TRUE
+</td>
+<td style="text-align:left;">
+100m-500m
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Belarus
+</td>
+<td style="text-align:left;">
+BY
+</td>
+<td style="text-align:right;">
+5.299589
+</td>
+<td style="text-align:right;">
+17312.4760
+</td>
+<td style="text-align:right;">
+7904497
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-fall
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+TRUE
+</td>
+<td style="text-align:left;">
+&lt;25m
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Belgium
+</td>
+<td style="text-align:left;">
+BE
+</td>
+<td style="text-align:right;">
+6.915407
+</td>
+<td style="text-align:right;">
+42760.7211
+</td>
+<td style="text-align:right;">
+9447485
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-fall
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+TRUE
+</td>
+<td style="text-align:left;">
+&lt;25m
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Benin
+</td>
+<td style="text-align:left;">
+BJ
+</td>
+<td style="text-align:right;">
+5.125048
+</td>
+<td style="text-align:right;">
+2083.4953
+</td>
+<td style="text-align:right;">
+6459190
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-rise
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+FALSE
+</td>
+<td style="text-align:left;">
+&lt;25m
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bolivia
+</td>
+<td style="text-align:left;">
+BO
+</td>
+<td style="text-align:right;">
+5.812936
+</td>
+<td style="text-align:right;">
+6922.5583
+</td>
+<td style="text-align:right;">
+7704603
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-rise
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+FALSE
+</td>
+<td style="text-align:left;">
+&lt;25m
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Brazil
+</td>
+<td style="text-align:left;">
+BR
+</td>
+<td style="text-align:right;">
+6.272398
+</td>
+<td style="text-align:right;">
+14123.4180
+</td>
+<td style="text-align:right;">
+163277477
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-fall
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+TRUE
+</td>
+<td style="text-align:left;">
+100m-500m
+</td>
+<td style="text-align:right;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bulgaria
+</td>
+<td style="text-align:left;">
+BG
+</td>
+<td style="text-align:right;">
+5.033022
+</td>
+<td style="text-align:right;">
+18791.3069
+</td>
+<td style="text-align:right;">
+6040426
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-rise
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+FALSE
+</td>
+<td style="text-align:left;">
+&lt;25m
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Burkina Faso
+</td>
+<td style="text-align:left;">
+BF
+</td>
+<td style="text-align:right;">
+4.676749
+</td>
+<td style="text-align:right;">
+1714.1156
+</td>
+<td style="text-align:right;">
+10612307
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-rise
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+FALSE
+</td>
+<td style="text-align:left;">
+&lt;25m
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Burundi
+</td>
+<td style="text-align:left;">
+BI
+</td>
+<td style="text-align:right;">
+3.775283
+</td>
+<td style="text-align:right;">
+693.0019
+</td>
+<td style="text-align:right;">
+6088180
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+fall-rise
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+TRUE
+</td>
+<td style="text-align:left;">
+&lt;25m
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cambodia
+</td>
+<td style="text-align:left;">
+KH
+</td>
+<td style="text-align:right;">
+4.822694
+</td>
+<td style="text-align:right;">
+3697.7880
+</td>
+<td style="text-align:right;">
+11047864
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-rise
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+FALSE
+</td>
+<td style="text-align:left;">
+&lt;25m
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cameroon
+</td>
+<td style="text-align:left;">
+CM
+</td>
+<td style="text-align:right;">
+5.097940
+</td>
+<td style="text-align:right;">
+3381.2373
+</td>
+<td style="text-align:right;">
+14146088
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-rise
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+FALSE
+</td>
+<td style="text-align:left;">
+&lt;25m
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Canada
+</td>
+<td style="text-align:left;">
+CA
+</td>
+<td style="text-align:right;">
+7.252677
+</td>
+<td style="text-align:right;">
+44019.5937
+</td>
+<td style="text-align:right;">
+30853222
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-fall
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+TRUE
+</td>
+<td style="text-align:left;">
+25m-100m
+</td>
+<td style="text-align:right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chad
+</td>
+<td style="text-align:left;">
+TD
+</td>
+<td style="text-align:right;">
+4.390235
+</td>
+<td style="text-align:right;">
+1791.1981
+</td>
+<td style="text-align:right;">
+7972430
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-rise
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+FALSE
+</td>
+<td style="text-align:left;">
+&lt;25m
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chile
+</td>
+<td style="text-align:left;">
+CL
+</td>
+<td style="text-align:right;">
+6.442904
+</td>
+<td style="text-align:right;">
+23109.0402
+</td>
+<td style="text-align:right;">
+14837423
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-rise
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+FALSE
+</td>
+<td style="text-align:left;">
+&lt;25m
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+China
+</td>
+<td style="text-align:left;">
+CN
+</td>
+<td style="text-align:right;">
+5.171721
+</td>
+<td style="text-align:right;">
+15540.4442
+</td>
+<td style="text-align:right;">
+1139233398
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+rise-rise
+</td>
+<td style="text-align:left;font-weight: bold;color: white !important;background-color: #76b5c5 !important;">
+FALSE
+</td>
+<td style="text-align:left;">
+500m+
+</td>
+<td style="text-align:right;">
+4
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="check-if-the-column-paradox-is-logical." class="section level4">
+<h4>Check if the column “paradox” is logical.</h4>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+</div>
+<div id="country-code" class="section level3">
+<h3>Country code</h3>
+<div id="r-is-a-very-popular-tool-in-particular-because-there-is-an-army-of-dedicated-and-talented-people-creating-and-maintaining-packages.-the-following-package-is-one-of-them-and-is-very-useful-to-us-as-we-deal-with-country-data-country-code-library" class="section level4">
+<h4>R is a very popular tool in particular because there is an army of dedicated and talented people creating and maintaining packages. The following package is one of them, and is very useful to us as we deal with country data, <a href="https://cran.r-project.org/web/packages/countrycode/countrycode.pdf" target="_blank" rel="noopener noreferrer">[country code library]</a></h4>
+</div>
+<div id="this-package-includes-a-set-of-functions-that-we-can-apply-to-convert-guess-andor-validate-country-code." class="section level4">
+<h4>This package includes a set of functions that we can apply to convert, guess and/or validate country code.</h4>
+</div>
+<div id="for-example-the-second-column-in-the-last-dataset-we-loaded-called-iso-seems-to-contain-iso-2-characters.-using-the-package-we-can-confirm-that-these-code-are-all-valid.-if-some-of-them-are-not-valid-it-will-return-na." class="section level4">
+<h4>For example, the second column in the last dataset we loaded, called “iso”, seems to contain ISO-2 characters. Using the package, we can confirm that these code are all valid. If some of them are not valid, it will return NA.</h4>
+</div>
+<div id="lets-enter-iso2c-as-origin-first-meaning-we-guess-it-is-iso-2.-for-each-cell-it-will-return-the-country-name-if-the-code-is-recognised." class="section level4">
+<h4>Let’s enter “iso2c” as origin first (meaning we guess it is ISO-2). For each cell, it will return the country name if the code is recognised.</h4>
+<pre class="r"><code>df_5 &lt;- countrycode(df_11$iso, origin = &#39;iso2c&#39;, destination = &#39;country.name&#39;)
+df_5</code></pre>
+<pre><code>##  [1] &quot;Afghanistan&quot;  &quot;Argentina&quot;    NA             &quot;Austria&quot;      &quot;Azerbaijan&quot;  
+##  [6] &quot;Bangladesh&quot;   &quot;Belarus&quot;      &quot;Belgium&quot;      &quot;Benin&quot;        &quot;Bolivia&quot;     
+## [11] &quot;Brazil&quot;       &quot;Bulgaria&quot;     &quot;Burkina Faso&quot; &quot;Burundi&quot;      &quot;Cambodia&quot;    
+## [16] &quot;Cameroon&quot;     &quot;Canada&quot;       &quot;Chad&quot;         &quot;Chile&quot;        &quot;China&quot;</code></pre>
+</div>
+<div id="notice-that-the-third-entry-is-na-meaning-the-code-was-not-recognized-as-a-valid-iso2-code." class="section level4">
+<h4>Notice that the third entry is NA, meaning the code was not recognized as a valid ISO2 code.</h4>
+<!-- We can also use the guess function, enter similarity of 100, means we want exact match.  -->
+<!-- You can see the column "iso2c" matches so many codes, and iso2c is just one of them. -->
+<!-- FOR DISPLAY ONLY -->
+</div>
+</div>
+<div id="as-reusable-solution" class="section level3">
+<h3>As reusable solution</h3>
+<pre class="r"><code>####################################################################################
+# Required libraries
+library(countrycode)
+library(schoolmath)
+
+####################################################################################
+
+####################################################################################
+# Load data
+load_data &lt;- function(data_source){
+  read_xls(paste(getwd(),data_source,sep=&quot;/&quot;))
+}
+
+#Call the function to load the data
+load_data(&#39;./archetypes/usc-satellites-db/usc-satellites-db.csv&#39;)
+####################################################################################
+
+
+####################################################################################
+# Find If Data is Alphabetical 
+f_isalpha &lt;- function(df_isalpha) {
+  grepl(&quot;^[A-Za-z]+$&quot;, df_isalpha, perl = T)
+}
+
+# Call the function with your values to the parameters
+f_isalpha(df$Users)
+####################################################################################
+
+
+####################################################################################
+# Find If Data is AlphaNumerical
+f_isalphanum &lt;- function(df_isalphanum) {
+  grepl(&quot;^[0-9A-Za-z]+$&quot;, df_isalphanum, perl = T)
+}
+
+# Call the function with your values to the parameters
+f_isalphanum(df$Operator.Owner)
+####################################################################################
+
+
+####################################################################################
+# Find If Data is Numerical 
+f_numeric &lt;- function(df_numeric) {
+  is.numeric(df_numeric)
+}
+
+# Call the function with your values to the parameters
+f_numeric(df$Eccentricity)
+####################################################################################
+
+
+####################################################################################
+# Find If Data is Decimal 
+f_decimal &lt;- function(df_decimal) {
+  is.decimal(df_decimal)
+}
+
+# Call the function with your values to the parameters
+f_decimal(df$Eccentricity)
+####################################################################################
+
+
+####################################################################################
+# Find If Data is Integer
+f_integer &lt;- function(df_integer) {
+  is.integer(df_integer)
+}
+
+# Call the function with your values to the parameters
+f_integer(df$Eccentricity)
+####################################################################################
+
+
+####################################################################################
+# Find If Data is Divisible by a certain number
+f_divisible&lt;- function(df_divisible, divisor) {
+  df_divisible%%divisor==0
+}
+
+# Call the function with your values to the parameters
+f_divisible(df$Perigee, 3)
+####################################################################################
+
+
+####################################################################################
+# Find If Data is Date Datatype
+f_date &lt;- function(df_date) {
+  class(df_date)==&#39;Date&#39;
+}
+
+# Call the function with your values to the parameters
+f_date(df$DateOfLaunch)
+####################################################################################
+
+
+####################################################################################
+# Change DataType to Date
+f_change_date &lt;- function(df_change_date) {
+  as.Date(df_change_date)
+}
+
+# Call the function with your values to the parameters
+df$DateofLaunch &lt;- f_change_date(df$DateOfLaunch)
+####################################################################################
+
+
+####################################################################################
+# Find If There is an empty data point
+f_isempty&lt;- function(df_isempty) {
+  nchar(df_isempty)==0
+}
+
+# Call the function with your values to the parameters
+f_isempty(df$Purpose)
+####################################################################################
+
+
+####################################################################################
+# Find If Data fits Longitude Maximums
+f_longitude &lt;- function(df_longitude) {
+  df_longitude&lt;180.0 |df_longitude&gt;-180.0
+}
+
+# Call the function with your values to the parameters
+f_longitude(df$Geo_Longitude)
+####################################################################################
+
+
+####################################################################################
+# Find If Data is Logical DataType
+f_logical &lt;- function(df_logical) {
+  is.logical(df_logical)
+}
+
+# Call the function with your values to the parameters
+f_logical(df$Eccentricity)
+####################################################################################
+
+
+####################################################################################
+# Find Data with a specific length
+f_islength&lt;- function(df_islength, length) {
+  nchar(df_islength)==length
+}
+
+# Call the function with your values to the parameters
+f_islength(df$Perigree, 5)
+####################################################################################
+
+
+####################################################################################
+# Find if Data matches the Country Codes or Country Names
+f_countrycode &lt;- function(df_countrycode, ori, dest) {
+  ori &lt;- deparse(substitute(ori))
+  dest &lt;- deparse(substitute(dest))
+  countrycode(df_countrycode, origin = ori, destination = dest)
+}
+# Call the function with your values to the parameters
+func(df_11$iso, iso2c, country.name)
+####################################################################################</code></pre>
+</div>
+<div id="references" class="section level3">
+<h3>References</h3>
+<div id="the-citations-and-data-sources-used-for-this-case" class="section level4">
+<h4>The citations and data sources used for this case:</h4>
+</div>
+<div id="this-case-is-based-on-a-dataset-that-comes-from-the-following-report-by-union-of-concerned-scientists." class="section level4">
+<h4>This case is based on a dataset that comes from the following report by <a href="https://www.ucsusa.org/resources/satellite-database" target="_blank" rel="noopener noreferrer"> Union of Concerned Scientists.</a></h4>
+<pre><code>## [1] U. of ConcernedScientists. _UCS Satellite Database_. Union of
+## Concerned Scientists, Dec. 2005. &lt;URL:
+## https://www.ucsusa.org/resources/satellite-database&gt; (visited on
+## 05/25/2021).</code></pre>
+<script type="text/javascript">
+
+// Must be included to position footer
+$(function() {
+  $('.main-container').after($('.footer'));
+})
+
+</script>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Footer-->
+<div class="footer text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Use</div>
+        <p class="footer-text text-center">This work is licensed under<br>Attribution 4.0 International<br><strong>CC BY 4.0</strong></p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Source</div>
+        <p class="footer-text text-center">
+          <a href="https://github.com/UN-AVT/kamino-web" class="centered">
+          <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32" style="margin-top: 0px;">
+          </a>
+        </p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Creation</div>
+        <p class="footer-text text-center">Hand crafted with ♥ by<br>the <strong>Kamino Crew</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+
+</body>
+</html>

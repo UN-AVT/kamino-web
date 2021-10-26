@@ -1,0 +1,7074 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Kamino</title>
+
+<script src="../../../../vendor/knitr/header-attrs-2.11/header-attrs.js"></script>
+<script src="../../../../vendor/knitr/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="../../../../vendor/knitr/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="../../../../vendor/knitr/navigation-1.1/tabsets.js"></script>
+<script src="../../../../vendor/knitr/navigation-1.1/codefolding.js"></script>
+<link href="../../../../vendor/knitr/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/highlightjs-9.12.0/highlight.js"></script>
+<link href="../../../../vendor/knitr/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="../../../../vendor/knitr/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../../../vendor/knitr/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<div class="border-bottom">
+  
+  <div class="header">
+    
+  <img src="../../../../assets/logo/logo.svg" alt="" height="36">
+
+  <div class="nav" style="float: right;">
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="home.html" 
+        data-bs-toggle="tooltip" 
+        data-bs-placement="bottom"
+        title="Home">
+        <img src="../../../../assets/icons/campground-solid.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="explorer.html" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom" 
+        title="Search for content">
+        <img src="../../../../assets/icons/compass.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="https://github.com/UN-AVT" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom"
+        title="Project">
+        <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32">
+      </a>
+    </div>
+
+</div>
+</div>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="../../../../assets/styles/content.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<div class="activity">
+<p>WRANGLERS</p>
+</div>
+<div id="pandas-housed-in-zoos-outside-china" class="section level1">
+<h1>Pandas housed in zoos outside China</h1>
+<div id="clean-data" class="section level2">
+<h2>Clean Data</h2>
+<div class="figure" style="text-align: center">
+<img src="michael-payne-jkBvXKwr4MY-unsplash.jpg" alt="Photo by Michael Payne on Unsplash" width="60%" />
+<p class="caption">
+Photo by Michael Payne on Unsplash
+</p>
+</div>
+<div class="figure-text">
+It’s time for lunch
+</div>
+<blockquote>
+<p>Never give up on your dreams… Keep Sleeping!…<br />
+— Probably a Panda<br />
+</p>
+</blockquote>
+<hr />
+<div id="load-dirty-data" class="section level3">
+<h3>Load “dirty” data</h3>
+<div id="an-example-with-missing-duplicate-and-other-values-that-need-to-be-cleaned." class="section level4">
+<h4>An example with <span style="color: #FE9A2E;font-weight:bold">missing</span>, <span style="background: #E0E0F8;font-weight:bold">duplicate</span>, and <span style="color:  #0000FF;font-weight:bold">other values</span> that need to be cleaned.</h4>
+<pre class="r fold-hide"><code>df &lt;- read_csv(&#39;./archetypes/panda-list.csv&#39;)
+
+
+#creating sample data to better illustrate all solutions
+df &lt;- df[,c(1:4,6,13)]</code></pre>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:350px; overflow-x: scroll; width:NULL; ">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Birth_Place
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Birthday
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Gender
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Loan_Expire_Date
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Name_in_English
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Zoo
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+09/01/2000
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">09/07/2023</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Bing Xing</span>
+</td>
+<td style="text-align:left;">
+Zoo Madrid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+9/16/2003
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">09/07/2023</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Hua Zui Ba</span>
+</td>
+<td style="text-align:left;">
+Zoo Madrid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Zoo Madrid</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/31/2016
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+F
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">09/07/2023</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Chulina</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Zoo Madrid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Zoo Madrid</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/31/2016
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+F
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">09/07/2023</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Chulina</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Zoo Madrid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/14/2003
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/04/2021</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Yang Guang</span>
+</td>
+<td style="text-align:left;">
+Edinburgh Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/24/2003
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+F
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">12/04/2021</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Tian Tian</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Edinburgh Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/24/2003
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+F
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">12/04/2021</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Tian Tian</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Edinburgh Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+09/06/2008
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">1/15/2022</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Yuan Zi</span>
+</td>
+<td style="text-align:left;">
+ZooParc de Beauval
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+08/10/2008
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">1/15/2022</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Huan Huan</span>
+</td>
+<td style="text-align:left;">
+ZooParc de Beauval
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">ZooParc de Beauval</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+08/04/2017
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+M
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">08/04/2021</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Yuan Meng</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+ZooParc de Beauval
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">ZooParc de Beauval</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+08/04/2017
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+M
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">08/04/2021</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Yuan Meng</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+ZooParc de Beauval
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+7/22/2009
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Xing Hui</span>
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+07/07/2009
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">2/23/2029</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Hao Hao</span>
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+06/02/2016
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Tian Bao</span>
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Pairi Daiza</span>
+</td>
+<td style="text-align:left;">
+08/08/2019
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">08/08/2023</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Bao Di</span>
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Pairi Daiza</span>
+</td>
+<td style="text-align:left;">
+08/08/2019
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">08/08/2023</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Bao Mei</span>
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+08/05/2013
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">04/11/2032</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #0000FF !important;">##</span>
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+08/11/2013
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">04/11/2032</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #0000FF !important;">##</span>
+</td>
+<td style="text-align:left;">
+Ouwehands Dierenpark
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ouwehands Dierenpark Rhenen</span>
+</td>
+<td style="text-align:left;">
+05/01/2020
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Fan Xing</span>
+</td>
+<td style="text-align:left;">
+Ouwehands Dierenpark
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+07/10/2013
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">1/18/2033</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Pyry (Hua Bao)</span>
+</td>
+<td style="text-align:left;">
+<c4>ht<e4>ri Zoo </e4></c4>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+9/20/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">1/18/2033</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Lumi (Jin Baobao)</span>
+</td>
+<td style="text-align:left;">
+<c4>ht<e4>ri Zoo </e4></c4>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+8/23/2013
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">04/04/2034</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Xing Er</span>
+</td>
+<td style="text-align:left;">
+Zoo K<f8>benhavn </f8>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+7/26/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Mao Sun</span>
+</td>
+<td style="text-align:left;">
+Zoo K<f8>benhavn </f8>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+7/15/2010
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">6/23/2032</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #0000FF !important;">##</span>
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+07/10/2013
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">6/23/2032</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Meng Meng</span>
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Zoo Berlin</span>
+</td>
+<td style="text-align:left;">
+8/31/2019
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">8/31/2023</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Meng Xiang</span>
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Zoo Berlin</span>
+</td>
+<td style="text-align:left;">
+8/31/2019
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">8/31/2023</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Meng Yuan</span>
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/23/1999
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+M
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #0000FF !important;">##</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Tiergarten Sch<f6>nbrunn </f6>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/23/1999
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+M
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #0000FF !important;">##</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Tiergarten Sch<f6>nbrunn </f6>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+08/10/2000
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">3/14/2023</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Yang Yang</span>
+</td>
+<td style="text-align:left;">
+Tiergarten Sch<f6>nbrunn </f6>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+7/31/2016
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">4/29/2029</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ru Yi</span>
+</td>
+<td style="text-align:left;">
+Moscow Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+7/30/2017
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">4/29/2029</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #0000FF !important;">##</span>
+</td>
+<td style="text-align:left;">
+Moscow Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+9/28/2001
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">10/12/2023</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #0000FF !important;">##</span>
+</td>
+<td style="text-align:left;">
+Chiang Mai Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+08/03/2006
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">5/20/2024</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Xing Xing (Fu Wa)</span>
+</td>
+<td style="text-align:left;">
+Zoo Negara Malaysia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/23/2006
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">5/20/2024</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Liang Liang (Feng Yi)</span>
+</td>
+<td style="text-align:left;">
+Zoo Negara Malaysia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Kuala Lumpur Malaysia</span>
+</td>
+<td style="text-align:left;">
+1/14/2018
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">1/14/2022</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Yi Yi</span>
+</td>
+<td style="text-align:left;">
+Zoo Negara Malaysia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+9/14/2007
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">09/06/2022</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Kai Kai (Wu Jie)</span>
+</td>
+<td style="text-align:left;">
+Wildlife Reserves Singapore
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+09/03/2008
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">09/06/2022</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Jia Jia (Hu Bao)</span>
+</td>
+<td style="text-align:left;">
+Wildlife Reserves Singapore
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+08/04/2010
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">9/28/2027</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Cai Tao</span>
+</td>
+<td style="text-align:left;">
+Taman Safari
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+09/08/2010
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">9/28/2027</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Hu Chun</span>
+</td>
+<td style="text-align:left;">
+Taman Safari
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+7/28/2012
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">4/21/2031</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Yuan Xin (Le Bao)</span>
+</td>
+<td style="text-align:left;">
+Everland Resort
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+7/13/2013
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">4/21/2031</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Hua Ni (Ai Bao)</span>
+</td>
+<td style="text-align:left;">
+Everland Resort
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Everland Resort</span>
+</td>
+<td style="text-align:left;">
+7/20/2020
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">7/20/2024</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Hua Ni’s daughter</span>
+</td>
+<td style="text-align:left;">
+Everland Resort
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+9/16/1995
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">7/16/2020</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Tan Tan</span>
+</td>
+<td style="text-align:left;">
+Kobe Oji Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;">
+9/14/1992
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ei Mei</span>
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Adventure World</span>
+</td>
+<td style="text-align:left;">
+09/06/2000
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Rau Hin</span>
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Adventure World</span>
+</td>
+<td style="text-align:left;">
+12/02/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ou Hin</span>
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Adventure World</span>
+</td>
+<td style="text-align:left;">
+12/02/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Tou Hin</span>
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Adventure World</span>
+</td>
+<td style="text-align:left;">
+9/18/2016
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Yui Hin</span>
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Adventure World</span>
+</td>
+<td style="text-align:left;">
+11/22/2020
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Rau Hin’s son</span>
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/16/2005
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">2/21/2021</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ri Ri (Bi Li)</span>
+</td>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+07/03/2005
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">2/21/2021</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Shin Shin (Xian Nv)</span>
+</td>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ueno Zoo</span>
+</td>
+<td style="text-align:left;">
+06/12/2017
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/31/2020</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Xiang Xiang</span>
+</td>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/31/2005
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">11/28/2024</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wang Wang</span>
+</td>
+<td style="text-align:left;">
+Adelaide Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/23/2006
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">11/28/2024</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Fu Ni</span>
+</td>
+<td style="text-align:left;">
+Adelaide Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chapultepec Zoo</span>
+</td>
+<td style="text-align:left;">
+6/15/1987
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Shuan Shuan</span>
+</td>
+<td style="text-align:left;">
+Chapultepec Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chapultepec Zoo</span>
+</td>
+<td style="text-align:left;">
+07/01/1990
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Xin Xin</span>
+</td>
+<td style="text-align:left;">
+Chapultepec Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chongqing, China</span>
+</td>
+<td style="text-align:left;">
+8/30/2008
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">3/25/2023</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Da Mao</span>
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chongqing, China</span>
+</td>
+<td style="text-align:left;">
+08/10/2007
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">3/25/2023</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Er Shun</span>
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Toronto Zoo</span>
+</td>
+<td style="text-align:left;">
+10/13/2015
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">10/13/2019</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Jia Panpan</span>
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Toronto Zoo</span>
+</td>
+<td style="text-align:left;">
+10/13/2015
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">10/13/2019</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Jia Yueyue</span>
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chongqing, China</span>
+</td>
+<td style="text-align:left;">
+7/18/1998
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">04/07/2023</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Le Le</span>
+</td>
+<td style="text-align:left;">
+Memphis Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;">
+08/03/2000
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">04/07/2023</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya Ya</span>
+</td>
+<td style="text-align:left;">
+Memphis Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+09/09/1997
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Yang Yang</span>
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+8/25/1997
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Lun Lun</span>
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Zoo Atlanta</span>
+</td>
+<td style="text-align:left;">
+09/03/2016
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya Lun</span>
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Zoo Atlanta</span>
+</td>
+<td style="text-align:left;">
+09/03/2016
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Xi Lun</span>
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/27/1997
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/07/2023</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Tian Tian</span>
+</td>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+7/22/1998
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/07/2023</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Mei Xiang</span>
+</td>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Smithsonian’s National Zoo</span>
+</td>
+<td style="text-align:left;">
+8/21/2020
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/07/2023</span>
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Xiao Qi Ji</span>
+</td>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="replace" class="section level3">
+<h3>Replace <span style="color: #0000FF;font-weight:bold">‘##’</span></h3>
+<div id="with-not-applicable-for-any-column" class="section level4">
+<h4>with <span style="color: #74DF00;font-weight:bold">‘Not Applicable’</span> for any column</h4>
+<pre class="r fold-show"><code>df_1 &lt;- df
+df_1 &lt;- replace(df_1, df_1==&#39;##&#39;, &quot;Not Applicable&quot; )</code></pre>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:350px; overflow-x: scroll; width:NULL; ">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Birth_Place
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Birthday
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Gender
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Loan_Expire_Date
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Name_in_English
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Zoo
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+09/01/2000
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">09/07/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Bing Xing</span>
+</td>
+<td style="text-align:left;">
+Zoo Madrid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+9/16/2003
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">09/07/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Hua Zui Ba</span>
+</td>
+<td style="text-align:left;">
+Zoo Madrid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Zoo Madrid</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/31/2016
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+F
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">09/07/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Chulina</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Zoo Madrid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Zoo Madrid</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/31/2016
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+F
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">09/07/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Chulina</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Zoo Madrid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/14/2003
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/04/2021</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Yang Guang</span>
+</td>
+<td style="text-align:left;">
+Edinburgh Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/24/2003
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+F
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">12/04/2021</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Tian Tian</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Edinburgh Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/24/2003
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+F
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">12/04/2021</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Tian Tian</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Edinburgh Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+09/06/2008
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">1/15/2022</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Yuan Zi</span>
+</td>
+<td style="text-align:left;">
+ZooParc de Beauval
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+08/10/2008
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">1/15/2022</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Huan Huan</span>
+</td>
+<td style="text-align:left;">
+ZooParc de Beauval
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">ZooParc de Beauval</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+08/04/2017
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+M
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">08/04/2021</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Yuan Meng</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+ZooParc de Beauval
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">ZooParc de Beauval</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+08/04/2017
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+M
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">08/04/2021</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Yuan Meng</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+ZooParc de Beauval
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+7/22/2009
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Xing Hui</span>
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+07/07/2009
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">2/23/2029</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Hao Hao</span>
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+06/02/2016
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Tian Bao</span>
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Pairi Daiza</span>
+</td>
+<td style="text-align:left;">
+08/08/2019
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">08/08/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Bao Di</span>
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Pairi Daiza</span>
+</td>
+<td style="text-align:left;">
+08/08/2019
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">08/08/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Bao Mei</span>
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+08/05/2013
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">04/11/2032</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #74DF00 !important;">Not Applicable</span>
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+08/11/2013
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">04/11/2032</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #74DF00 !important;">Not Applicable</span>
+</td>
+<td style="text-align:left;">
+Ouwehands Dierenpark
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ouwehands Dierenpark Rhenen</span>
+</td>
+<td style="text-align:left;">
+05/01/2020
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Fan Xing</span>
+</td>
+<td style="text-align:left;">
+Ouwehands Dierenpark
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+07/10/2013
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">1/18/2033</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Pyry (Hua Bao)</span>
+</td>
+<td style="text-align:left;">
+<c4>ht<e4>ri Zoo </e4></c4>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+9/20/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">1/18/2033</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Lumi (Jin Baobao)</span>
+</td>
+<td style="text-align:left;">
+<c4>ht<e4>ri Zoo </e4></c4>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+8/23/2013
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">04/04/2034</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Xing Er</span>
+</td>
+<td style="text-align:left;">
+Zoo K<f8>benhavn </f8>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+7/26/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Mao Sun</span>
+</td>
+<td style="text-align:left;">
+Zoo K<f8>benhavn </f8>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+7/15/2010
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">6/23/2032</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #74DF00 !important;">Not Applicable</span>
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+07/10/2013
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">6/23/2032</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Meng Meng</span>
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Zoo Berlin</span>
+</td>
+<td style="text-align:left;">
+8/31/2019
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">8/31/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Meng Xiang</span>
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Zoo Berlin</span>
+</td>
+<td style="text-align:left;">
+8/31/2019
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">8/31/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Meng Yuan</span>
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/23/1999
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+M
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;background-color: #E0E0F8 !important;">
+<span style="     color: #74DF00 !important;">Not Applicable</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Tiergarten Sch<f6>nbrunn </f6>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/23/1999
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+M
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;background-color: #E0E0F8 !important;">
+<span style="     color: #74DF00 !important;">Not Applicable</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Tiergarten Sch<f6>nbrunn </f6>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+08/10/2000
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">3/14/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Yang Yang</span>
+</td>
+<td style="text-align:left;">
+Tiergarten Sch<f6>nbrunn </f6>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+7/31/2016
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">4/29/2029</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Ru Yi</span>
+</td>
+<td style="text-align:left;">
+Moscow Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+7/30/2017
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">4/29/2029</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #74DF00 !important;">Not Applicable</span>
+</td>
+<td style="text-align:left;">
+Moscow Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+9/28/2001
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">10/12/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #74DF00 !important;">Not Applicable</span>
+</td>
+<td style="text-align:left;">
+Chiang Mai Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+08/03/2006
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">5/20/2024</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Xing Xing (Fu Wa)</span>
+</td>
+<td style="text-align:left;">
+Zoo Negara Malaysia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/23/2006
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">5/20/2024</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Liang Liang (Feng Yi)</span>
+</td>
+<td style="text-align:left;">
+Zoo Negara Malaysia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Kuala Lumpur Malaysia</span>
+</td>
+<td style="text-align:left;">
+1/14/2018
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">1/14/2022</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Yi Yi</span>
+</td>
+<td style="text-align:left;">
+Zoo Negara Malaysia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+9/14/2007
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">09/06/2022</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Kai Kai (Wu Jie)</span>
+</td>
+<td style="text-align:left;">
+Wildlife Reserves Singapore
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+09/03/2008
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">09/06/2022</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Jia Jia (Hu Bao)</span>
+</td>
+<td style="text-align:left;">
+Wildlife Reserves Singapore
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+08/04/2010
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">9/28/2027</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Cai Tao</span>
+</td>
+<td style="text-align:left;">
+Taman Safari
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+09/08/2010
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">9/28/2027</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Hu Chun</span>
+</td>
+<td style="text-align:left;">
+Taman Safari
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+7/28/2012
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">4/21/2031</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Yuan Xin (Le Bao)</span>
+</td>
+<td style="text-align:left;">
+Everland Resort
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+7/13/2013
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">4/21/2031</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Hua Ni (Ai Bao)</span>
+</td>
+<td style="text-align:left;">
+Everland Resort
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Everland Resort</span>
+</td>
+<td style="text-align:left;">
+7/20/2020
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">7/20/2024</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Hua Ni’s daughter</span>
+</td>
+<td style="text-align:left;">
+Everland Resort
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+9/16/1995
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">7/16/2020</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Tan Tan</span>
+</td>
+<td style="text-align:left;">
+Kobe Oji Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;">
+9/14/1992
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Ei Mei</span>
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Adventure World</span>
+</td>
+<td style="text-align:left;">
+09/06/2000
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Rau Hin</span>
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Adventure World</span>
+</td>
+<td style="text-align:left;">
+12/02/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Ou Hin</span>
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Adventure World</span>
+</td>
+<td style="text-align:left;">
+12/02/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Tou Hin</span>
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Adventure World</span>
+</td>
+<td style="text-align:left;">
+9/18/2016
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Yui Hin</span>
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Adventure World</span>
+</td>
+<td style="text-align:left;">
+11/22/2020
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Rau Hin’s son</span>
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/16/2005
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">2/21/2021</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Ri Ri (Bi Li)</span>
+</td>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+07/03/2005
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">2/21/2021</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Shin Shin (Xian Nv)</span>
+</td>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ueno Zoo</span>
+</td>
+<td style="text-align:left;">
+06/12/2017
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/31/2020</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Xiang Xiang</span>
+</td>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/31/2005
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">11/28/2024</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Wang Wang</span>
+</td>
+<td style="text-align:left;">
+Adelaide Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/23/2006
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">11/28/2024</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Fu Ni</span>
+</td>
+<td style="text-align:left;">
+Adelaide Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chapultepec Zoo</span>
+</td>
+<td style="text-align:left;">
+6/15/1987
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Shuan Shuan</span>
+</td>
+<td style="text-align:left;">
+Chapultepec Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chapultepec Zoo</span>
+</td>
+<td style="text-align:left;">
+07/01/1990
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Xin Xin</span>
+</td>
+<td style="text-align:left;">
+Chapultepec Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chongqing, China</span>
+</td>
+<td style="text-align:left;">
+8/30/2008
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">3/25/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Da Mao</span>
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chongqing, China</span>
+</td>
+<td style="text-align:left;">
+08/10/2007
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">3/25/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Er Shun</span>
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Toronto Zoo</span>
+</td>
+<td style="text-align:left;">
+10/13/2015
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">10/13/2019</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Jia Panpan</span>
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Toronto Zoo</span>
+</td>
+<td style="text-align:left;">
+10/13/2015
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">10/13/2019</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Jia Yueyue</span>
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chongqing, China</span>
+</td>
+<td style="text-align:left;">
+7/18/1998
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">04/07/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Le Le</span>
+</td>
+<td style="text-align:left;">
+Memphis Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;">
+08/03/2000
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">04/07/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Ya Ya</span>
+</td>
+<td style="text-align:left;">
+Memphis Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+09/09/1997
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Yang Yang</span>
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+8/25/1997
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Lun Lun</span>
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Zoo Atlanta</span>
+</td>
+<td style="text-align:left;">
+09/03/2016
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Ya Lun</span>
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Zoo Atlanta</span>
+</td>
+<td style="text-align:left;">
+09/03/2016
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Xi Lun</span>
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/27/1997
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/07/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Tian Tian</span>
+</td>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+7/22/1998
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/07/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Mei Xiang</span>
+</td>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Smithsonian’s National Zoo</span>
+</td>
+<td style="text-align:left;">
+8/21/2020
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/07/2023</span>
+</td>
+<td style="text-align:left;color: #74DF00 !important;">
+<span style="     color: #000000 !important;">Xiao Qi Ji</span>
+</td>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="remove-missing-values" class="section level3">
+<h3>Remove <span style="color: #FE9A2E;font-weight:bold">missing</span> values</h3>
+<div id="this-will-remove-an-entire-row-if-birth_place-contains-missing-value" class="section level4">
+<h4>This will remove an entire row if <strong>Birth_Place</strong> contains missing value</h4>
+<pre class="r fold-show"><code>df_2 &lt;- df_1
+
+df_2 &lt;- df_1[!is.na(df_1$Birth_Place), ]                </code></pre>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:350px; overflow-x: scroll; width:NULL; ">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Birth_Place
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Birthday
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Gender
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Loan_Expire_Date
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Name_in_English
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Zoo
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+09/01/2000
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">09/07/2023</span>
+</td>
+<td style="text-align:left;">
+Bing Xing
+</td>
+<td style="text-align:left;">
+Zoo Madrid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Zoo Madrid</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/31/2016
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+F
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">09/07/2023</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Chulina
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Zoo Madrid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Zoo Madrid</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/31/2016
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+F
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">09/07/2023</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Chulina
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Zoo Madrid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/14/2003
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/04/2021</span>
+</td>
+<td style="text-align:left;">
+Yang Guang
+</td>
+<td style="text-align:left;">
+Edinburgh Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/24/2003
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+F
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">12/04/2021</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Tian Tian
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Edinburgh Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/24/2003
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+F
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">12/04/2021</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Tian Tian
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Edinburgh Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+08/10/2008
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">1/15/2022</span>
+</td>
+<td style="text-align:left;">
+Huan Huan
+</td>
+<td style="text-align:left;">
+ZooParc de Beauval
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">ZooParc de Beauval</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+08/04/2017
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+M
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">08/04/2021</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Yuan Meng
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+ZooParc de Beauval
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">ZooParc de Beauval</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+08/04/2017
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+M
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">08/04/2021</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Yuan Meng
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+ZooParc de Beauval
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+7/22/2009
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+Xing Hui
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+07/07/2009
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">2/23/2029</span>
+</td>
+<td style="text-align:left;">
+Hao Hao
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Pairi Daiza</span>
+</td>
+<td style="text-align:left;">
+08/08/2019
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">08/08/2023</span>
+</td>
+<td style="text-align:left;">
+Bao Di
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Pairi Daiza</span>
+</td>
+<td style="text-align:left;">
+08/08/2019
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">08/08/2023</span>
+</td>
+<td style="text-align:left;">
+Bao Mei
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+08/11/2013
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">04/11/2032</span>
+</td>
+<td style="text-align:left;">
+Not Applicable
+</td>
+<td style="text-align:left;">
+Ouwehands Dierenpark
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ouwehands Dierenpark Rhenen</span>
+</td>
+<td style="text-align:left;">
+05/01/2020
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+Fan Xing
+</td>
+<td style="text-align:left;">
+Ouwehands Dierenpark
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+9/20/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">1/18/2033</span>
+</td>
+<td style="text-align:left;">
+Lumi (Jin Baobao)
+</td>
+<td style="text-align:left;">
+<c4>ht<e4>ri Zoo </e4></c4>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+7/26/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+Mao Sun
+</td>
+<td style="text-align:left;">
+Zoo K<f8>benhavn </f8>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+7/15/2010
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">6/23/2032</span>
+</td>
+<td style="text-align:left;">
+Not Applicable
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+07/10/2013
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">6/23/2032</span>
+</td>
+<td style="text-align:left;">
+Meng Meng
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Zoo Berlin</span>
+</td>
+<td style="text-align:left;">
+8/31/2019
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">8/31/2023</span>
+</td>
+<td style="text-align:left;">
+Meng Xiang
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Zoo Berlin</span>
+</td>
+<td style="text-align:left;">
+8/31/2019
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">8/31/2023</span>
+</td>
+<td style="text-align:left;">
+Meng Yuan
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/23/1999
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+M
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Not Applicable
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Tiergarten Sch<f6>nbrunn </f6>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/23/1999
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+M
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Not Applicable
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Tiergarten Sch<f6>nbrunn </f6>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+08/10/2000
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">3/14/2023</span>
+</td>
+<td style="text-align:left;">
+Yang Yang
+</td>
+<td style="text-align:left;">
+Tiergarten Sch<f6>nbrunn </f6>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+7/31/2016
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">4/29/2029</span>
+</td>
+<td style="text-align:left;">
+Ru Yi
+</td>
+<td style="text-align:left;">
+Moscow Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+7/30/2017
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">4/29/2029</span>
+</td>
+<td style="text-align:left;">
+Not Applicable
+</td>
+<td style="text-align:left;">
+Moscow Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+9/28/2001
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">10/12/2023</span>
+</td>
+<td style="text-align:left;">
+Not Applicable
+</td>
+<td style="text-align:left;">
+Chiang Mai Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+08/03/2006
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">5/20/2024</span>
+</td>
+<td style="text-align:left;">
+Xing Xing (Fu Wa)
+</td>
+<td style="text-align:left;">
+Zoo Negara Malaysia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/23/2006
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">5/20/2024</span>
+</td>
+<td style="text-align:left;">
+Liang Liang (Feng Yi)
+</td>
+<td style="text-align:left;">
+Zoo Negara Malaysia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Kuala Lumpur Malaysia</span>
+</td>
+<td style="text-align:left;">
+1/14/2018
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">1/14/2022</span>
+</td>
+<td style="text-align:left;">
+Yi Yi
+</td>
+<td style="text-align:left;">
+Zoo Negara Malaysia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+9/14/2007
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">09/06/2022</span>
+</td>
+<td style="text-align:left;">
+Kai Kai (Wu Jie)
+</td>
+<td style="text-align:left;">
+Wildlife Reserves Singapore
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+09/03/2008
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">09/06/2022</span>
+</td>
+<td style="text-align:left;">
+Jia Jia (Hu Bao)
+</td>
+<td style="text-align:left;">
+Wildlife Reserves Singapore
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+08/04/2010
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">9/28/2027</span>
+</td>
+<td style="text-align:left;">
+Cai Tao
+</td>
+<td style="text-align:left;">
+Taman Safari
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+09/08/2010
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">9/28/2027</span>
+</td>
+<td style="text-align:left;">
+Hu Chun
+</td>
+<td style="text-align:left;">
+Taman Safari
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+7/28/2012
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">4/21/2031</span>
+</td>
+<td style="text-align:left;">
+Yuan Xin (Le Bao)
+</td>
+<td style="text-align:left;">
+Everland Resort
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ya’an Bi Feng Xia, China</span>
+</td>
+<td style="text-align:left;">
+7/13/2013
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">4/21/2031</span>
+</td>
+<td style="text-align:left;">
+Hua Ni (Ai Bao)
+</td>
+<td style="text-align:left;">
+Everland Resort
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Everland Resort</span>
+</td>
+<td style="text-align:left;">
+7/20/2020
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">7/20/2024</span>
+</td>
+<td style="text-align:left;">
+Hua Ni’s daughter
+</td>
+<td style="text-align:left;">
+Everland Resort
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+9/16/1995
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">7/16/2020</span>
+</td>
+<td style="text-align:left;">
+Tan Tan
+</td>
+<td style="text-align:left;">
+Kobe Oji Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;">
+9/14/1992
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+Ei Mei
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Adventure World</span>
+</td>
+<td style="text-align:left;">
+09/06/2000
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+Rau Hin
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Adventure World</span>
+</td>
+<td style="text-align:left;">
+12/02/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+Ou Hin
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Adventure World</span>
+</td>
+<td style="text-align:left;">
+12/02/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+Tou Hin
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Adventure World</span>
+</td>
+<td style="text-align:left;">
+9/18/2016
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+Yui Hin
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Adventure World</span>
+</td>
+<td style="text-align:left;">
+11/22/2020
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+Rau Hin’s son
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/16/2005
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">2/21/2021</span>
+</td>
+<td style="text-align:left;">
+Ri Ri (Bi Li)
+</td>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+07/03/2005
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">2/21/2021</span>
+</td>
+<td style="text-align:left;">
+Shin Shin (Xian Nv)
+</td>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Ueno Zoo</span>
+</td>
+<td style="text-align:left;">
+06/12/2017
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/31/2020</span>
+</td>
+<td style="text-align:left;">
+Xiang Xiang
+</td>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/31/2005
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">11/28/2024</span>
+</td>
+<td style="text-align:left;">
+Wang Wang
+</td>
+<td style="text-align:left;">
+Adelaide Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/23/2006
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">11/28/2024</span>
+</td>
+<td style="text-align:left;">
+Fu Ni
+</td>
+<td style="text-align:left;">
+Adelaide Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chapultepec Zoo</span>
+</td>
+<td style="text-align:left;">
+6/15/1987
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+Shuan Shuan
+</td>
+<td style="text-align:left;">
+Chapultepec Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chapultepec Zoo</span>
+</td>
+<td style="text-align:left;">
+07/01/1990
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+Xin Xin
+</td>
+<td style="text-align:left;">
+Chapultepec Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chongqing, China</span>
+</td>
+<td style="text-align:left;">
+8/30/2008
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">3/25/2023</span>
+</td>
+<td style="text-align:left;">
+Da Mao
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chongqing, China</span>
+</td>
+<td style="text-align:left;">
+08/10/2007
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">3/25/2023</span>
+</td>
+<td style="text-align:left;">
+Er Shun
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Toronto Zoo</span>
+</td>
+<td style="text-align:left;">
+10/13/2015
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">10/13/2019</span>
+</td>
+<td style="text-align:left;">
+Jia Panpan
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Toronto Zoo</span>
+</td>
+<td style="text-align:left;">
+10/13/2015
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">10/13/2019</span>
+</td>
+<td style="text-align:left;">
+Jia Yueyue
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chongqing, China</span>
+</td>
+<td style="text-align:left;">
+7/18/1998
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">04/07/2023</span>
+</td>
+<td style="text-align:left;">
+Le Le
+</td>
+<td style="text-align:left;">
+Memphis Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Beijing, China</span>
+</td>
+<td style="text-align:left;">
+08/03/2000
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">04/07/2023</span>
+</td>
+<td style="text-align:left;">
+Ya Ya
+</td>
+<td style="text-align:left;">
+Memphis Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+09/09/1997
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+Yang Yang
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Chengdu, China</span>
+</td>
+<td style="text-align:left;">
+8/25/1997
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+Lun Lun
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Zoo Atlanta</span>
+</td>
+<td style="text-align:left;">
+09/03/2016
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+Ya Lun
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Zoo Atlanta</span>
+</td>
+<td style="text-align:left;">
+09/03/2016
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #FE9A2E !important;">NA</span>
+</td>
+<td style="text-align:left;">
+Xi Lun
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+8/27/1997
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/07/2023</span>
+</td>
+<td style="text-align:left;">
+Tian Tian
+</td>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Wolong, China</span>
+</td>
+<td style="text-align:left;">
+7/22/1998
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/07/2023</span>
+</td>
+<td style="text-align:left;">
+Mei Xiang
+</td>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">Smithsonian’s National Zoo</span>
+</td>
+<td style="text-align:left;">
+8/21/2020
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/07/2023</span>
+</td>
+<td style="text-align:left;">
+Xiao Qi Ji
+</td>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="replace-missing-values" class="section level3">
+<h3>Replace <span style="color: #FE9A2E;font-weight:bold">missing</span> values</h3>
+<div id="with-01012030-for-loan_expire_date-column" class="section level4">
+<h4>with <span style="color: #DF7401;font-weight:bold">01/01/2030</span> for <strong>Loan_Expire_Date</strong> column</h4>
+<pre class="r fold-show"><code>df_3 &lt;- df_2
+df_3[is.na(df_3$Loan_Expire_Date),]$Loan_Expire_Date &lt;- &quot;01/01/2030&quot; </code></pre>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:350px; overflow-x: scroll; width:NULL; ">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Birth_Place
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Birthday
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Gender
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Loan_Expire_Date
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Name_in_English
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Zoo
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Chengdu, China
+</td>
+<td style="text-align:left;">
+09/01/2000
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">09/07/2023</span>
+</td>
+<td style="text-align:left;">
+Bing Xing
+</td>
+<td style="text-align:left;">
+Zoo Madrid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Zoo Madrid
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/31/2016
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+F
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">09/07/2023</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Chulina
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Zoo Madrid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Zoo Madrid
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/31/2016
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+F
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">09/07/2023</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Chulina
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Zoo Madrid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+8/14/2003
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/04/2021</span>
+</td>
+<td style="text-align:left;">
+Yang Guang
+</td>
+<td style="text-align:left;">
+Edinburgh Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Beijing, China
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/24/2003
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+F
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">12/04/2021</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Tian Tian
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Edinburgh Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Beijing, China
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/24/2003
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+F
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">12/04/2021</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Tian Tian
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Edinburgh Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chengdu, China
+</td>
+<td style="text-align:left;">
+08/10/2008
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">1/15/2022</span>
+</td>
+<td style="text-align:left;">
+Huan Huan
+</td>
+<td style="text-align:left;">
+ZooParc de Beauval
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+ZooParc de Beauval
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+08/04/2017
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+M
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">08/04/2021</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Yuan Meng
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+ZooParc de Beauval
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+ZooParc de Beauval
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+08/04/2017
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+M
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #000000 !important;">08/04/2021</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Yuan Meng
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+ZooParc de Beauval
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+7/22/2009
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;">
+Xing Hui
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+07/07/2009
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">2/23/2029</span>
+</td>
+<td style="text-align:left;">
+Hao Hao
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+<td style="text-align:left;">
+08/08/2019
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">08/08/2023</span>
+</td>
+<td style="text-align:left;">
+Bao Di
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+<td style="text-align:left;">
+08/08/2019
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">08/08/2023</span>
+</td>
+<td style="text-align:left;">
+Bao Mei
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+08/11/2013
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">04/11/2032</span>
+</td>
+<td style="text-align:left;">
+Not Applicable
+</td>
+<td style="text-align:left;">
+Ouwehands Dierenpark
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ouwehands Dierenpark Rhenen
+</td>
+<td style="text-align:left;">
+05/01/2020
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;">
+Fan Xing
+</td>
+<td style="text-align:left;">
+Ouwehands Dierenpark
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+9/20/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">1/18/2033</span>
+</td>
+<td style="text-align:left;">
+Lumi (Jin Baobao)
+</td>
+<td style="text-align:left;">
+<c4>ht<e4>ri Zoo </e4></c4>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chengdu, China
+</td>
+<td style="text-align:left;">
+7/26/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;">
+Mao Sun
+</td>
+<td style="text-align:left;">
+Zoo K<f8>benhavn </f8>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chengdu, China
+</td>
+<td style="text-align:left;">
+7/15/2010
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">6/23/2032</span>
+</td>
+<td style="text-align:left;">
+Not Applicable
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chengdu, China
+</td>
+<td style="text-align:left;">
+07/10/2013
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">6/23/2032</span>
+</td>
+<td style="text-align:left;">
+Meng Meng
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+<td style="text-align:left;">
+8/31/2019
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">8/31/2023</span>
+</td>
+<td style="text-align:left;">
+Meng Xiang
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+<td style="text-align:left;">
+8/31/2019
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">8/31/2023</span>
+</td>
+<td style="text-align:left;">
+Meng Yuan
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Beijing, China
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/23/1999
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+M
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Not Applicable
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Tiergarten Sch<f6>nbrunn </f6>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Beijing, China
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+8/23/1999
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+M
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Not Applicable
+</td>
+<td style="text-align:left;background-color: #E0E0F8 !important;">
+Tiergarten Sch<f6>nbrunn </f6>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+08/10/2000
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">3/14/2023</span>
+</td>
+<td style="text-align:left;">
+Yang Yang
+</td>
+<td style="text-align:left;">
+Tiergarten Sch<f6>nbrunn </f6>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+7/31/2016
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">4/29/2029</span>
+</td>
+<td style="text-align:left;">
+Ru Yi
+</td>
+<td style="text-align:left;">
+Moscow Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+7/30/2017
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">4/29/2029</span>
+</td>
+<td style="text-align:left;">
+Not Applicable
+</td>
+<td style="text-align:left;">
+Moscow Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+9/28/2001
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">10/12/2023</span>
+</td>
+<td style="text-align:left;">
+Not Applicable
+</td>
+<td style="text-align:left;">
+Chiang Mai Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+08/03/2006
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">5/20/2024</span>
+</td>
+<td style="text-align:left;">
+Xing Xing (Fu Wa)
+</td>
+<td style="text-align:left;">
+Zoo Negara Malaysia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+8/23/2006
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">5/20/2024</span>
+</td>
+<td style="text-align:left;">
+Liang Liang (Feng Yi)
+</td>
+<td style="text-align:left;">
+Zoo Negara Malaysia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Kuala Lumpur Malaysia
+</td>
+<td style="text-align:left;">
+1/14/2018
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">1/14/2022</span>
+</td>
+<td style="text-align:left;">
+Yi Yi
+</td>
+<td style="text-align:left;">
+Zoo Negara Malaysia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+9/14/2007
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">09/06/2022</span>
+</td>
+<td style="text-align:left;">
+Kai Kai (Wu Jie)
+</td>
+<td style="text-align:left;">
+Wildlife Reserves Singapore
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+09/03/2008
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">09/06/2022</span>
+</td>
+<td style="text-align:left;">
+Jia Jia (Hu Bao)
+</td>
+<td style="text-align:left;">
+Wildlife Reserves Singapore
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+08/04/2010
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">9/28/2027</span>
+</td>
+<td style="text-align:left;">
+Cai Tao
+</td>
+<td style="text-align:left;">
+Taman Safari
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+09/08/2010
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">9/28/2027</span>
+</td>
+<td style="text-align:left;">
+Hu Chun
+</td>
+<td style="text-align:left;">
+Taman Safari
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+7/28/2012
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">4/21/2031</span>
+</td>
+<td style="text-align:left;">
+Yuan Xin (Le Bao)
+</td>
+<td style="text-align:left;">
+Everland Resort
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+7/13/2013
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">4/21/2031</span>
+</td>
+<td style="text-align:left;">
+Hua Ni (Ai Bao)
+</td>
+<td style="text-align:left;">
+Everland Resort
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Everland Resort
+</td>
+<td style="text-align:left;">
+7/20/2020
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">7/20/2024</span>
+</td>
+<td style="text-align:left;">
+Hua Ni’s daughter
+</td>
+<td style="text-align:left;">
+Everland Resort
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+9/16/1995
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">7/16/2020</span>
+</td>
+<td style="text-align:left;">
+Tan Tan
+</td>
+<td style="text-align:left;">
+Kobe Oji Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Beijing, China
+</td>
+<td style="text-align:left;">
+9/14/1992
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;">
+Ei Mei
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Adventure World
+</td>
+<td style="text-align:left;">
+09/06/2000
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;">
+Rau Hin
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Adventure World
+</td>
+<td style="text-align:left;">
+12/02/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;">
+Ou Hin
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Adventure World
+</td>
+<td style="text-align:left;">
+12/02/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;">
+Tou Hin
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Adventure World
+</td>
+<td style="text-align:left;">
+9/18/2016
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;">
+Yui Hin
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Adventure World
+</td>
+<td style="text-align:left;">
+11/22/2020
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;">
+Rau Hin’s son
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+8/16/2005
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">2/21/2021</span>
+</td>
+<td style="text-align:left;">
+Ri Ri (Bi Li)
+</td>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+07/03/2005
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">2/21/2021</span>
+</td>
+<td style="text-align:left;">
+Shin Shin (Xian Nv)
+</td>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+<td style="text-align:left;">
+06/12/2017
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/31/2020</span>
+</td>
+<td style="text-align:left;">
+Xiang Xiang
+</td>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+8/31/2005
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">11/28/2024</span>
+</td>
+<td style="text-align:left;">
+Wang Wang
+</td>
+<td style="text-align:left;">
+Adelaide Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+8/23/2006
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">11/28/2024</span>
+</td>
+<td style="text-align:left;">
+Fu Ni
+</td>
+<td style="text-align:left;">
+Adelaide Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chapultepec Zoo
+</td>
+<td style="text-align:left;">
+6/15/1987
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;">
+Shuan Shuan
+</td>
+<td style="text-align:left;">
+Chapultepec Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chapultepec Zoo
+</td>
+<td style="text-align:left;">
+07/01/1990
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;">
+Xin Xin
+</td>
+<td style="text-align:left;">
+Chapultepec Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chongqing, China
+</td>
+<td style="text-align:left;">
+8/30/2008
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">3/25/2023</span>
+</td>
+<td style="text-align:left;">
+Da Mao
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chongqing, China
+</td>
+<td style="text-align:left;">
+08/10/2007
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">3/25/2023</span>
+</td>
+<td style="text-align:left;">
+Er Shun
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Toronto Zoo
+</td>
+<td style="text-align:left;">
+10/13/2015
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">10/13/2019</span>
+</td>
+<td style="text-align:left;">
+Jia Panpan
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Toronto Zoo
+</td>
+<td style="text-align:left;">
+10/13/2015
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">10/13/2019</span>
+</td>
+<td style="text-align:left;">
+Jia Yueyue
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chongqing, China
+</td>
+<td style="text-align:left;">
+7/18/1998
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">04/07/2023</span>
+</td>
+<td style="text-align:left;">
+Le Le
+</td>
+<td style="text-align:left;">
+Memphis Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Beijing, China
+</td>
+<td style="text-align:left;">
+08/03/2000
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">04/07/2023</span>
+</td>
+<td style="text-align:left;">
+Ya Ya
+</td>
+<td style="text-align:left;">
+Memphis Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chengdu, China
+</td>
+<td style="text-align:left;">
+09/09/1997
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;">
+Yang Yang
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chengdu, China
+</td>
+<td style="text-align:left;">
+8/25/1997
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;">
+Lun Lun
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+<td style="text-align:left;">
+09/03/2016
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;">
+Ya Lun
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+<td style="text-align:left;">
+09/03/2016
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #DF7401 !important;">01/01/2030</span>
+</td>
+<td style="text-align:left;">
+Xi Lun
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+8/27/1997
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/07/2023</span>
+</td>
+<td style="text-align:left;">
+Tian Tian
+</td>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+7/22/1998
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/07/2023</span>
+</td>
+<td style="text-align:left;">
+Mei Xiang
+</td>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+<td style="text-align:left;">
+8/21/2020
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+<span style="     color: #000000 !important;">12/07/2023</span>
+</td>
+<td style="text-align:left;">
+Xiao Qi Ji
+</td>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="remove-duplicates" class="section level3">
+<h3>Remove <span style="background: #E0E0F8;font-weight:bold">duplicates</span></h3>
+<pre class="r fold-show"><code>df_4 &lt;- unique( df_3 )</code></pre>
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:350px; overflow-x: scroll; width:NULL; ">
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Birth_Place
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Birthday
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Gender
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Loan_Expire_Date
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Name_in_English
+</th>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+Zoo
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Chengdu, China
+</td>
+<td style="text-align:left;">
+09/01/2000
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+09/07/2023
+</td>
+<td style="text-align:left;">
+Bing Xing
+</td>
+<td style="text-align:left;">
+Zoo Madrid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zoo Madrid
+</td>
+<td style="text-align:left;">
+8/31/2016
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+09/07/2023
+</td>
+<td style="text-align:left;">
+Chulina
+</td>
+<td style="text-align:left;">
+Zoo Madrid
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+8/14/2003
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+12/04/2021
+</td>
+<td style="text-align:left;">
+Yang Guang
+</td>
+<td style="text-align:left;">
+Edinburgh Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Beijing, China
+</td>
+<td style="text-align:left;">
+8/24/2003
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+12/04/2021
+</td>
+<td style="text-align:left;">
+Tian Tian
+</td>
+<td style="text-align:left;">
+Edinburgh Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chengdu, China
+</td>
+<td style="text-align:left;">
+08/10/2008
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+1/15/2022
+</td>
+<td style="text-align:left;">
+Huan Huan
+</td>
+<td style="text-align:left;">
+ZooParc de Beauval
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ZooParc de Beauval
+</td>
+<td style="text-align:left;">
+08/04/2017
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+08/04/2021
+</td>
+<td style="text-align:left;">
+Yuan Meng
+</td>
+<td style="text-align:left;">
+ZooParc de Beauval
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+7/22/2009
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+01/01/2030
+</td>
+<td style="text-align:left;">
+Xing Hui
+</td>
+<td style="text-align:left;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+07/07/2009
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+2/23/2029
+</td>
+<td style="text-align:left;">
+Hao Hao
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+<td style="text-align:left;">
+08/08/2019
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+08/08/2023
+</td>
+<td style="text-align:left;">
+Bao Di
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+<td style="text-align:left;">
+08/08/2019
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+08/08/2023
+</td>
+<td style="text-align:left;">
+Bao Mei
+</td>
+<td style="text-align:left;">
+Pairi Daiza
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+08/11/2013
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+04/11/2032
+</td>
+<td style="text-align:left;">
+Not Applicable
+</td>
+<td style="text-align:left;">
+Ouwehands Dierenpark
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ouwehands Dierenpark Rhenen
+</td>
+<td style="text-align:left;">
+05/01/2020
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+01/01/2030
+</td>
+<td style="text-align:left;">
+Fan Xing
+</td>
+<td style="text-align:left;">
+Ouwehands Dierenpark
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+9/20/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+1/18/2033
+</td>
+<td style="text-align:left;">
+Lumi (Jin Baobao)
+</td>
+<td style="text-align:left;">
+<c4>ht<e4>ri Zoo </e4></c4>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chengdu, China
+</td>
+<td style="text-align:left;">
+7/26/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+01/01/2030
+</td>
+<td style="text-align:left;">
+Mao Sun
+</td>
+<td style="text-align:left;">
+Zoo K<f8>benhavn </f8>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chengdu, China
+</td>
+<td style="text-align:left;">
+7/15/2010
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+6/23/2032
+</td>
+<td style="text-align:left;">
+Not Applicable
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chengdu, China
+</td>
+<td style="text-align:left;">
+07/10/2013
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+6/23/2032
+</td>
+<td style="text-align:left;">
+Meng Meng
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+<td style="text-align:left;">
+8/31/2019
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+8/31/2023
+</td>
+<td style="text-align:left;">
+Meng Xiang
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+<td style="text-align:left;">
+8/31/2019
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+8/31/2023
+</td>
+<td style="text-align:left;">
+Meng Yuan
+</td>
+<td style="text-align:left;">
+Zoo Berlin
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Beijing, China
+</td>
+<td style="text-align:left;">
+8/23/1999
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+01/01/2030
+</td>
+<td style="text-align:left;">
+Not Applicable
+</td>
+<td style="text-align:left;">
+Tiergarten Sch<f6>nbrunn </f6>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+08/10/2000
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+3/14/2023
+</td>
+<td style="text-align:left;">
+Yang Yang
+</td>
+<td style="text-align:left;">
+Tiergarten Sch<f6>nbrunn </f6>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+7/31/2016
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+4/29/2029
+</td>
+<td style="text-align:left;">
+Ru Yi
+</td>
+<td style="text-align:left;">
+Moscow Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+7/30/2017
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+4/29/2029
+</td>
+<td style="text-align:left;">
+Not Applicable
+</td>
+<td style="text-align:left;">
+Moscow Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+9/28/2001
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+10/12/2023
+</td>
+<td style="text-align:left;">
+Not Applicable
+</td>
+<td style="text-align:left;">
+Chiang Mai Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+08/03/2006
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+5/20/2024
+</td>
+<td style="text-align:left;">
+Xing Xing (Fu Wa)
+</td>
+<td style="text-align:left;">
+Zoo Negara Malaysia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+8/23/2006
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+5/20/2024
+</td>
+<td style="text-align:left;">
+Liang Liang (Feng Yi)
+</td>
+<td style="text-align:left;">
+Zoo Negara Malaysia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Kuala Lumpur Malaysia
+</td>
+<td style="text-align:left;">
+1/14/2018
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+1/14/2022
+</td>
+<td style="text-align:left;">
+Yi Yi
+</td>
+<td style="text-align:left;">
+Zoo Negara Malaysia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+9/14/2007
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+09/06/2022
+</td>
+<td style="text-align:left;">
+Kai Kai (Wu Jie)
+</td>
+<td style="text-align:left;">
+Wildlife Reserves Singapore
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+09/03/2008
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+09/06/2022
+</td>
+<td style="text-align:left;">
+Jia Jia (Hu Bao)
+</td>
+<td style="text-align:left;">
+Wildlife Reserves Singapore
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+08/04/2010
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+9/28/2027
+</td>
+<td style="text-align:left;">
+Cai Tao
+</td>
+<td style="text-align:left;">
+Taman Safari
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+09/08/2010
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+9/28/2027
+</td>
+<td style="text-align:left;">
+Hu Chun
+</td>
+<td style="text-align:left;">
+Taman Safari
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+7/28/2012
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+4/21/2031
+</td>
+<td style="text-align:left;">
+Yuan Xin (Le Bao)
+</td>
+<td style="text-align:left;">
+Everland Resort
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ya’an Bi Feng Xia, China
+</td>
+<td style="text-align:left;">
+7/13/2013
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+4/21/2031
+</td>
+<td style="text-align:left;">
+Hua Ni (Ai Bao)
+</td>
+<td style="text-align:left;">
+Everland Resort
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Everland Resort
+</td>
+<td style="text-align:left;">
+7/20/2020
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+7/20/2024
+</td>
+<td style="text-align:left;">
+Hua Ni’s daughter
+</td>
+<td style="text-align:left;">
+Everland Resort
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+9/16/1995
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+7/16/2020
+</td>
+<td style="text-align:left;">
+Tan Tan
+</td>
+<td style="text-align:left;">
+Kobe Oji Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Beijing, China
+</td>
+<td style="text-align:left;">
+9/14/1992
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+01/01/2030
+</td>
+<td style="text-align:left;">
+Ei Mei
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Adventure World
+</td>
+<td style="text-align:left;">
+09/06/2000
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+01/01/2030
+</td>
+<td style="text-align:left;">
+Rau Hin
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Adventure World
+</td>
+<td style="text-align:left;">
+12/02/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+01/01/2030
+</td>
+<td style="text-align:left;">
+Ou Hin
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Adventure World
+</td>
+<td style="text-align:left;">
+12/02/2014
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+01/01/2030
+</td>
+<td style="text-align:left;">
+Tou Hin
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Adventure World
+</td>
+<td style="text-align:left;">
+9/18/2016
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+01/01/2030
+</td>
+<td style="text-align:left;">
+Yui Hin
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Adventure World
+</td>
+<td style="text-align:left;">
+11/22/2020
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+01/01/2030
+</td>
+<td style="text-align:left;">
+Rau Hin’s son
+</td>
+<td style="text-align:left;">
+Adventure World
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+8/16/2005
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+2/21/2021
+</td>
+<td style="text-align:left;">
+Ri Ri (Bi Li)
+</td>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+07/03/2005
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+2/21/2021
+</td>
+<td style="text-align:left;">
+Shin Shin (Xian Nv)
+</td>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+<td style="text-align:left;">
+06/12/2017
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+12/31/2020
+</td>
+<td style="text-align:left;">
+Xiang Xiang
+</td>
+<td style="text-align:left;">
+Ueno Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+8/31/2005
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+11/28/2024
+</td>
+<td style="text-align:left;">
+Wang Wang
+</td>
+<td style="text-align:left;">
+Adelaide Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+8/23/2006
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+11/28/2024
+</td>
+<td style="text-align:left;">
+Fu Ni
+</td>
+<td style="text-align:left;">
+Adelaide Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chapultepec Zoo
+</td>
+<td style="text-align:left;">
+6/15/1987
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+01/01/2030
+</td>
+<td style="text-align:left;">
+Shuan Shuan
+</td>
+<td style="text-align:left;">
+Chapultepec Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chapultepec Zoo
+</td>
+<td style="text-align:left;">
+07/01/1990
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+01/01/2030
+</td>
+<td style="text-align:left;">
+Xin Xin
+</td>
+<td style="text-align:left;">
+Chapultepec Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chongqing, China
+</td>
+<td style="text-align:left;">
+8/30/2008
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+3/25/2023
+</td>
+<td style="text-align:left;">
+Da Mao
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chongqing, China
+</td>
+<td style="text-align:left;">
+08/10/2007
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+3/25/2023
+</td>
+<td style="text-align:left;">
+Er Shun
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Toronto Zoo
+</td>
+<td style="text-align:left;">
+10/13/2015
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+10/13/2019
+</td>
+<td style="text-align:left;">
+Jia Panpan
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Toronto Zoo
+</td>
+<td style="text-align:left;">
+10/13/2015
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+10/13/2019
+</td>
+<td style="text-align:left;">
+Jia Yueyue
+</td>
+<td style="text-align:left;">
+Calgary Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chongqing, China
+</td>
+<td style="text-align:left;">
+7/18/1998
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+04/07/2023
+</td>
+<td style="text-align:left;">
+Le Le
+</td>
+<td style="text-align:left;">
+Memphis Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Beijing, China
+</td>
+<td style="text-align:left;">
+08/03/2000
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+04/07/2023
+</td>
+<td style="text-align:left;">
+Ya Ya
+</td>
+<td style="text-align:left;">
+Memphis Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chengdu, China
+</td>
+<td style="text-align:left;">
+09/09/1997
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+01/01/2030
+</td>
+<td style="text-align:left;">
+Yang Yang
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chengdu, China
+</td>
+<td style="text-align:left;">
+8/25/1997
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+01/01/2030
+</td>
+<td style="text-align:left;">
+Lun Lun
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+<td style="text-align:left;">
+09/03/2016
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+01/01/2030
+</td>
+<td style="text-align:left;">
+Ya Lun
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+<td style="text-align:left;">
+09/03/2016
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+01/01/2030
+</td>
+<td style="text-align:left;">
+Xi Lun
+</td>
+<td style="text-align:left;">
+Zoo Atlanta
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+8/27/1997
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+12/07/2023
+</td>
+<td style="text-align:left;">
+Tian Tian
+</td>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Wolong, China
+</td>
+<td style="text-align:left;">
+7/22/1998
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+12/07/2023
+</td>
+<td style="text-align:left;">
+Mei Xiang
+</td>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+<td style="text-align:left;">
+8/21/2020
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+12/07/2023
+</td>
+<td style="text-align:left;">
+Xiao Qi Ji
+</td>
+<td style="text-align:left;">
+Smithsonian’s National Zoo
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="references" class="section level3">
+<h3>References</h3>
+<div id="the-citations-and-data-sources-used-for-this-case" class="section level4">
+<h4>The citations and data sources used for this case</h4>
+<p>The original data file used in this wrangler task was captured from the <a href="https://www.giantpandaglobal.com/" target="_blank">Giant Panda Global</a> source which was published by Giant Panda Global website. The post-clean data file along with other sources helped data scientists plot <a href="https://public.tableau.com/profile/wendy.shijia#!/vizhome/giantpandasoverseas/Bamboo" target="_blank">this chart</a> available at Tableau Public.</p>
+<pre><code>## [1] W.  Shijia. _Tableau Public_. public.tableau.com, Dec. 2020. &lt;URL:
+## https://public.tableau.com/profile/wendy.shijia#&gt; (visited on
+## 03/23/2021).
+## 
+## [2] J. Jeroen. _GiantPandaGlobal.com_. GiantPandaGlobal.com, Oct. 2000.
+## &lt;URL: https://www.giantpandaglobal.com/&gt;.</code></pre>
+<script type="text/javascript">
+
+// Must be included to position footer
+$(function() {
+  $('.main-container').after($('.footer'));
+})
+
+</script>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Footer-->
+<div class="footer text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Use</div>
+        <p class="footer-text text-center">This work is licensed under<br>Attribution 4.0 International<br><strong>CC BY 4.0</strong></p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Source</div>
+        <p class="footer-text text-center">
+          <a href="https://github.com/UN-AVT/kamino-web" class="centered">
+          <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32" style="margin-top: 0px;">
+          </a>
+        </p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Creation</div>
+        <p class="footer-text text-center">Hand crafted with ♥ by<br>the <strong>Kamino Crew</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+
+</body>
+</html>

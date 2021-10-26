@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Kamino">
+  <title>Kamino</title>
+
+  <link href="vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery/jquery-3.5.1.slim.min.js"></script>
+
+  <link href="./assets/styles/search.css" rel="stylesheet">
+
+  <!-- VENDOR FILES -->
+  <script type="text/javascript" src="vendor/lodash/lodash.min.js"></script>
+  <script type="text/javascript" src="vendor/d3/d3-dsv.v2.min.js"></script>
+  <script type="text/javascript" src="vendor/d3/d3-fetch.v2.min.js"></script>
+  <script type="text/javascript" src="vendor/minisearch/minisearch.min.js"></script>
+
+</head>
+
+<body>
+
+  <div class="border-bottom">
+      <div class="header">
+        
+      <img src="assets/logo/logo.svg" alt="" height="36">
+
+      <div class="nav" style="float: right;">
+          <a class="nav-link" 
+            style="color: #111111;" 
+            href="index.html"
+            data-bs-toggle="tooltip" 
+            data-bs-placement="bottom"
+            title="Home">
+            <img src="assets/icons/campground-solid.svg" alt="" height="32">
+          </a>
+          <a class="nav-link" 
+            style="color: #111111;" 
+            href="https://github.com/UN-AVT" 
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="Project">
+            <img src="assets/icons/github-alt-brands.svg" alt="" height="32">
+          </a>
+        </div>
+
+    </div>
+  </div>
+
+  <div class="main-container" style="margin-top: 20px;">
+
+    <!-- CONTENT AREA -->
+    <div id="search-form" class="search-form">
+
+      <div class="row g-3" style="margin: 0 auto;">
+        
+        <div class="col-md-12">
+          <label for="search-terms-input" class="form-label">Search</label>
+          <input type="text" class="form-control" id="search-terms-input" placeholder="enter search terms for selected fields...">
+        </div>
+        
+        <div class="col-md-12">
+          <div>Select fields to search</div>
+        </div>
+        
+        <div class="col-md-12">
+          
+          <div class="form-check form-switch form-check-inline">
+            <input class="form-check-input" type="checkbox" id="activity_chckbx" value="ACTIVITY" checked>
+            <label class="form-check-label" for="activity_chckbx">Activity</label>
+          </div>
+          
+          <div class="form-check form-switch form-check-inline">
+            <input class="form-check-input" type="checkbox" id="subactivity_chckbx" value="SUBACTIVITY" checked>
+            <label class="form-check-label" for="subactivity_chckbx">SubActivity</label>
+          </div>
+          
+          <div class="form-check form-switch form-check-inline">
+            <input class="form-check-input" type="checkbox" id="task_chckbx" value="TASK" checked>
+            <label class="form-check-label" for="task_chckbx">Task</label>
+          </div>
+
+          <div class="form-check form-switch form-check-inline">
+            <input class="form-check-input" type="checkbox" id="method_chckbx" value="METHOD" checked>
+            <label class="form-check-label" for="method_chckbx">Method</label>
+          </div>
+
+          <div class="form-check form-switch form-check-inline">
+            <input class="form-check-input" type="checkbox" id="title_chckbx" value="TITLE" checked>
+            <label class="form-check-label" for="method_chckbx">Title</label>
+          </div>
+
+          <div class="form-check form-switch form-check-inline">
+            <input class="form-check-input" type="checkbox" id="keywords_chckbx" value="KEYWORDS">
+            <label class="form-check-label" for="keywords_chckbx">Keywords (Thematic)</label>
+          </div>
+
+          <div class="form-check form-switch form-check-inline">
+            <input class="form-check-input" type="checkbox" id="syntax_chckbx" value="SYNTAX">
+            <label class="form-check-label" for="syntax_chckbx">Syntax (R)</label>
+          </div>
+
+          <div class="form-check form-switch form-check-inline">
+            <input class="form-check-input" type="checkbox" id="sources_chckbx" value="SOURCES">
+            <label class="form-check-label" for="sources_chckbx">Sources</label>
+          </div>
+
+        </div>
+
+        <div class="col-md-12">
+          <div>Advanced options to control search</div>
+        </div>
+
+        <div class="col-md-12">
+
+          <div class="form-check form-switch form-check-inline">
+            <input class="form-check-input" type="checkbox" id="prefix_chckbx" value="PREFIX" checked>
+            <label class="form-check-label" for="prefix_chckbx">Prefix Search</label>
+          </div>
+
+          <div class="form-check form-switch form-check-inline">
+            <input class="form-check-input" type="checkbox" id="fuzzy_chckbx" value="FUZZY" checked>
+            <label class="form-check-label" for="fuzzy_chckbx">Fuzzy Search</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="boolean" id="and_chckbx" onclick="set_boolean(this.value)" value="AND" checked>
+            <label class="form-check-label" for="and_chckbx">Use AND</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="boolean" id="or_chckbx" onclick="set_boolean(this.value)" value="OR">
+            <label class="form-check-label" for="or_chckbx">Use OR</label>
+          </div>
+
+        </div>
+        
+        <div class="col-md-4" style="margin-top: 40px;">
+
+          <button id="search-submit" class="btn btn-dark">Search</button>
+          <button id="reset-reset" class="btn btn-dark" style="margin-left: 10px; margin-right: 20px;">Reset</button>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="view" id="table_chckbx" onclick="set_view(this.value)" value="table" checked>
+            <label class="form-check-label" for="table_chckbx">Table</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="view" id="card_chckbx" onclick="set_view(this.value)" value="card">
+            <label class="form-check-label" for="card_chckbx">Card</label>
+          </div>
+
+        </div>
+
+        <div class="col-md-8"></div>
+
+      </div>
+
+    </div>
+
+    <div id="search-info" style="margin-top: 15px; padding-bottom: 0px;"></div>
+
+    <div id="search-result" style="margin-top: 15px;"></div>
+
+    <!-- END CONTENT AREA -->
+
+</div>
+<!-- END PAGE -->
+
+<!-- Footer-->
+<div class="footer text-center bc-white border-top" style="padding-top: 30px; padding-bottom: 25px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Use</div>
+        <p class="text-center">This work is licensed under<br>Attribution 4.0 International<br><strong>CC BY 4.0</strong></p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Source</div>
+        <p class="text-center">
+          <a href="https://github.com/UN-AVT/kamino-web" class="centered">
+          <img class="d-inline-block" src="assets/icons/github-alt-brands.svg" alt="" height="32">
+          </a>
+        </p>
+      </div>
+      <div class="col-lg-4">
+        <div class="footer-title text-uppercase mb-4">Creation</div>
+        <p class="text-center">Hand crafted with ♥ by<br>the <strong>Kamino Crew</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="utility/only.js"></script>
+<script src="helpers/clear-div.js"></script>
+<script src="helpers/tooltips.js"></script>
+<script src="components/search/search.js"></script>
+<script src="components/search/controls.js"></script>
+
+</body>
+
+</html>

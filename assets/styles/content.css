@@ -1,0 +1,494 @@
+@charset "UTF-8";
+
+/* These are the main fonts used for narrative text and generated or designed visuals (Inconsolata) */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira+Extra+Condensed:wght@400;500;600&display=swap');
+
+body {
+	font-family: 'Barlow Semi Condensed', sans-serif;
+  font-size: 16px;
+  color: #111;
+	background-color: #fefefe;
+}
+
+html {
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+.header {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  min-width: 100vw !important;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -10px;
+  margin-bottom: 25px;
+  padding-top: 0px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 48px;
+  background-color: #FFFFFF;
+}
+
+.nav-link {
+  padding-left: 30px;
+}
+
+.footer {
+  padding-top: 30px; 
+  padding-bottom: 25px;
+	border-top: solid 4px #111111;
+  background-color: #FFFFFF;
+}
+
+.footer-title {
+  font-family: 'Oswald', sans-serif;
+	font-weight: 500;
+	font-size: 18px;
+}
+
+.footer-text {
+  font-family: 'Saira Semi Condensed', sans-serif;
+	font-weight: 400;
+	font-size: 18px;
+  line-height: 24px;;
+}
+
+/* THESE ARE STYLE OVERRIDES FROM GENERATED */
+.main-container {
+  width: 86% !important;
+  max-width: 100vw !important;
+  min-width: 86vw !important;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* add space between sections */
+.section h1 {
+	padding-top: 80px !important;
+  margin-top: -67px !important;
+}
+
+
+/* OVERRIDES TO STANDARD MARKDOWN TAGS */
+/* article title */
+h1 {
+  font-family: 'Oswald', sans-serif;
+	font-weight: 600;
+	font-size: 38px;
+	margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+/* article subtitle */
+h2 {
+	font-family: 'EB Garamond', serif;
+	font-style: italic;
+	font-weight: 400;
+	font-size: 28px;
+	margin-top: 5px;
+	margin-bottom: 25px;
+}
+
+/* section header */
+h3 {
+	font-family: 'Oswald', sans-serif;
+	font-weight: 500;
+	font-size: 32px;
+	margin-top: 45px;
+  margin-bottom: 0px;
+}
+
+/* subsection header */
+h4 {
+	font-family: 'EB Garamond', serif;
+	font-style: italic;
+	font-weight: 400;
+	font-size: 24px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+/* standard narrative text */
+p {
+	font-family: 'Barlow Semi Condensed', sans-serif;
+	font-weight: 400;
+	font-size: 24px;
+	line-height: 32px;
+	margin-left: 0px;
+	margin-right: 0px;
+	padding-top: 10px;
+	text-align: justify;
+	text-justify: inter-word;
+	text-align-last: left;
+}
+
+/* figure attribution */
+p.caption {
+  font-family: 'EB Garamond', serif;
+  font-size: 21px;
+  font-style: italic;
+  color: "#666666";
+  margin-top: 0px;
+  text-align: center !important;
+  text-align-last: center;
+}
+
+/* figure narrative */
+div.figure-text {
+  width: fit-content;
+	block-size: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -15px;
+  margin-bottom: 10px;
+  font-size: 21px;
+  font-family: 'EB Garamond', serif;
+  font-weight: 600;
+  text-align: center !important;
+  text-align-last: center !important;
+}
+
+/* side, margin note */
+aside p {
+  width: 20%;
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 0px;
+  margin-left: 25px;
+  float: right;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-size: 18px;
+  line-height: 21px;
+  background-color: "#ffffff";
+}
+
+/* horizontal rule */
+hr {
+	height: 2px;
+	border: 1px solid #111111;
+	color: #111111;
+	background-color: #111111;
+}
+
+/* custom blockquote */
+blockquote p {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 32px;
+  color: #222222;
+}
+
+blockquote {
+  max-width: 60%;
+  margin: 25px auto;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 60px;
+  position: relative;
+  border-left: 8px solid #222222 ;
+  background: #F9F9F9;
+}
+
+blockquote::before{
+  font-family: Arial;
+  content: "\201C";
+  color: #222222;
+  font-size: 64px;
+  position: absolute;
+  left: 10px;
+  top: -10px;
+}
+
+blockquote::after{
+  content: '';
+}
+
+blockquote span {
+  display:block;
+  color:#222222;
+  font-style: normal;
+  font-weight: bold;
+  margin-top:0px;
+}
+
+/* unordered list */
+ul {
+  list-style-type: disc;
+  list-style-position: inside;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  margin: 25px;
+  margin-left: 100px;
+  text-align: justify;
+  text-justify: inter-word;
+  text-align-last: left;
+}
+
+/* text modifiers and enhancements */
+details {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+details.tip {
+  background-color: #e1f5fe;
+}
+
+details.reminder {
+  background-color: #fff9c4;
+}
+
+details.technical {
+  background-color: #f0f4c3;
+}
+
+details > summary {
+  font-weight: 500;
+	font-size: 24px;
+  padding: 4px;
+  width: fit-content;
+  border: none;
+  cursor: pointer;
+}
+
+details > p {
+  padding: 4px;
+  margin: 0;
+}
+
+kbd {
+  font-family: 'Inconsolata', monospace;
+  background: #f1f8e9;
+  color: #111111;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* tag based highlight of text */
+mark {
+  background: #fce4ec;
+  color: #000;
+  padding: 5px;
+  padding-top: 0px;
+}
+
+q {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+}
+
+/* Color when manually highlighting text */
+::selection {
+  background: #111111; /* WebKit/Blink Browsers */
+  color: #ffffff;
+}
+::-moz-selection {
+  background: #111111; /* Gecko Browsers */
+  color: #ffffff;
+}
+
+/* center images */
+p img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+img {
+  max-width:100%;
+  margin: 0 auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+/* diagram containers */
+.grViz {
+  max-width:100%;
+  margin: 0 auto;
+}
+
+
+/* to apply standard text to visualizations */
+svg {
+  font-family: 'Inconsolata', monospace;
+}
+
+/* Header code show, hide button */
+button.btn-default {
+  outline: none;
+  font-family: 'Share Tech Mono', monospace;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 18px;
+	text-transform: uppercase;
+	text-decoration: none;
+	text-align: center;
+	text-justify: inter-word;
+	text-align-last: center;
+	background-color: #444444;
+	color: #FFFFFF;
+	border-style: none;
+}
+
+button.btn-default:hover {
+  text-decoration: none;
+  outline: none;
+	background-color: #000000;
+	color: #FFFFFF;
+	outline-offset: 0px;
+	border-style: none;
+}
+
+button.btn-default:focus {
+  text-decoration: none;
+  outline: none;
+	background-color: #111111;
+	color: #FFFFFF;
+	outline-offset: 0px;
+	border-style: none;
+}
+
+button.btn-default:active:focus {
+  text-decoration: none;
+  outline: none;
+	background-color: orange;
+	color: #FFFFFF;
+	outline-offset: 0px;
+	border-style: none;
+}
+
+/* inline code show, hide button */
+button.code-folding-btn {
+  outline: none;
+  font-family: 'Share Tech Mono', monospace;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 18px;
+	text-transform: uppercase;
+	text-decoration: none;
+	text-align: center;
+	text-justify: inter-word;
+	text-align-last: center;
+	background-color: #444444;
+	color: #FFFFFF;
+	border-style: none;
+}
+
+button.code-folding-btn:hover {
+  text-decoration: none;
+  outline: none;
+	background-color: #000000;
+	color: #FFFFFF;
+	outline-offset: 0px;
+	border-style: none;
+}
+
+button.code-folding-btn:focus {
+  text-decoration: none;
+  outline: none;
+	background-color: #111111;
+	color: #FFFFFF;
+	outline-offset: 0px;
+	border-style: none;
+}
+
+button.code-folding-btn:active:focus {
+  text-decoration: none;
+  outline: none;
+	background-color: orange;
+	color: #FFFFFF;
+	outline-offset: 0px;
+	border-style: none;
+}
+
+summary {
+  display: list-item;
+}
+
+/* for citations */
+pre code {
+  padding: 0;
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+/* KAMINO GLOBAL STYLES */
+.text-center {
+  text-align: center;
+	text-justify: inter-word;
+	text-align-last: center;
+}
+
+/* Module Tag */
+.activity p {
+	width: fit-content;
+	block-size: fit-content;
+	margin-left: 0px;
+	margin-bottom: 15px;
+	padding-top: 2px;
+	padding-left: 10px;
+	padding-right: 10px;
+	font-family: 'Share Tech Mono', monospace;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 24px;
+	text-transform: uppercase;
+	text-align: center;
+	text-justify: inter-word;
+	text-align-last: center;
+	background-color: #111111;
+	color: #FFFFFF;
+}
+
+.border-top {
+  border-top: 5px solid  black !important;
+  z-index: 999;
+}
+
+.border-bottom {
+  border-bottom: 5px solid  black !important;
+  z-index: 999;
+}
+
+/* custom low profile scrollbar */
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #333333;
+}
+
+body::-webkit-scrollbar-thumb:active {
+  background: #111111;
+}

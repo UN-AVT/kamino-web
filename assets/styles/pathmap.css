@@ -1,0 +1,166 @@
+* { box-sizing: border-box; }
+
+body {
+  font-family: sans-serif;
+}
+
+/* ---- button ---- */
+
+.button {
+  display: inline-block;
+  padding: 0.5em 1.0em;
+  border: none;
+  border-radius: 7px;
+  color: #222;
+  font-family: sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  outline: 0;
+}
+
+.button:hover {
+  background-color: #8CF;
+  color: #222;
+}
+
+.button:active,
+.button.is-checked {
+  background-color: #28F;
+  border: none;
+  outline: 0;
+}
+
+.button.is-checked {
+  color: white;
+  border: none;
+  outline: 0;
+}
+
+.button:active {
+    border: none;
+    outline: 0;
+}
+
+/* ---- button-group ---- */
+
+.button-group {
+  margin-bottom: 20px;
+}
+
+.button-group:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.button-group .button {
+  float: left;
+  border-radius: 0;
+  margin-left: 0;
+  margin-right: 1px;
+}
+
+.button-group .button:first-child { border-radius: 0.5em 0 0 0.5em; }
+.button-group .button:last-child { border-radius: 0 0.5em 0.5em 0; }
+
+/* ---- isotope ---- */
+
+.grid {
+  width: 100%;
+}
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .catalog-item ---- */
+
+.catalog-item {
+  position: relative;
+  float: left;
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  padding: 5px;
+  /* background: #888; */
+  color: #262524;
+  border: 1px solid #333333;
+}
+
+.catalog-item:hover {
+    border: 2px solid #333333;
+}
+
+.catalog-item > * {
+  margin: 0;
+  padding: 0;
+}
+
+.catalog-item .solution {
+  position: absolute;
+  left: 10px;
+  top: 76px;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.catalog-item .activity {
+  position: absolute;
+  left: 10px;
+  top: 5px;
+  height: 16px;
+}
+
+.catalog-item .task {
+  position: absolute;
+  width: 90px;
+  /* left: 10px; */
+  top: 76px;
+  text-transform: none;
+  text-align: center;
+  letter-spacing: 0;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.catalog-item .task-long {
+  position: absolute;
+  width: 90px;
+  /* left: 10px; */
+  top: 66px;
+  text-transform: none;
+  text-align: center;
+  letter-spacing: 0;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.catalog-item .solution-icon {
+  position: absolute;
+  left: 34px;
+  top: 30px;
+  width: 32px;
+}
+
+.catalog-item .progress {
+    position: absolute;
+    right: 8px;
+    top: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 14px;
+    height: 15px;
+    min-width: 15px;
+    margin: 0;
+    padding: 0;
+    padding-left: 4px;
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: #000000;
+}
+

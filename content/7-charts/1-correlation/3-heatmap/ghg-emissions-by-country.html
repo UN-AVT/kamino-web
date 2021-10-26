@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Kamino</title>
+
+<script src="../../../../vendor/knitr/header-attrs-2.9/header-attrs.js"></script>
+<script src="../../../../vendor/knitr/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="../../../../vendor/knitr/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="../../../../vendor/knitr/navigation-1.1/tabsets.js"></script>
+<script src="../../../../vendor/knitr/navigation-1.1/codefolding.js"></script>
+<link href="../../../../vendor/knitr/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/highlightjs-9.12.0/highlight.js"></script>
+<link href="../../../../vendor/knitr/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="../../../../vendor/knitr/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="../../../../vendor/knitr/d3-bundle-5.16.0/d3-bundle.min.js"></script>
+<script src="../../../../vendor/knitr/d3-lasso-0.0.5/d3-lasso.min.js"></script>
+<script src="../../../../vendor/knitr/save-svg-as-png-1.4.17/save-svg-as-png.min.js"></script>
+<link href="../../../../vendor/knitr/ggiraphjs-0.4.1/ggiraphjs.min.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/ggiraphjs-0.4.1/ggiraphjs.min.js"></script>
+<script src="../../../../vendor/knitr/girafe-binding-0.7.10/girafe.js"></script>
+<div class="border-bottom">
+  
+  <div class="header">
+    
+  <img src="../../../../assets/logo/logo.svg" alt="" width="42">
+
+  <div class="nav" style="float: right;">
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="home.html" 
+        data-bs-toggle="tooltip" 
+        data-bs-placement="bottom"
+        title="Home">
+        <img src="../../../../assets/icons/campground-solid.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="explorer.html" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom" 
+        title="Search for content">
+        <img src="../../../../assets/icons/compass.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="https://github.com/UN-AVT" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom"
+        title="Project">
+        <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32">
+      </a>
+    </div>
+
+</div>
+</div>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="C:/Users/Karine.Louly/Documents/GitHub/kamino-dev/sources/z-assemblers/assets/styles/content.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<div class="activity">
+<p>CHARTS</p>
+</div>
+<div id="heatmap" class="section level1">
+<h1>Heatmap</h1>
+<div id="greenhouse-gas-ghg-emission-by-country" class="section level2">
+<h2>Greenhouse Gas (GHG) emission by country</h2>
+<div class="figure" style="text-align: center">
+<img src="marek-piwnicki-WiZOyYqzUss-unsplash.jpg" alt="Photo by Marek Piwnicki on Unsplash" width="60%" />
+<p class="caption">
+Photo by Marek Piwnicki on Unsplash
+</p>
+</div>
+<blockquote>
+<p>Cancer cannot cripple love, it cannot shatter hope, it cannot conquer the spirit…<br />
+—Unknown<br />
+</p>
+</blockquote>
+<hr />
+<div id="load-data" class="section level3">
+<h3>Load Data</h3>
+<pre class="r fold-hide"><code>df1 &lt;- read_excel(&#39;archetypes/ghg-emissions-by-country/ghg-emissions-by-country.xlsx&#39;, sheet=1)
+
+df1</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Producing countries"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Consuming countries"],"name":[2],"type":["chr"],"align":["left"]},{"label":["GHG emissions"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["% of total"],"name":[4],"type":["lgl"],"align":["right"]}],"data":[{"1":"Indonesia","2":"United States","3":"26.31672529","4":"NA"},{"1":"Brazil","2":"United States","3":"2.45909697","4":"NA"},{"1":"Malaysia","2":"United States","3":"1.64078624","4":"NA"},{"1":"Australia","2":"United States","3":"4.07356560","4":"NA"},{"1":"Mexico","2":"United States","3":"4.65553510","4":"NA"},{"1":"Indonesia","2":"European Union","3":"57.60839211","4":"NA"},{"1":"Brazil","2":"European Union","3":"16.60063649","4":"NA"},{"1":"Malaysia","2":"European Union","3":"6.03834974","4":"NA"},{"1":"Australia","2":"European Union","3":"0.98555530","4":"NA"},{"1":"Mexico","2":"European Union","3":"0.33587628","4":"NA"},{"1":"Indonesia","2":"Japan","3":"18.47347202","4":"NA"},{"1":"Brazil","2":"Japan","3":"2.78729073","4":"NA"},{"1":"Malaysia","2":"Japan","3":"2.33589357","4":"NA"},{"1":"Australia","2":"Japan","3":"6.07162721","4":"NA"},{"1":"Mexico","2":"Japan","3":"0.17303613","4":"NA"},{"1":"Indonesia","2":"China","3":"47.54611257","4":"NA"},{"1":"Brazil","2":"China","3":"64.97178893","4":"NA"},{"1":"Malaysia","2":"China","3":"7.86408739","4":"NA"},{"1":"Australia","2":"China","3":"4.28238816","4":"NA"},{"1":"Mexico","2":"China","3":"0.20308485","4":"NA"},{"1":"Indonesia","2":"India","3":"72.94745820","4":"NA"},{"1":"Brazil","2":"India","3":"0.75493210","4":"NA"},{"1":"Malaysia","2":"India","3":"5.04781038","4":"NA"},{"1":"Australia","2":"India","3":"1.05846477","4":"NA"},{"1":"Mexico","2":"India","3":"0.04968484","4":"NA"},{"1":"Indonesia","2":"Pakistan","3":"24.37013082","4":"NA"},{"1":"Brazil","2":"Pakistan","3":"0.85358107","4":"NA"},{"1":"Malaysia","2":"Pakistan","3":"1.93338611","4":"NA"},{"1":"Australia","2":"Pakistan","3":"0.11606973","4":"NA"},{"1":"Mexico","2":"Pakistan","3":"0.03877751","4":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="ghg-emissions-million-tons-co2-per-year" class="section level3">
+<h3>GHG emissions (million tons CO2 per year)</h3>
+<pre class="r fold-hide"><code>v1 &lt;- ggplot(df1, aes(x=`Consuming countries`, y=`Producing countries`, fill=`GHG emissions`))+
+      geom_tile()+
+      scale_fill_distiller(palette = &quot;Oranges&quot;) +
+      labs(x = &quot;Consuming Countries&quot;, y = &quot;Producing Countries&quot;, 
+       title = &quot;GHG emissions (million tons CO2 per year)&quot;,
+       subtitle = &quot;&quot;)
+
+
+girafe(ggobj = v1, width_svg = 1280/72, height_svg = 720/72,
+      options = list(opts_sizing(rescale = TRUE, width = 1.0)))</code></pre>
+<div id="htmlwidget-6f09fbec32dc3b63e810" style="width:100%;height:1440px;" class="girafe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6f09fbec32dc3b63e810">{"x":{"html":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' id='svg_61f475bc-e443-46b3-a968-35ce551a7777' viewBox='0 0 1280.00 720.00'>\n  <g>\n    <defs>\n      <clipPath id='svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_1'>\n        <rect x='0.00' y='0.00' width='1280.00' height='720.00'/>\n      <\/clipPath>\n    <\/defs>\n    <rect x='0.00' y='0.00' width='1280.00' height='720.00' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_1' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_1)' fill='#FFFFFF' fill-opacity='1' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.75' stroke-linejoin='round' stroke-linecap='round'/>\n    <defs>\n      <clipPath id='svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_2'>\n        <rect x='0.00' y='0.00' width='1280.00' height='720.00'/>\n      <\/clipPath>\n    <\/defs>\n    <rect x='0.00' y='0.00' width='1280.00' height='720.00' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_2' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_2)' fill='#FFFFFF' fill-opacity='1' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='round'/>\n    <defs>\n      <clipPath id='svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3'>\n        <rect x='61.52' y='38.85' width='1114.05' height='649.65'/>\n      <\/clipPath>\n    <\/defs>\n    <rect x='61.52' y='38.85' width='1114.05' height='649.65' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_3' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#EBEBEB' fill-opacity='1' stroke='none'/>\n    <polyline points='61.52,613.54 1175.57,613.54' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_4' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='61.52,488.61 1175.57,488.61' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_5' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='61.52,363.68 1175.57,363.68' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_6' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='61.52,238.74 1175.57,238.74' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_7' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='61.52,113.81 1175.57,113.81' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_8' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='169.33,688.50 169.33,38.85' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_9' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='349.02,688.50 349.02,38.85' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_10' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='528.70,688.50 528.70,38.85' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_11' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='708.39,688.50 708.39,38.85' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_12' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='888.07,688.50 888.07,38.85' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_13' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='1067.76,688.50 1067.76,38.85' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_14' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <rect x='977.92' y='301.21' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_15' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#F36F1B' fill-opacity='1' stroke='none'/>\n    <rect x='977.92' y='426.14' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_16' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#9B3204' fill-opacity='1' stroke='none'/>\n    <rect x='977.92' y='176.28' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_17' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#963004' fill-opacity='1' stroke='none'/>\n    <rect x='977.92' y='551.08' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_18' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#A53604' fill-opacity='1' stroke='none'/>\n    <rect x='977.92' y='51.35' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_19' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#A93703' fill-opacity='1' stroke='none'/>\n    <rect x='259.17' y='301.21' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_20' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#FEC794' fill-opacity='1' stroke='none'/>\n    <rect x='259.17' y='426.14' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_21' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#E25407' fill-opacity='1' stroke='none'/>\n    <rect x='259.17' y='176.28' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_22' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#B13A03' fill-opacity='1' stroke='none'/>\n    <rect x='259.17' y='551.08' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_23' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#922F04' fill-opacity='1' stroke='none'/>\n    <rect x='259.17' y='51.35' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_24' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#8E2E04' fill-opacity='1' stroke='none'/>\n    <rect x='618.55' y='301.21' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_25' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#E5590A' fill-opacity='1' stroke='none'/>\n    <rect x='618.55' y='426.14' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_26' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#9D3304' fill-opacity='1' stroke='none'/>\n    <rect x='618.55' y='176.28' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_27' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#9A3204' fill-opacity='1' stroke='none'/>\n    <rect x='618.55' y='551.08' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_28' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#B13A03' fill-opacity='1' stroke='none'/>\n    <rect x='618.55' y='51.35' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_29' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#8D2D04' fill-opacity='1' stroke='none'/>\n    <rect x='79.49' y='301.21' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_30' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#FDAB67' fill-opacity='1' stroke='none'/>\n    <rect x='79.49' y='426.14' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_31' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#FEDAB6' fill-opacity='1' stroke='none'/>\n    <rect x='79.49' y='176.28' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_32' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#BD3E03' fill-opacity='1' stroke='none'/>\n    <rect x='79.49' y='551.08' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_33' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#A63604' fill-opacity='1' stroke='none'/>\n    <rect x='79.49' y='51.35' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_34' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#8D2D04' fill-opacity='1' stroke='none'/>\n    <rect x='438.86' y='301.21' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_35' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#FEEDDE' fill-opacity='1' stroke='none'/>\n    <rect x='438.86' y='426.14' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_36' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#902F04' fill-opacity='1' stroke='none'/>\n    <rect x='438.86' y='176.28' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_37' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#AB3803' fill-opacity='1' stroke='none'/>\n    <rect x='438.86' y='551.08' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_38' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#922F04' fill-opacity='1' stroke='none'/>\n    <rect x='438.86' y='51.35' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_39' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#8C2D04' fill-opacity='1' stroke='none'/>\n    <rect x='798.23' y='301.21' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_40' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#F16913' fill-opacity='1' stroke='none'/>\n    <rect x='798.23' y='426.14' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_41' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#912F04' fill-opacity='1' stroke='none'/>\n    <rect x='798.23' y='176.28' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_42' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#983104' fill-opacity='1' stroke='none'/>\n    <rect x='798.23' y='551.08' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_43' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#8C2D04' fill-opacity='1' stroke='none'/>\n    <rect x='798.23' y='51.35' width='179.69' height='124.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_44' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_3)' fill='#8C2D04' fill-opacity='1' stroke='none'/>\n    <defs>\n      <clipPath id='svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4'>\n        <rect x='0.00' y='0.00' width='1280.00' height='720.00'/>\n      <\/clipPath>\n    <\/defs>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='22.35' y='616.69' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_45' font-size='6.60pt' fill='#4D4D4D' fill-opacity='1' font-family='Arial'>Australia<\/text>\n    <\/g>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='34.59' y='491.76' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_46' font-size='6.60pt' fill='#4D4D4D' fill-opacity='1' font-family='Arial'>Brazil<\/text>\n    <\/g>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='18.41' y='366.83' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_47' font-size='6.60pt' fill='#4D4D4D' fill-opacity='1' font-family='Arial'>Indonesia<\/text>\n    <\/g>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='21.87' y='241.89' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_48' font-size='6.60pt' fill='#4D4D4D' fill-opacity='1' font-family='Arial'>Malaysia<\/text>\n    <\/g>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='28.72' y='116.96' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_49' font-size='6.60pt' fill='#4D4D4D' fill-opacity='1' font-family='Arial'>Mexico<\/text>\n    <\/g>\n    <polyline points='58.78,613.54 61.52,613.54' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_50' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='58.78,488.61 61.52,488.61' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_51' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='58.78,363.68 61.52,363.68' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_52' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='58.78,238.74 61.52,238.74' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_53' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='58.78,113.81 61.52,113.81' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_54' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='169.33,691.24 169.33,688.50' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_55' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='349.02,691.24 349.02,688.50' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_56' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='528.70,691.24 528.70,688.50' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_57' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='708.39,691.24 708.39,688.50' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_58' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='888.07,691.24 888.07,688.50' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_59' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <polyline points='1067.76,691.24 1067.76,688.50' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_60' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='157.84' y='699.74' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_61' font-size='6.60pt' fill='#4D4D4D' fill-opacity='1' font-family='Arial'>China<\/text>\n    <\/g>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='317.21' y='699.74' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_62' font-size='6.60pt' fill='#4D4D4D' fill-opacity='1' font-family='Arial'>European Union<\/text>\n    <\/g>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='519.16' y='699.74' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_63' font-size='6.60pt' fill='#4D4D4D' fill-opacity='1' font-family='Arial'>India<\/text>\n    <\/g>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='696.40' y='699.74' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_64' font-size='6.60pt' fill='#4D4D4D' fill-opacity='1' font-family='Arial'>Japan<\/text>\n    <\/g>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='871.20' y='699.74' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_65' font-size='6.60pt' fill='#4D4D4D' fill-opacity='1' font-family='Arial'>Pakistan<\/text>\n    <\/g>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='1041.34' y='699.74' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_66' font-size='6.60pt' fill='#4D4D4D' fill-opacity='1' font-family='Arial'>United States<\/text>\n    <\/g>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='565.65' y='712.20' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_67' font-size='8.25pt' font-family='Arial'>Consuming Countries<\/text>\n    <\/g>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text transform='translate(13.36,413.52) rotate(-90.00)' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_68' font-size='8.25pt' font-family='Arial'>Producing Countries<\/text>\n    <\/g>\n    <rect x='1186.53' y='307.16' width='87.99' height='113.03' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_69' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' fill='#FFFFFF' fill-opacity='1' stroke='none'/>\n    <image x='1192.01' y='328.32' width='17.28' height='86.40' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_70' preserveAspectRatio='none' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' xlink:href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAEsCAYAAAACUNnVAAAArklEQVQ4jaVSwRHDMAgT7D9jN+gKVh9JCRC4mMvHhy0hIc5Y3w8VJBQgFFxW2YGFQInkOZDlJ4CjdICNyw54mDkbESrtaAW5z1Gh847iymolM7cNI9SobO+AUBCTRCPlQQT/N0IsFil5UWKO/MMqgf4tmqfQNu7treI1C2MpBT/QkS2jezy/nNjmLE3gwTKhrXKFXtu9SxGALv6P8yoBsEldlXoPQCbk3UreCtTVDz2b6yIHggafAAAAAElFTkSuQmCC' xmlns:xlink='http://www.w3.org/1999/xlink'/>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='1214.77' y='394.15' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_71' font-size='6.60pt' font-family='Arial'>20<\/text>\n    <\/g>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='1214.77' y='370.52' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_72' font-size='6.60pt' font-family='Arial'>40<\/text>\n    <\/g>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='1214.77' y='346.90' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_73' font-size='6.60pt' font-family='Arial'>60<\/text>\n    <\/g>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='1192.01' y='321.68' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_74' font-size='8.25pt' font-family='Arial'>GHG emissions<\/text>\n    <\/g>\n    <line x1='1192.01' y1='391.00' x2='1195.46' y2='391.00' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_75' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.38' stroke-linejoin='round' stroke-linecap='butt' fill='#FFFFFF' fill-opacity='1'/>\n    <line x1='1192.01' y1='367.37' x2='1195.46' y2='367.37' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_76' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.38' stroke-linejoin='round' stroke-linecap='butt' fill='#FFFFFF' fill-opacity='1'/>\n    <line x1='1192.01' y1='343.75' x2='1195.46' y2='343.75' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_77' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.38' stroke-linejoin='round' stroke-linecap='butt' fill='#FFFFFF' fill-opacity='1'/>\n    <line x1='1205.83' y1='391.00' x2='1209.29' y2='391.00' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_78' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.38' stroke-linejoin='round' stroke-linecap='butt' fill='#FFFFFF' fill-opacity='1'/>\n    <line x1='1205.83' y1='367.37' x2='1209.29' y2='367.37' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_79' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.38' stroke-linejoin='round' stroke-linecap='butt' fill='#FFFFFF' fill-opacity='1'/>\n    <line x1='1205.83' y1='343.75' x2='1209.29' y2='343.75' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_80' clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.38' stroke-linejoin='round' stroke-linecap='butt' fill='#FFFFFF' fill-opacity='1'/>\n    <g clip-path='url(#svg_61f475bc-e443-46b3-a968-35ce551a7777_cl_4)'>\n      <text x='61.52' y='14.93' id='svg_61f475bc-e443-46b3-a968-35ce551a7777_el_81' font-size='9.90pt' font-family='Arial'>GHG emissions (million tons CO2 per year)<\/text>\n    <\/g>\n  <\/g>\n<\/svg>","js":null,"uid":"svg_61f475bc-e443-46b3-a968-35ce551a7777","ratio":1.77777777777778,"settings":{"tooltip":{"css":".tooltip_SVGID_ { padding:5px;background:black;color:white;border-radius:2px 2px 2px 2px;text-align:left; ; position:absolute;pointer-events:none;z-index:999;}\n","placement":"doc","offx":10,"offy":0,"use_cursor_pos":true,"opacity":0.9,"usefill":false,"usestroke":false,"delay":{"over":200,"out":500}},"hover":{"css":".hover_SVGID_ { fill:orange;stroke:gray; }","reactive":false},"hoverkey":{"css":".hover_key_SVGID_ { stroke:red; }","reactive":false},"hovertheme":{"css":".hover_theme_SVGID_ { fill:green; }","reactive":false},"hoverinv":{"css":""},"zoom":{"min":1,"max":1},"capture":{"css":".selected_SVGID_ { fill:red;stroke:gray; }","type":"multiple","only_shiny":true,"selected":[]},"capturekey":{"css":".selected_key_SVGID_ { stroke:gray; }","type":"single","only_shiny":true,"selected":[]},"capturetheme":{"css":".selected_theme_SVGID_ { stroke:gray; }","type":"single","only_shiny":true,"selected":[]},"toolbar":{"position":"topright","saveaspng":true,"pngname":"diagram"},"sizing":{"rescale":true,"width":1}}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="save-plot" class="section level3">
+<h3>Save plot</h3>
+<div id="as-vector-or-raster-image" class="section level4">
+<h4>as vector or raster image</h4>
+<pre class="r fold-show"><code># full version
+ggsave(filename = &quot;assets/ghg-emissions-heatmap.svg&quot;, plot = v1, width=1280/72, height=720/72)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<div id="the-citations-and-data-sources-used-for-this-case" class="section level2">
+<h2>The citations and data sources used for this case</h2>
+<p>Source: <a href="https://engagethechain.org/investor-guide-deforestation-and-climate-change" target="_blank"> An Investor Guide on Agricultural Supply Chain Risk</a></p>
+<pre><code>## [1] _Investor Guide to Deforestation and Climate Change_. Engage the
+## Chain, Jun. 2020. &lt;URL:
+## https://engagethechain.org/investor-guide-deforestation-and-climate-change&gt;
+## (visited on 10/20/2021).</code></pre>
+<script type="text/javascript">
+
+// Must be included to position footer
+$(function() {
+  $('.main-container').after($('.footer'));
+})
+
+</script>
+</div>
+</div>
+
+<!-- Footer-->
+<div class="footer text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Use</div>
+        <p class="footer-text text-center">This work is licensed under<br>Attribution 4.0 International<br><strong>CC BY 4.0</strong></p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Source</div>
+        <p class="footer-text text-center">
+          <a href="https://github.com/UN-AVT/kamino-web" class="centered">
+          <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32" style="margin-top: 0px;">
+          </a>
+        </p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Creation</div>
+        <p class="footer-text text-center">Hand crafted with ♥ by<br>the <strong>Kamino Crew</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+
+</body>
+</html>

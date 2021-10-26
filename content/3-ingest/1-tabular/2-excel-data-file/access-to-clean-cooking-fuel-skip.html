@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Kamino</title>
+
+<script src="../../../../vendor/knitr/header-attrs-2.11/header-attrs.js"></script>
+<script src="../../../../vendor/knitr/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="../../../../vendor/knitr/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="../../../../vendor/knitr/navigation-1.1/tabsets.js"></script>
+<script src="../../../../vendor/knitr/navigation-1.1/codefolding.js"></script>
+<link href="../../../../vendor/knitr/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/highlightjs-9.12.0/highlight.js"></script>
+<link href="../../../../vendor/knitr/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/pagedtable-1.1/js/pagedtable.js"></script>
+<div class="border-bottom">
+  
+  <div class="header">
+    
+  <img src="../../../../assets/logo/logo.svg" alt="" height="36">
+
+  <div class="nav" style="float: right;">
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="home.html" 
+        data-bs-toggle="tooltip" 
+        data-bs-placement="bottom"
+        title="Home">
+        <img src="../../../../assets/icons/campground-solid.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="explorer.html" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom" 
+        title="Search for content">
+        <img src="../../../../assets/icons/compass.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="https://github.com/UN-AVT" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom"
+        title="Project">
+        <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32">
+      </a>
+    </div>
+
+</div>
+</div>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="../../../../assets/styles/content.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<div class="activity">
+<p>INGEST</p>
+</div>
+<div id="access-to-clean-cooking-fuel" class="section level1">
+<h1>Access to clean cooking fuel</h1>
+<div id="ingest-an-excel-file-skipping-lines" class="section level2">
+<h2>Ingest an Excel file skipping lines</h2>
+<div class="figure" style="text-align: center">
+<img src="isaiah-rustad-unsplash.jpg" alt="Photo by Isaiah Rustad on Unsplash" width="60%" />
+<p class="caption">
+Photo by Isaiah Rustad on Unsplash
+</p>
+</div>
+<blockquote>
+<p>Smoke from cooking stoves kills poor people…<br />
+— The Economist<br />
+</p>
+</blockquote>
+<hr />
+<div id="ingest" class="section level3">
+<h3>Ingest</h3>
+<div id="first-sheet-skip-5-lines" class="section level4">
+<h4>first sheet, skip 5 lines</h4>
+<pre class="r fold-show"><code>df &lt;- read_excel(&#39;archetypes/wdi-access-to-clean-cooking-fuel/wdi-access-to-clean-cooking-fuel.xlsx&#39;, sheet=1, skip=5 )
+df</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Country Name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Country Code"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Series Name"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Series Code"],"name":[4],"type":["chr"],"align":["left"]},{"label":["2016 [YR2016]"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"Afghanistan","2":"AFG","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"32.44"},{"1":"Albania","2":"ALB","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"77.42"},{"1":"Algeria","2":"DZA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"92.62"},{"1":"American Samoa","2":"ASM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Andorra","2":"AND","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Angola","2":"AGO","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"48.05"},{"1":"Antigua and Barbuda","2":"ATG","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"98.75"},{"1":"Argentina","2":"ARG","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"98.4"},{"1":"Armenia","2":"ARM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"96.9"},{"1":"Aruba","2":"ABW","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Australia","2":"AUS","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Austria","2":"AUT","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Azerbaijan","2":"AZE","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"95.54"},{"1":"Bahamas, The","2":"BHS","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Bahrain","2":"BHR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Bangladesh","2":"BGD","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"17.72"},{"1":"Barbados","2":"BRB","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"99.44"},{"1":"Belarus","2":"BLR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"98.18"},{"1":"Belgium","2":"BEL","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Belize","2":"BLZ","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"85.43"},{"1":"Benin","2":"BEN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"6.44"},{"1":"Bermuda","2":"BMU","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Bhutan","2":"BTN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"52.5"},{"1":"Bolivia","2":"BOL","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"64"},{"1":"Bosnia and Herzegovina","2":"BIH","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"63.38"},{"1":"Botswana","2":"BWA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"64.08"},{"1":"Brazil","2":"BRA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"95.59"},{"1":"British Virgin Islands","2":"VGB","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Brunei Darussalam","2":"BRN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Bulgaria","2":"BGR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"88.65"},{"1":"Burkina Faso","2":"BFA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"8.9300000000000104"},{"1":"Burundi","2":"BDI","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"0.84999999999999498"},{"1":"Cabo Verde","2":"CPV","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"71.05"},{"1":"Cambodia","2":"KHM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"17.690000000000001"},{"1":"Cameroon","2":"CMR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"23.04"},{"1":"Canada","2":"CAN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Cayman Islands","2":"CYM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Central African Republic","2":"CAF","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"0.97000000000000397"},{"1":"Chad","2":"TCD","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"3.13"},{"1":"Channel Islands","2":"CHI","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Chile","2":"CHL","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"92.28"},{"1":"China","2":"CHN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"59.26"},{"1":"Colombia","2":"COL","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"91.79"},{"1":"Comoros","2":"COM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"9.34"},{"1":"Congo, Dem. Rep.","2":"COD","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"4.0199999999999996"},{"1":"Congo, Rep.","2":"COG","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"24.13"},{"1":"Costa Rica","2":"CRI","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"93.45"},{"1":"Cote d'Ivoire","2":"CIV","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"18.23"},{"1":"Croatia","2":"HRV","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"92.7"},{"1":"Cuba","2":"CUB","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"79.44"},{"1":"Curacao","2":"CUW","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Cyprus","2":"CYP","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Czech Republic","2":"CZE","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"97.13"},{"1":"Denmark","2":"DNK","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Djibouti","2":"DJI","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"11.52"},{"1":"Dominica","2":"DMA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"90.6"},{"1":"Dominican Republic","2":"DOM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"90.41"},{"1":"Ecuador","2":"ECU","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"95.58"},{"1":"Egypt, Arab Rep.","2":"EGY","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"97.62"},{"1":"El Salvador","2":"SLV","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"86"},{"1":"Equatorial Guinea","2":"GNQ","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"34.39"},{"1":"Eritrea","2":"ERI","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"16.32"},{"1":"Estonia","2":"EST","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"92.89"},{"1":"Eswatini","2":"SWZ","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"49.7"},{"1":"Ethiopia","2":"ETH","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"3.51"},{"1":"Faroe Islands","2":"FRO","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Fiji","2":"FJI","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"39.56"},{"1":"Finland","2":"FIN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"France","2":"FRA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"French Polynesia","2":"PYF","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Gabon","2":"GAB","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"79.12"},{"1":"Gambia, The","2":"GMB","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"3.3"},{"1":"Georgia","2":"GEO","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"77.790000000000006"},{"1":"Germany","2":"DEU","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Ghana","2":"GHA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"21.71"},{"1":"Gibraltar","2":"GIB","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Greece","2":"GRC","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"94.29"},{"1":"Greenland","2":"GRL","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Grenada","2":"GRD","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"96.58"},{"1":"Guam","2":"GUM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Guatemala","2":"GTM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"45.23"},{"1":"Guinea","2":"GIN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"1.24"},{"1":"Guinea-Bissau","2":"GNB","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"1.52"},{"1":"Guyana","2":"GUY","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"74.48"},{"1":"Haiti","2":"HTI","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"4.34"},{"1":"Honduras","2":"HND","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"53.1"},{"1":"Hong Kong SAR, China","2":"HKG","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Hungary","2":"HUN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Iceland","2":"ISL","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"India","2":"IND","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"41.04"},{"1":"Indonesia","2":"IDN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"58.37"},{"1":"Iran, Islamic Rep.","2":"IRN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"98.49"},{"1":"Iraq","2":"IRQ","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"97.63"},{"1":"Ireland","2":"IRL","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Isle of Man","2":"IMN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Israel","2":"ISR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Italy","2":"ITA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Jamaica","2":"JAM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"90.5"},{"1":"Japan","2":"JPN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Jordan","2":"JOR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"99.06"},{"1":"Kazakhstan","2":"KAZ","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"95.34"},{"1":"Kenya","2":"KEN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"13.42"},{"1":"Kiribati","2":"KIR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"5.52"},{"1":"Korea, Dem. People's Rep.","2":"PRK","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"10.8"},{"1":"Korea, Rep.","2":"KOR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"96.68"},{"1":"Kosovo","2":"XKX","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Kuwait","2":"KWT","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Kyrgyz Republic","2":"KGZ","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"81.25"},{"1":"Lao PDR","2":"LAO","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"5.62"},{"1":"Latvia","2":"LVA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"95.28"},{"1":"Lebanon","2":"LBN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Lesotho","2":"LSO","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"35.61"},{"1":"Liberia","2":"LBR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"0.71"},{"1":"Libya","2":"LBY","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Liechtenstein","2":"LIE","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Lithuania","2":"LTU","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Luxembourg","2":"LUX","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Macao SAR, China","2":"MAC","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Madagascar","2":"MDG","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"0.91"},{"1":"Malawi","2":"MWI","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"2.5"},{"1":"Malaysia","2":"MYS","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"96.3"},{"1":"Maldives","2":"MDV","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"93.83"},{"1":"Mali","2":"MLI","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"0.96000000000000496"},{"1":"Malta","2":"MLT","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Marshall Islands","2":"MHL","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"65.349999999999994"},{"1":"Mauritania","2":"MRT","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"46.56"},{"1":"Mauritius","2":"MUS","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"93.34"},{"1":"Mexico","2":"MEX","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"85.35"},{"1":"Micronesia, Fed. Sts.","2":"FSM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"11.97"},{"1":"Moldova","2":"MDA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"92.19"},{"1":"Monaco","2":"MCO","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Mongolia","2":"MNG","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"42.8"},{"1":"Montenegro","2":"MNE","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"69.349999999999994"},{"1":"Morocco","2":"MAR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"96.75"},{"1":"Mozambique","2":"MOZ","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"3.69"},{"1":"Myanmar","2":"MMR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"18.399999999999999"},{"1":"Namibia","2":"NAM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"42.2"},{"1":"Nauru","2":"NRU","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"91.33"},{"1":"Nepal","2":"NPL","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"27.62"},{"1":"Netherlands","2":"NLD","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"New Caledonia","2":"NCL","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"New Zealand","2":"NZL","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Nicaragua","2":"NIC","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"52.3"},{"1":"Niger","2":"NER","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"1.91"},{"1":"Nigeria","2":"NGA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"4.91"},{"1":"North Macedonia","2":"MKD","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"65.63"},{"1":"Northern Mariana Islands","2":"MNP","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Norway","2":"NOR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Oman","2":"OMN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"95.22"},{"1":"Pakistan","2":"PAK","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"43.32"},{"1":"Palau","2":"PLW","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"86.9"},{"1":"Panama","2":"PAN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"89.01"},{"1":"Papua New Guinea","2":"PNG","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"13.43"},{"1":"Paraguay","2":"PRY","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"66.22"},{"1":"Peru","2":"PER","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"75.06"},{"1":"Philippines","2":"PHL","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"43.22"},{"1":"Poland","2":"POL","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Portugal","2":"PRT","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Puerto Rico","2":"PRI","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Qatar","2":"QAT","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"98.49"},{"1":"Romania","2":"ROU","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"85.88"},{"1":"Russian Federation","2":"RUS","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"98.25"},{"1":"Rwanda","2":"RWA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"0.57000000000000395"},{"1":"Samoa","2":"WSM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"32.29"},{"1":"San Marino","2":"SMR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Sao Tome and Principe","2":"STP","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"16.809999999999999"},{"1":"Saudi Arabia","2":"SAU","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"95.96"},{"1":"Senegal","2":"SEN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"31.65"},{"1":"Serbia","2":"SRB","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"76.41"},{"1":"Seychelles","2":"SYC","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"90.36"},{"1":"Sierra Leone","2":"SLE","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"0.99000000000000199"},{"1":"Singapore","2":"SGP","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Sint Maarten (Dutch part)","2":"SXM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Slovak Republic","2":"SVK","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"96.58"},{"1":"Slovenia","2":"SVN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"96.17"},{"1":"Solomon Islands","2":"SLB","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"8.4499999999999993"},{"1":"Somalia","2":"SOM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"2.34"},{"1":"South Africa","2":"ZAF","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"84.75"},{"1":"South Sudan","2":"SSD","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"0.63999999999999602"},{"1":"Spain","2":"ESP","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Sri Lanka","2":"LKA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"26.33"},{"1":"St. Kitts and Nevis","2":"KNA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"St. Lucia","2":"LCA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"97.23"},{"1":"St. Martin (French part)","2":"MAF","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"St. Vincent and the Grenadines","2":"VCT","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"95.98"},{"1":"Sudan","2":"SDN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"41.29"},{"1":"Suriname","2":"SUR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"89.61"},{"1":"Sweden","2":"SWE","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Switzerland","2":"CHE","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Syrian Arab Republic","2":"SYR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"99.02"},{"1":"Tajikistan","2":"TJK","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"80.41"},{"1":"Tanzania","2":"TZA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"2.16"},{"1":"Thailand","2":"THA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"74.430000000000007"},{"1":"Timor-Leste","2":"TLS","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"6.92"},{"1":"Togo","2":"TGO","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"6.71"},{"1":"Tonga","2":"TON","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"59.17"},{"1":"Trinidad and Tobago","2":"TTO","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"99.26"},{"1":"Tunisia","2":"TUN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"99.1"},{"1":"Turkey","2":"TUR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Turkmenistan","2":"TKM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"99.32"},{"1":"Turks and Caicos Islands","2":"TCA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Tuvalu","2":"TUV","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"50.42"},{"1":"Uganda","2":"UGA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"0.77000000000000401"},{"1":"Ukraine","2":"UKR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"95.73"},{"1":"United Arab Emirates","2":"ARE","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"98.51"},{"1":"United Kingdom","2":"GBR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"United States","2":"USA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Uruguay","2":"URY","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"97.97"},{"1":"Uzbekistan","2":"UZB","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"92.1"},{"1":"Vanuatu","2":"VUT","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"12.57"},{"1":"Venezuela, RB","2":"VEN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"96.16"},{"1":"Vietnam","2":"VNM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"66.92"},{"1":"Virgin Islands (U.S.)","2":"VIR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"West Bank and Gaza","2":"PSE","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"Yemen, Rep.","2":"YEM","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"64.930000000000007"},{"1":"Zambia","2":"ZMB","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"16.43"},{"1":"Zimbabwe","2":"ZWE","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"29.05"},{"1":"Africa Eastern and Southern","2":"AFE","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"17.604950063014144"},{"1":"Africa Western and Central","2":"AFW","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"9.629511096412763"},{"1":"Arab World","2":"ARB","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"84.510732936494122"},{"1":"Caribbean small states","2":"CSS","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"91.496542799700393"},{"1":"Central Europe and the Baltics","2":"CEB","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"95.485364421506986"},{"1":"Early-demographic dividend","2":"EAR","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"50.277730427339833"},{"1":"East Asia & Pacific","2":"EAS","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"61.259485321617916"},{"1":"East Asia & Pacific (excluding high income)","2":"EAP","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"57.319959470321436"},{"1":"East Asia & Pacific (IDA & IBRD countries)","2":"TEA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"57.900987227365405"},{"1":"Euro area","2":"EMU","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"99.686862763116352"},{"1":"Europe & Central Asia","2":"ECS","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"97.328935971242288"},{"1":"Europe & Central Asia (excluding high income)","2":"ECA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"93.816499441014088"},{"1":"Europe & Central Asia (IDA & IBRD countries)","2":"TEC","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"94.433268018669892"},{"1":"European Union","2":"EUU","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"98.818121373960182"},{"1":"Fragile and conflict affected situations","2":"FCS","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"21.995953395718324"},{"1":"Heavily indebted poor countries (HIPC)","2":"HPC","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"11.679873571229907"},{"1":"High income","2":"HIC","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"99.431570894515588"},{"1":"IBRD only","2":"IBD","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"63.260249783398969"},{"1":"IDA & IBRD total","2":"IBT","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"52.372186941713707"},{"1":"IDA blend","2":"IDB","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"27.900014273737355"},{"1":"IDA only","2":"IDX","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"16.40049956263255"},{"1":"IDA total","2":"IDA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"20.268887599639804"},{"1":"Late-demographic dividend","2":"LTE","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"69.720805356996578"},{"1":"Latin America & Caribbean","2":"LCN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"87.008903704817598"},{"1":"Latin America & Caribbean (excluding high income)","2":"LAC","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"86.24895965739185"},{"1":"Latin America & the Caribbean (IDA & IBRD countries)","2":"TLA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"87.135157528974631"},{"1":"Least developed countries: UN classification","2":"LDC","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"13.968547730032025"},{"1":"Low & middle income","2":"LMY","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"51.554637023448024"},{"1":"Low income","2":"LIC","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"13.196768988877977"},{"1":"Lower middle income","2":"LMC","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"43.635499709676147"},{"1":"Middle East & North Africa","2":"MEA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"94.984096920523115"},{"1":"Middle East & North Africa (excluding high income)","2":"MNA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"94.566828819623311"},{"1":"Middle East & North Africa (IDA & IBRD countries)","2":"TMN","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"94.566828819623325"},{"1":"Middle income","2":"MIC","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"55.732725987498306"},{"1":"North America","2":"NAC","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"100"},{"1":"Not classified","2":"INX","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":".."},{"1":"OECD members","2":"OED","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"97.874588306299984"},{"1":"Other small states","2":"OSS","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"56.391016995858536"},{"1":"Pacific island small states","2":"PSS","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"26.946207107719857"},{"1":"Post-demographic dividend","2":"PST","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"99.133409851319783"},{"1":"Pre-demographic dividend","2":"PRE","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"14.470332861554457"},{"1":"Small states","2":"SST","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"61.109310102354115"},{"1":"South Asia","2":"SAS","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"38.686624829116191"},{"1":"South Asia (IDA & IBRD)","2":"TSA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"38.686624829116191"},{"1":"Sub-Saharan Africa","2":"SSF","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"14.387169736363154"},{"1":"Sub-Saharan Africa (excluding high income)","2":"SSA","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"14.380134691930044"},{"1":"Sub-Saharan Africa (IDA & IBRD countries)","2":"TSS","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"14.387169736363154"},{"1":"Upper middle income","2":"UMC","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"71.870779803752256"},{"1":"World","2":"WLD","3":"Access to clean fuels and technologies for cooking (% of population)","4":"EG.CFT.ACCS.ZS","5":"59.340671427267232"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA"},{"1":"Data from database: World Development Indicators","2":"NA","3":"NA","4":"NA","5":"NA"},{"1":"Last Updated: 09/15/2021","2":"NA","3":"NA","4":"NA","5":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="references" class="section level3">
+<h3>References</h3>
+<div id="citations-for-narrative-and-data-sources" class="section level4">
+<h4>citations for narrative and data sources</h4>
+<ul>
+<li>Data Source: World Bank, World Development Indicators, <a href="https://databank.worldbank.org/source/world-development-indicators#" class="uri">https://databank.worldbank.org/source/world-development-indicators#</a></li>
+</ul>
+<script type="text/javascript">
+
+// Must be included to position footer
+$(function() {
+  $('.main-container').after($('.footer'));
+})
+
+</script>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Footer-->
+<div class="footer text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Use</div>
+        <p class="footer-text text-center">This work is licensed under<br>Attribution 4.0 International<br><strong>CC BY 4.0</strong></p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Source</div>
+        <p class="footer-text text-center">
+          <a href="https://github.com/UN-AVT/kamino-web" class="centered">
+          <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32" style="margin-top: 0px;">
+          </a>
+        </p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Creation</div>
+        <p class="footer-text text-center">Hand crafted with ♥ by<br>the <strong>Kamino Crew</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+
+</body>
+</html>

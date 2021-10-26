@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Kamino</title>
+
+<script src="../../../../vendor/knitr/header-attrs-2.11/header-attrs.js"></script>
+<script src="../../../../vendor/knitr/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="../../../../vendor/knitr/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="../../../../vendor/knitr/navigation-1.1/tabsets.js"></script>
+<script src="../../../../vendor/knitr/navigation-1.1/codefolding.js"></script>
+<link href="../../../../vendor/knitr/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/highlightjs-9.12.0/highlight.js"></script>
+<link href="../../../../vendor/knitr/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="../../../../vendor/knitr/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../../../vendor/knitr/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<div class="border-bottom">
+  
+  <div class="header">
+    
+  <img src="../../../../assets/logo/logo.svg" alt="" height="36">
+
+  <div class="nav" style="float: right;">
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="home.html" 
+        data-bs-toggle="tooltip" 
+        data-bs-placement="bottom"
+        title="Home">
+        <img src="../../../../assets/icons/campground-solid.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="explorer.html" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom" 
+        title="Search for content">
+        <img src="../../../../assets/icons/compass.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="https://github.com/UN-AVT" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom"
+        title="Project">
+        <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32">
+      </a>
+    </div>
+
+</div>
+</div>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="../../../../assets/styles/content.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<div class="activity">
+<p>WRANGLERS</p>
+</div>
+<div id="case-member-states-of-the-united-nations" class="section level1">
+<h1>Case: Member States of the United Nations</h1>
+<div id="manage-column" class="section level2">
+<h2>Manage Column</h2>
+<div class="figure" style="text-align: center">
+<img src="un-unsplash.jpg" alt="Photo by Mathias P.R. Reding on Unsplash" width="60%" />
+<p class="caption">
+Photo by Mathias P.R. Reding on Unsplash
+</p>
+</div>
+<div class="figure-text">
+UN Headquarters Geneva
+</div>
+<blockquote>
+<p>Consider the momentous event in architecture when the wall parted and the column became…<br />
+— Louis Kahn<br />
+</p>
+</blockquote>
+<hr />
+<div id="load-the-data" class="section level3">
+<h3>Load the data</h3>
+<pre class="r fold-hide"><code>df &lt;- read_csv(&#39;./archetypes/UN-Member-State-admission-dates.csv&#39;)
+df</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Member"],"name":[1],"type":["chr"],"align":["left"]},{"label":["StateDate of Admission"],"name":[2],"type":["chr"],"align":["left"]},{"label":["UN_REGION_NAME"],"name":[3],"type":["chr"],"align":["left"]},{"label":["UN_CENTROID_LAT"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["UN_CENTROID_LONG"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Afghanistan","2":"19/11/1946","3":"Asia","4":"33.82971","5":"66.023936"},{"1":"Albania","2":"14/12/1955","3":"Europe","4":"41.13599","5":"20.058835"},{"1":"Algeria","2":"08/10/1962","3":"Africa","4":"28.15672","5":"2.675779"},{"1":"Andorra","2":"28/07/1993","3":"Europe","4":"42.54989","5":"1.580312"},{"1":"Angola","2":"01/12/1976","3":"Africa","4":"-12.30235","5":"17.547732"},{"1":"Antigua and Barbuda","2":"11/11/1981","3":"Americas","4":"17.24279","5":"-61.796708"},{"1":"Argentina","2":"24/10/1945","3":"Americas","4":"-35.39774","5":"-65.175021"},{"1":"Armenia","2":"02/03/1992","3":"Asia","4":"40.29127","5":"44.942898"},{"1":"Australia","2":"01/11/1945","3":"Oceania","4":"-25.73781","5":"134.487919"},{"1":"Austria","2":"14/12/1955","3":"Europe","4":"47.58363","5":"14.140197"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="rename-one-or-more-columns" class="section level3">
+<h3>Rename One or More Columns</h3>
+<div id="member-and-statedate.of.admission" class="section level4">
+<h4><span style="color: #0000FF;font-weight:bold">Member</span> and <span style="color: #FE9A2E;font-weight:bold"> StateDate.of.Admission</span></h4>
+<pre class="r fold-show"><code>df_1 &lt;- df %&gt;% rename(MEMBER_STATE=&#39;Member&#39;, ADMISSION_DATE=&#39;StateDate of Admission&#39;)</code></pre>
+<!-- FOR DISPLAY ONLY -->
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+<span style="     color: #0000FF !important;">MEMBER_STATE</span>
+</th>
+<th style="text-align:left;">
+<span style="     color: #FE9A2E !important;">ADMISSION_DATE</span>
+</th>
+<th style="text-align:left;">
+<span style="     color: #40FF00 !important;">UN_</span> REGION_NAME
+</th>
+<th style="text-align:right;">
+<span style="     color: #40FF00 !important;">UN_</span> CENTROID_LAT
+</th>
+<th style="text-align:right;">
+<span style="     color: #40FF00 !important;">UN_</span> CENTROID_LONG
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:left;">
+19/11/1946
+</td>
+<td style="text-align:left;">
+Asia
+</td>
+<td style="text-align:right;">
+33.82971
+</td>
+<td style="text-align:right;">
+66.023936
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Albania
+</td>
+<td style="text-align:left;">
+14/12/1955
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+<td style="text-align:right;">
+41.13599
+</td>
+<td style="text-align:right;">
+20.058835
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Algeria
+</td>
+<td style="text-align:left;">
+08/10/1962
+</td>
+<td style="text-align:left;">
+Africa
+</td>
+<td style="text-align:right;">
+28.15672
+</td>
+<td style="text-align:right;">
+2.675779
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Andorra
+</td>
+<td style="text-align:left;">
+28/07/1993
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+<td style="text-align:right;">
+42.54989
+</td>
+<td style="text-align:right;">
+1.580312
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Angola
+</td>
+<td style="text-align:left;">
+01/12/1976
+</td>
+<td style="text-align:left;">
+Africa
+</td>
+<td style="text-align:right;">
+-12.30235
+</td>
+<td style="text-align:right;">
+17.547732
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Antigua and Barbuda
+</td>
+<td style="text-align:left;">
+11/11/1981
+</td>
+<td style="text-align:left;">
+Americas
+</td>
+<td style="text-align:right;">
+17.24279
+</td>
+<td style="text-align:right;">
+-61.796708
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Argentina
+</td>
+<td style="text-align:left;">
+24/10/1945
+</td>
+<td style="text-align:left;">
+Americas
+</td>
+<td style="text-align:right;">
+-35.39774
+</td>
+<td style="text-align:right;">
+-65.175021
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Armenia
+</td>
+<td style="text-align:left;">
+02/03/1992
+</td>
+<td style="text-align:left;">
+Asia
+</td>
+<td style="text-align:right;">
+40.29127
+</td>
+<td style="text-align:right;">
+44.942898
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Australia
+</td>
+<td style="text-align:left;">
+01/11/1945
+</td>
+<td style="text-align:left;">
+Oceania
+</td>
+<td style="text-align:right;">
+-25.73781
+</td>
+<td style="text-align:right;">
+134.487919
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Austria
+</td>
+<td style="text-align:left;">
+14/12/1955
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+<td style="text-align:right;">
+47.58363
+</td>
+<td style="text-align:right;">
+14.140197
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="rename-multiple-columns" class="section level3">
+<h3>Rename Multiple Columns</h3>
+<div id="based-on-a-rule-remove-un_-prefix-from-columns-names" class="section level4">
+<h4>Based on a rule remove <span style="color: #40FF00;font-weight:bold">UN_</span> prefix from columns names</h4>
+<pre class="r fold-show"><code># &quot;.&quot;: Matches any single character except new line
+df_2 &lt;- df_1 %&gt;% set_names(~stringr::str_replace_all(., &quot;UN_&quot;, &quot;&quot;))</code></pre>
+<!-- FOR DISPLAY ONLY -->
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+MEMBER_STATE
+</th>
+<th style="text-align:left;">
+ADMISSION_DATE
+</th>
+<th style="text-align:left;">
+<span style="     color: #40FF00 !important;">REGION_NAME</span>
+</th>
+<th style="text-align:right;">
+<span style="     color: #40FF00 !important;">CENTROID_LAT</span>
+</th>
+<th style="text-align:right;">
+<span style="     color: #40FF00 !important;">CENTROID_LONG</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:left;">
+19/11/1946
+</td>
+<td style="text-align:left;">
+Asia
+</td>
+<td style="text-align:right;">
+33.82971
+</td>
+<td style="text-align:right;">
+66.023936
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Albania
+</td>
+<td style="text-align:left;">
+14/12/1955
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+<td style="text-align:right;">
+41.13599
+</td>
+<td style="text-align:right;">
+20.058835
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Algeria
+</td>
+<td style="text-align:left;">
+08/10/1962
+</td>
+<td style="text-align:left;">
+Africa
+</td>
+<td style="text-align:right;">
+28.15672
+</td>
+<td style="text-align:right;">
+2.675779
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Andorra
+</td>
+<td style="text-align:left;">
+28/07/1993
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+<td style="text-align:right;">
+42.54989
+</td>
+<td style="text-align:right;">
+1.580312
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Angola
+</td>
+<td style="text-align:left;">
+01/12/1976
+</td>
+<td style="text-align:left;">
+Africa
+</td>
+<td style="text-align:right;">
+-12.30235
+</td>
+<td style="text-align:right;">
+17.547732
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Antigua and Barbuda
+</td>
+<td style="text-align:left;">
+11/11/1981
+</td>
+<td style="text-align:left;">
+Americas
+</td>
+<td style="text-align:right;">
+17.24279
+</td>
+<td style="text-align:right;">
+-61.796708
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Argentina
+</td>
+<td style="text-align:left;">
+24/10/1945
+</td>
+<td style="text-align:left;">
+Americas
+</td>
+<td style="text-align:right;">
+-35.39774
+</td>
+<td style="text-align:right;">
+-65.175021
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Armenia
+</td>
+<td style="text-align:left;">
+02/03/1992
+</td>
+<td style="text-align:left;">
+Asia
+</td>
+<td style="text-align:right;">
+40.29127
+</td>
+<td style="text-align:right;">
+44.942898
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Australia
+</td>
+<td style="text-align:left;">
+01/11/1945
+</td>
+<td style="text-align:left;">
+Oceania
+</td>
+<td style="text-align:right;">
+-25.73781
+</td>
+<td style="text-align:right;">
+134.487919
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Austria
+</td>
+<td style="text-align:left;">
+14/12/1955
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+<td style="text-align:right;">
+47.58363
+</td>
+<td style="text-align:right;">
+14.140197
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="rename-all" class="section level3">
+<h3>Rename All</h3>
+<div id="convert-all-column-names-to-lowercase" class="section level4">
+<h4>convert all column names to <span style="background: #E3CEF6;font-weight:bold">lowercase</span></h4>
+<pre class="r fold-show"><code>df_3 &lt;- df_2
+names(df_3) &lt;- tolower(names(df_2))</code></pre>
+<!-- FOR DISPLAY ONLY -->
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;background-color: #E3CEF6 !important;">
+member_state
+</th>
+<th style="text-align:left;background-color: #E3CEF6 !important;">
+admission_date
+</th>
+<th style="text-align:left;background-color: #E3CEF6 !important;">
+region_name
+</th>
+<th style="text-align:right;background-color: #E3CEF6 !important;">
+centroid_lat
+</th>
+<th style="text-align:right;background-color: #E3CEF6 !important;">
+centroid_long
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:left;">
+19/11/1946
+</td>
+<td style="text-align:left;">
+Asia
+</td>
+<td style="text-align:right;">
+33.82971
+</td>
+<td style="text-align:right;">
+66.023936
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Albania
+</td>
+<td style="text-align:left;">
+14/12/1955
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+<td style="text-align:right;">
+41.13599
+</td>
+<td style="text-align:right;">
+20.058835
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Algeria
+</td>
+<td style="text-align:left;">
+08/10/1962
+</td>
+<td style="text-align:left;">
+Africa
+</td>
+<td style="text-align:right;">
+28.15672
+</td>
+<td style="text-align:right;">
+2.675779
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Andorra
+</td>
+<td style="text-align:left;">
+28/07/1993
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+<td style="text-align:right;">
+42.54989
+</td>
+<td style="text-align:right;">
+1.580312
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Angola
+</td>
+<td style="text-align:left;">
+01/12/1976
+</td>
+<td style="text-align:left;">
+Africa
+</td>
+<td style="text-align:right;">
+-12.30235
+</td>
+<td style="text-align:right;">
+17.547732
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Antigua and Barbuda
+</td>
+<td style="text-align:left;">
+11/11/1981
+</td>
+<td style="text-align:left;">
+Americas
+</td>
+<td style="text-align:right;">
+17.24279
+</td>
+<td style="text-align:right;">
+-61.796708
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Argentina
+</td>
+<td style="text-align:left;">
+24/10/1945
+</td>
+<td style="text-align:left;">
+Americas
+</td>
+<td style="text-align:right;">
+-35.39774
+</td>
+<td style="text-align:right;">
+-65.175021
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Armenia
+</td>
+<td style="text-align:left;">
+02/03/1992
+</td>
+<td style="text-align:left;">
+Asia
+</td>
+<td style="text-align:right;">
+40.29127
+</td>
+<td style="text-align:right;">
+44.942898
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Australia
+</td>
+<td style="text-align:left;">
+01/11/1945
+</td>
+<td style="text-align:left;">
+Oceania
+</td>
+<td style="text-align:right;">
+-25.73781
+</td>
+<td style="text-align:right;">
+134.487919
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Austria
+</td>
+<td style="text-align:left;">
+14/12/1955
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+<td style="text-align:right;">
+47.58363
+</td>
+<td style="text-align:right;">
+14.140197
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="constant-value-column" class="section level3">
+<h3>Constant Value Column</h3>
+<div id="add-new_col" class="section level4">
+<h4>Add <span style="color: #FF00BF;font-weight:bold">new_col</span></h4>
+<pre class="r fold-show"><code>df_4 &lt;- add_column(df_3,new_col=(&#39;I am new&#39;))
+#df_4 &lt;- add_column(df_3,geo_location=paste0(&quot;( &quot;,df_3$centroid_lat,&quot; ,&quot;,df_3$centroid_long, &quot; )&quot;))</code></pre>
+<!-- FOR DISPLAY ONLY -->
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+member_state
+</th>
+<th style="text-align:left;">
+admission_date
+</th>
+<th style="text-align:left;">
+region_name
+</th>
+<th style="text-align:right;">
+centroid_lat
+</th>
+<th style="text-align:right;">
+centroid_long
+</th>
+<th style="text-align:left;">
+<span style="     color: #FF00BF !important;">new_col</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:left;">
+19/11/1946
+</td>
+<td style="text-align:left;">
+Asia
+</td>
+<td style="text-align:right;">
+33.82971
+</td>
+<td style="text-align:right;">
+66.023936
+</td>
+<td style="text-align:left;font-weight: bold;color: #000000 !important;background-color: #F5A9E1 !important;">
+I am new
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Albania
+</td>
+<td style="text-align:left;">
+14/12/1955
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+<td style="text-align:right;">
+41.13599
+</td>
+<td style="text-align:right;">
+20.058835
+</td>
+<td style="text-align:left;font-weight: bold;color: #000000 !important;background-color: #F5A9E1 !important;">
+I am new
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Algeria
+</td>
+<td style="text-align:left;">
+08/10/1962
+</td>
+<td style="text-align:left;">
+Africa
+</td>
+<td style="text-align:right;">
+28.15672
+</td>
+<td style="text-align:right;">
+2.675779
+</td>
+<td style="text-align:left;font-weight: bold;color: #000000 !important;background-color: #F5A9E1 !important;">
+I am new
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Andorra
+</td>
+<td style="text-align:left;">
+28/07/1993
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+<td style="text-align:right;">
+42.54989
+</td>
+<td style="text-align:right;">
+1.580312
+</td>
+<td style="text-align:left;font-weight: bold;color: #000000 !important;background-color: #F5A9E1 !important;">
+I am new
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Angola
+</td>
+<td style="text-align:left;">
+01/12/1976
+</td>
+<td style="text-align:left;">
+Africa
+</td>
+<td style="text-align:right;">
+-12.30235
+</td>
+<td style="text-align:right;">
+17.547732
+</td>
+<td style="text-align:left;font-weight: bold;color: #000000 !important;background-color: #F5A9E1 !important;">
+I am new
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Antigua and Barbuda
+</td>
+<td style="text-align:left;">
+11/11/1981
+</td>
+<td style="text-align:left;">
+Americas
+</td>
+<td style="text-align:right;">
+17.24279
+</td>
+<td style="text-align:right;">
+-61.796708
+</td>
+<td style="text-align:left;font-weight: bold;color: #000000 !important;background-color: #F5A9E1 !important;">
+I am new
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Argentina
+</td>
+<td style="text-align:left;">
+24/10/1945
+</td>
+<td style="text-align:left;">
+Americas
+</td>
+<td style="text-align:right;">
+-35.39774
+</td>
+<td style="text-align:right;">
+-65.175021
+</td>
+<td style="text-align:left;font-weight: bold;color: #000000 !important;background-color: #F5A9E1 !important;">
+I am new
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Armenia
+</td>
+<td style="text-align:left;">
+02/03/1992
+</td>
+<td style="text-align:left;">
+Asia
+</td>
+<td style="text-align:right;">
+40.29127
+</td>
+<td style="text-align:right;">
+44.942898
+</td>
+<td style="text-align:left;font-weight: bold;color: #000000 !important;background-color: #F5A9E1 !important;">
+I am new
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Australia
+</td>
+<td style="text-align:left;">
+01/11/1945
+</td>
+<td style="text-align:left;">
+Oceania
+</td>
+<td style="text-align:right;">
+-25.73781
+</td>
+<td style="text-align:right;">
+134.487919
+</td>
+<td style="text-align:left;font-weight: bold;color: #000000 !important;background-color: #F5A9E1 !important;">
+I am new
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Austria
+</td>
+<td style="text-align:left;">
+14/12/1955
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+<td style="text-align:right;">
+47.58363
+</td>
+<td style="text-align:right;">
+14.140197
+</td>
+<td style="text-align:left;font-weight: bold;color: #000000 !important;background-color: #F5A9E1 !important;">
+I am new
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="filterselect-first-3-columns" class="section level4">
+<h4>Filter/Select First <span style="background: #CEE3F6;font-weight:bold">3 columns</span></h4>
+<pre class="r fold-show"><code>df_5 &lt;- df_4 %&gt;% select(member_state,admission_date,region_name)</code></pre>
+<!-- FOR DISPLAY ONLY -->
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;background-color: #CEE3F6 !important;">
+member_state
+</th>
+<th style="text-align:left;background-color: #CEE3F6 !important;">
+<span style="     color: #CC2EFA !important;">admission_date</span>
+</th>
+<th style="text-align:left;background-color: #CEE3F6 !important;">
+region_name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:left;">
+19/11/1946
+</td>
+<td style="text-align:left;">
+Asia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Albania
+</td>
+<td style="text-align:left;">
+14/12/1955
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Algeria
+</td>
+<td style="text-align:left;">
+08/10/1962
+</td>
+<td style="text-align:left;">
+Africa
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Andorra
+</td>
+<td style="text-align:left;">
+28/07/1993
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Angola
+</td>
+<td style="text-align:left;">
+01/12/1976
+</td>
+<td style="text-align:left;">
+Africa
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Antigua and Barbuda
+</td>
+<td style="text-align:left;">
+11/11/1981
+</td>
+<td style="text-align:left;">
+Americas
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Argentina
+</td>
+<td style="text-align:left;">
+24/10/1945
+</td>
+<td style="text-align:left;">
+Americas
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Armenia
+</td>
+<td style="text-align:left;">
+02/03/1992
+</td>
+<td style="text-align:left;">
+Asia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Australia
+</td>
+<td style="text-align:left;">
+01/11/1945
+</td>
+<td style="text-align:left;">
+Oceania
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Austria
+</td>
+<td style="text-align:left;">
+14/12/1955
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="separate-a-column" class="section level3">
+<h3>Separate a Column</h3>
+<div id="admission_date-into-day-month-year" class="section level4">
+<h4><span style="color: #CC2EFA;font-weight:bold">admission_date</span> into <span style="color: #3104B4;font-weight:bold">day, month, year</span></h4>
+<pre class="r fold-show"><code>df_6 &lt;- df_5%&gt;%separate(admission_date, c(&#39;day&#39;,&#39;month&#39;,&#39;year&#39;),&quot;/&quot;)</code></pre>
+<!-- FOR DISPLAY ONLY -->
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+<span style="     color: #FF0040 !important;">member_state</span>
+</th>
+<th style="text-align:left;">
+<span style="     color: #3104B4 !important;">day</span>
+</th>
+<th style="text-align:left;">
+<span style="     color: #3104B4 !important;">month</span>
+</th>
+<th style="text-align:left;">
+<span style="     color: #3104B4 !important;">year</span>
+</th>
+<th style="text-align:left;">
+<span style="     color: #FF0040 !important;">region_name</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Afghanistan
+</td>
+<td style="text-align:left;">
+19
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+1946
+</td>
+<td style="text-align:left;">
+Asia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Albania
+</td>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+1955
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Algeria
+</td>
+<td style="text-align:left;">
+08
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+1962
+</td>
+<td style="text-align:left;">
+Africa
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Andorra
+</td>
+<td style="text-align:left;">
+28
+</td>
+<td style="text-align:left;">
+07
+</td>
+<td style="text-align:left;">
+1993
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Angola
+</td>
+<td style="text-align:left;">
+01
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+1976
+</td>
+<td style="text-align:left;">
+Africa
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Antigua and Barbuda
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+1981
+</td>
+<td style="text-align:left;">
+Americas
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Argentina
+</td>
+<td style="text-align:left;">
+24
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+1945
+</td>
+<td style="text-align:left;">
+Americas
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Armenia
+</td>
+<td style="text-align:left;">
+02
+</td>
+<td style="text-align:left;">
+03
+</td>
+<td style="text-align:left;">
+1992
+</td>
+<td style="text-align:left;">
+Asia
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Australia
+</td>
+<td style="text-align:left;">
+01
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+1945
+</td>
+<td style="text-align:left;">
+Oceania
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Austria
+</td>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+1955
+</td>
+<td style="text-align:left;">
+Europe
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="combine-columns" class="section level3">
+<h3>Combine Columns</h3>
+<div id="member_state-and-region_name-into-member_region" class="section level4">
+<h4><span style="color: #FF0040;font-weight:bold">member_state</span> and <span style="color: #FF0040;font-weight:bold">region_name</span> into <span style="color: #FFBF00;font-weight:bold">member_region</span></h4>
+<pre class="r fold-show"><code>df_7 &lt;- df_6 %&gt;% unite(&#39;member_region&#39;,member_state, region_name, sep = &quot;_&quot;, remove = TRUE, na.rm = FALSE)</code></pre>
+<!-- FOR DISPLAY ONLY -->
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+<span style="     color: #FFBF00 !important;">member_region</span>
+</th>
+<th style="text-align:left;">
+day
+</th>
+<th style="text-align:left;">
+month
+</th>
+<th style="text-align:left;">
+year
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Afghanistan_Asia
+</td>
+<td style="text-align:left;">
+19
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+1946
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Albania_Europe
+</td>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+1955
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Algeria_Africa
+</td>
+<td style="text-align:left;">
+08
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+1962
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Andorra_Europe
+</td>
+<td style="text-align:left;">
+28
+</td>
+<td style="text-align:left;">
+07
+</td>
+<td style="text-align:left;">
+1993
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Angola_Africa
+</td>
+<td style="text-align:left;">
+01
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+1976
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Antigua and Barbuda_Americas
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+1981
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Argentina_Americas
+</td>
+<td style="text-align:left;">
+24
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+1945
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Armenia_Asia
+</td>
+<td style="text-align:left;">
+02
+</td>
+<td style="text-align:left;">
+03
+</td>
+<td style="text-align:left;">
+1992
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Australia_Oceania
+</td>
+<td style="text-align:left;">
+01
+</td>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:left;">
+1945
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Austria_Europe
+</td>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:left;">
+1955
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="as-reusable-solution" class="section level3">
+<h3>As reusable solution</h3>
+<pre class="r"><code>####################################################################################
+# Required libraries
+library(tidyverse)
+library(dplyr)
+
+
+####################################################################################
+# Load data
+df &lt;- read_csv(paste(getwd(),&quot;/data_source_file.csv&quot;,sep=&quot;/&quot;))
+df
+
+#Call the function to load the data
+load_data(&quot;./archetypes/UN-Member-State-admission-dates.csv&quot;)
+####################################################################################
+
+####################################################################################
+# Rename one or more columns 
+f_rename_column &lt;- function(df_rename,...) {
+ rename(df_rename,...)
+}
+
+# Call the function with value to the parameters
+f_rename_column(df,c(MEMBER_STATE=&#39;Member&#39;, ADMISSION_DATE=&#39;StateDate of Admission&#39;))
+####################################################################################
+
+####################################################################################
+# Rename multiple columns with the same rule 
+f_rename_replace &lt;- function(df_rename_replace,value) {
+   set_names(df_rename_replace,~stringr::str_replace_all(.,value, &quot;&quot;))
+}
+
+# Call the function with value to the parameters
+f_rename_replace(df,&quot;UN_&quot;)
+####################################################################################
+
+####################################################################################
+# Rename all columns 
+f_rename_all &lt;- function(df_rename_all) {
+  #names(df_rename_all) &lt;- toupper(names(df_rename_all))
+  names(df_rename_all) &lt;- tolower(names(df_rename_all))
+  df_rename_all
+}
+
+# Call the function with value to the parameters
+f_rename_all(df)
+####################################################################################
+
+####################################################################################
+# Add a column with a constant value 
+f_column_const &lt;- function(df_column_const,...) {
+  add_column(df_column_const,...)
+}
+
+# Call the function with value to the parameters
+f_column_const(df,new_col=(&#39;I am new&#39;))
+####################################################################################
+
+####################################################################################
+# Select columns
+f_column_select &lt;- function(df_column_select,...) {
+  df_column_select %&gt;% select(...)
+}
+
+# Call the function with value to the parameters
+f_column_select(df,c(Member,&#39;StateDate of Admission&#39;,UN_REGION_NAME))
+####################################################################################
+
+####################################################################################
+# Separate columns
+f_column_separate &lt;- function(df_column_separate,column_name,...) {
+  df_column_separate %&gt;% separate(column_name, ...,&quot;/&quot;)
+  
+}
+
+# Call the function with value to the parameters
+f_column_separate(df,&#39;StateDate of Admission&#39;,c(&#39;day&#39;,&#39;month&#39;,&#39;year&#39;))
+####################################################################################
+
+####################################################################################
+# Combine columns
+f_column_combine &lt;- function(df_column_combine,...) {
+  df_column_combine %&gt;% unite( ..., sep = &quot;_&quot;, remove = TRUE, na.rm = FALSE)
+}
+
+# Call the function with value to the parameters
+f_column_combine(df,&quot;member_region&quot;,Member,UN_REGION_NAME)
+####################################################################################</code></pre>
+</div>
+<div id="references" class="section level3">
+<h3>References</h3>
+<div id="the-citations-and-data-sources-used-for-this-case" class="section level4">
+<h4>The citations and data sources used for this case</h4>
+</div>
+<div id="the-data-file-used-in-this-wrangler-task-was-retrieved-from-un-member-state-admission-dates-source-which-was-published-by-the-united-nations-meetings-coverages-and-press-releases-website." class="section level4">
+<h4>The data file used in this wrangler task was retrieved from <a href="https://www.un.org/press/en/2006/org1469.doc.htm" target="_blank">UN Member State Admission Dates</a> source which was published by the United Nations Meetings Coverages and Press Releases website.</h4>
+<pre><code>## [1] U. Nations. _UNITED NATIONS MEMBER STATES | Meetings Coverage and
+## Press Releases_. Un.org, 2019. &lt;URL:
+## https://www.un.org/press/en/2006/org1469.doc.htm&gt; (visited on
+## 02/13/2021).</code></pre>
+<script type="text/javascript">
+
+// Must be included to position footer
+$(function() {
+  $('.main-container').after($('.footer'));
+})
+
+</script>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Footer-->
+<div class="footer text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Use</div>
+        <p class="footer-text text-center">This work is licensed under<br>Attribution 4.0 International<br><strong>CC BY 4.0</strong></p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Source</div>
+        <p class="footer-text text-center">
+          <a href="https://github.com/UN-AVT/kamino-web" class="centered">
+          <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32" style="margin-top: 0px;">
+          </a>
+        </p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Creation</div>
+        <p class="footer-text text-center">Hand crafted with ♥ by<br>the <strong>Kamino Crew</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+
+</body>
+</html>

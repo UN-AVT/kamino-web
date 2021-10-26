@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Kamino</title>
+
+<script src="../../../../vendor/knitr/header-attrs-2.11/header-attrs.js"></script>
+<script src="../../../../vendor/knitr/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="../../../../vendor/knitr/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="../../../../vendor/knitr/navigation-1.1/tabsets.js"></script>
+<script src="../../../../vendor/knitr/navigation-1.1/codefolding.js"></script>
+<link href="../../../../vendor/knitr/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/highlightjs-9.12.0/highlight.js"></script>
+<link href="../../../../vendor/knitr/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/pagedtable-1.1/js/pagedtable.js"></script>
+<div class="border-bottom">
+  
+  <div class="header">
+    
+  <img src="../../../../assets/logo/logo.svg" alt="" height="36">
+
+  <div class="nav" style="float: right;">
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="home.html" 
+        data-bs-toggle="tooltip" 
+        data-bs-placement="bottom"
+        title="Home">
+        <img src="../../../../assets/icons/campground-solid.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="explorer.html" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom" 
+        title="Search for content">
+        <img src="../../../../assets/icons/compass.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="https://github.com/UN-AVT" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom"
+        title="Project">
+        <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32">
+      </a>
+    </div>
+
+</div>
+</div>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="../../../../assets/styles/content.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<div class="activity">
+<p>INGEST</p>
+</div>
+<div id="the-global-peace-index-gpi" class="section level1">
+<h1>The Global Peace Index (GPI)</h1>
+<div id="ingest-a-table-from-pdf" class="section level2">
+<h2>Ingest a table from pdf</h2>
+<div class="figure" style="text-align: center">
+<img src="vasilios-muselimis-unsplash.jpg" alt="Photo by Vasilios Muselimis on Unsplash" width="60%" />
+<p class="caption">
+Photo by Vasilios Muselimis on Unsplash
+</p>
+</div>
+<blockquote>
+<p>When the power of love overcomes the love of power the world will know peace…<br />
+— Jimi Hendrix<br />
+</p>
+</blockquote>
+<p>The Global Peace Index (GPI) is a report produced and published by the Vision of Humanity and Institute for Economics &amp; Peace (IEP) to measure <em>peacefulness</em> and provide <em>insight and rankings for 163 countries</em>. The 2020 report is provided in pdf form as the source for narrative analysis and data. We’ll use several different pages and table configurations in the report to extract the data for further analysis.</p>
+<hr />
+<div id="global-peace-index-report-2020" class="section level3">
+<h3>Global Peace Index Report, 2020</h3>
+<div id="full-page-multi-column" class="section level4">
+<h4>full-page, multi-column</h4>
+<pre class="r fold-hide"><code># STEP 1:  GENERATE LOCAL AREA COORDINATES
+# ++++++++++++++++++++++++++++++++++++++++
+# To define specific coordinates for table on page
+# f &lt;- locate_areas(&quot;archetypes/global-peace-index/global-peace-index-2020.pdf&quot;, pages = 98)
+
+#      top     left   bottom    right
+c1 &lt;- c(213.68093, 39.03915, 788.63020, 199.46027)
+c2 &lt;- c(209.8308, 208.4439, 788.6302, 372.7151)
+c3 &lt;- c(208.5475, 381.6987, 779.6466, 548.5366)</code></pre>
+<pre class="r fold-hide"><code>gpi_table_c1 &lt;- extract_tables(&quot;archetypes/global-peace-index/global-peace-index-2020.pdf&quot;,
+             output = &quot;data.frame&quot;,
+             pages = c(98,98,98), 
+             area = list( c1, c2, c3),
+             guess = FALSE
+             )
+
+# gpi_table_c1
+
+gpi_table_c1_all &lt;- reduce(gpi_table_c1, bind_rows)
+
+gpi_table_c1_all</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["COUNTRY"],"name":[1],"type":["chr"],"align":["left"]},{"label":["SCORE"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Botswana","2":"1.000"},{"1":"Mauritius","2":"1.000"},{"1":"Singapore","2":"1.000"},{"1":"Uruguay","2":"1.000"},{"1":"Bulgaria","2":"1.001"},{"1":"Iceland","2":"1.001"},{"1":"New Zealand","2":"1.003"},{"1":"Switzerland","2":"1.005"},{"1":"Canada","2":"1.006"},{"1":"Austria","2":"1.008"},{"1":"Czech Republic","2":"1.008"},{"1":"Italy","2":"1.008"},{"1":"Portugal","2":"1.008"},{"1":"Romania","2":"1.008"},{"1":"The Netherlands","2":"1.011"},{"1":"Germany","2":"1.024"},{"1":"Malaysia","2":"1.025"},{"1":"Australia","2":"1.053"},{"1":"Belgium","2":"1.107"},{"1":"Argentina","2":"1.201"},{"1":"Costa Rica","2":"1.201"},{"1":"Jamaica","2":"1.201"},{"1":"Namibia","2":"1.201"},{"1":"Trinidad and Tobago","2":"1.201"},{"1":"Zambia","2":"1.201"},{"1":"Ireland","2":"1.202"},{"1":"Mongolia","2":"1.202"},{"1":"Finland","2":"1.210"},{"1":"Norway","2":"1.210"},{"1":"United Kingdom","2":"1.211"},{"1":"Denmark","2":"1.212"},{"1":"France","2":"1.248"},{"1":"Sweden","2":"1.267"},{"1":"Spain","2":"1.359"},{"1":"Albania","2":"1.403"},{"1":"Bolivia","2":"1.403"},{"1":"Chile","2":"1.403"},{"1":"Croatia","2":"1.403"},{"1":"Dominican Republic","2":"1.403"},{"1":"Equatorial Guinea","2":"1.403"},{"1":"Guyana","2":"1.403"},{"1":"Honduras","2":"1.403"},{"1":"Japan","2":"1.403"},{"1":"Laos","2":"1.403"},{"1":"Montenegro","2":"1.403"},{"1":"Oman","2":"1.403"},{"1":"Panama","2":"1.403"},{"1":"Papua New Guinea","2":"1.403"},{"1":"Paraguay","2":"1.403"},{"1":"Poland","2":"1.403"},{"1":"Slovakia","2":"1.403"},{"1":"Slovenia","2":"1.403"},{"1":"Eswatini","2":"1.403"},{"1":"Timor-Leste","2":"1.403"},{"1":"Vietnam","2":"1.403"},{"1":"Hungary","2":"1.408"},{"1":"Lithuania","2":"1.408"},{"1":"Bhutan","2":"1.409"},{"1":"Latvia","2":"1.409"},{"1":"The Gambia","2":"1.409"},{"1":"Cambodia","2":"1.410"},{"1":"El Salvador","2":"1.410"},{"1":"Liberia","2":"1.410"},{"1":"Nepal","2":"1.410"},{"1":"Estonia","2":"1.411"},{"1":"Ghana","2":"1.415"},{"1":"Sierra Leone","2":"1.415"},{"1":"Madagascar","2":"1.416"},{"1":"Senegal","2":"1.419"},{"1":"Tanzania","2":"1.435"},{"1":"Guinea","2":"1.436"},{"1":"Qatar","2":"1.447"},{"1":"Kuwait","2":"1.448"},{"1":"Peru","2":"1.464"},{"1":"Jordan","2":"1.491"},{"1":"Cyprus","2":"1.604"},{"1":"Ecuador","2":"1.604"},{"1":"Gabon","2":"1.604"},{"1":"Kazakhstan","2":"1.604"},{"1":"Malawi","2":"1.604"},{"1":"Serbia","2":"1.604"},{"1":"South Africa","2":"1.604"},{"1":"Taiwan","2":"1.604"},{"1":"North Macedonia","2":"1.605"},{"1":"Guatemala","2":"1.606"},{"1":"Guinea-Bissau","2":"1.609"},{"1":"Mauritania","2":"1.611"},{"1":"Brazil","2":"1.613"},{"1":"Sri Lanka","2":"1.614"},{"1":"Eritrea","2":"1.619"},{"1":"Angola","2":"1.625"},{"1":"Indonesia","2":"1.628"},{"1":"Cote d'Ivoire","2":"1.642"},{"1":"United Arab Emirates","2":"1.667"},{"1":"Tunisia","2":"1.759"},{"1":"United States of America","2":"1.759"},{"1":"China","2":"1.780"},{"1":"Uganda","2":"1.783"},{"1":"Haiti","2":"1.796"},{"1":"Belarus","2":"1.805"},{"1":"Cuba","2":"1.805"},{"1":"Kosovo","2":"1.805"},{"1":"Lesotho","2":"1.805"},{"1":"Moldova","2":"1.805"},{"1":"Turkmenistan","2":"1.805"},{"1":"Uzbekistan","2":"1.805"},{"1":"Georgia","2":"1.806"},{"1":"Greece","2":"1.806"},{"1":"South Korea","2":"1.806"},{"1":"Togo","2":"1.811"},{"1":"Bosnia and Herzegovina","2":"1.812"},{"1":"Republic of the Congo","2":"1.823"},{"1":"Rwanda","2":"1.840"},{"1":"Morocco","2":"1.865"},{"1":"Bahrain","2":"1.868"},{"1":"Mozambique","2":"1.881"},{"1":"Armenia","2":"1.887"},{"1":"Djibouti","2":"1.895"},{"1":"Burkina Faso","2":"1.936"},{"1":"Thailand","2":"1.945"},{"1":"Kyrgyz Republic","2":"2.006"},{"1":"Benin","2":"2.014"},{"1":"Zimbabwe","2":"2.041"},{"1":"Tajikistan","2":"2.058"},{"1":"Azerbaijan","2":"2.080"},{"1":"Bangladesh","2":"2.100"},{"1":"Colombia","2":"2.100"},{"1":"Algeria","2":"2.116"},{"1":"Venezuela","2":"2.209"},{"1":"Nicaragua","2":"2.225"},{"1":"Burundi","2":"2.338"},{"1":"Kenya","2":"2.377"},{"1":"Chad","2":"2.395"},{"1":"Niger","2":"2.416"},{"1":"Israel","2":"2.426"},{"1":"Saudi Arabia","2":"2.426"},{"1":"Egypt","2":"2.474"},{"1":"Mexico","2":"2.475"},{"1":"Philippines","2":"2.539"},{"1":"Myanmar","2":"2.599"},{"1":"North Korea","2":"2.610"},{"1":"Iran","2":"2.642"},{"1":"Mali","2":"2.677"},{"1":"Ethiopia","2":"2.714"},{"1":"Palestine","2":"2.823"},{"1":"Cameroon","2":"2.829"},{"1":"Lebanon","2":"2.864"},{"1":"Russia","2":"2.952"},{"1":"Ukraine","2":"3.077"},{"1":"Sudan","2":"3.083"},{"1":"Central African Republic","2":"3.092"},{"1":"India","2":"3.099"},{"1":"Nigeria","2":"3.120"},{"1":"Turkey","2":"3.178"},{"1":"Libya","2":"3.262"},{"1":"Somalia","2":"3.292"},{"1":"South Sudan","2":"3.310"},{"1":"Iraq","2":"3.347"},{"1":"Pakistan","2":"3.350"},{"1":"Democratic Republic of the Congo","2":"3.379"},{"1":"Yemen","2":"3.621"},{"1":"Afghanistan","2":"3.641"},{"1":"Syria","2":"3.828"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="complex-partial-page-multi-column-multi-page" class="section level4">
+<h4>Complex, partial page, multi-column, multi-page</h4>
+<pre class="r fold-hide"><code># STEP 1a:  GENERATE LOCAL AREA COORDINATES
+# +++++++++++++++++++++++++++++++++++++++++
+# Page 10
+# f &lt;- locate_areas(&quot;archetypes/global-peace-index/global-peace-index-2020.pdf&quot;, pages = 10)
+
+c1p10 &lt;- c(496, 38, 786, 169)
+c2p10 &lt;- c(496, 212, 786, 341)
+c3p10 &lt;- c(496, 380, 786, 508)
+
+# STEP 1b:  GENERATE LOCAL AREA COORDINATES
+# +++++++++++++++++++++++++++++++++++++++++
+# Page 11
+# f &lt;- locate_areas(&quot;archetypes/global-peace-index/global-peace-index-2020.pdf&quot;, pages = 11)
+
+c1p11 &lt;- c(496, 392, 738, 521)
+c2p11 &lt;- c(496, 225, 788, 353)
+c3p11 &lt;- c(496, 38, 786, 169)</code></pre>
+</div>
+<div id="run-extraction" class="section level4">
+<h4>Run extraction</h4>
+<pre class="r fold-hide"><code># STEP 2a:  EXTRACT DATA
+# +++++++++++++++++++++
+# Extracting data from page 10 and 11
+# extract_text(&quot;archetypes/global-peace-index/global-peace-index-2020.pdf&quot;)
+gpi_table &lt;- extract_tables(&quot;archetypes/global-peace-index/global-peace-index-2020.pdf&quot;,
+             output = &quot;data.frame&quot;,
+             pages = c(10,10,10,11,11,11), 
+             area = list(c1p10, c2p10, c3p10, c1p11, c2p11, c3p11),
+             guess = FALSE
+             )
+
+gpi_table</code></pre>
+<pre><code>## [[1]]
+##    RANK        COUNTRY SCORE
+## 1     1        Iceland 1.078
+## 2     2    New Zealand 1.198
+## 3     3       Portugal 1.247
+## 4     4        Austria 1.275
+## 5     5        Denmark 1.283
+## 6     6         Canada 1.298
+## 7     7      Singapore 1.321
+## 8     8 Czech Republic 1.337
+## 9     9          Japan 1.360
+## 10   10    Switzerland 1.366
+## 11   11       Slovenia 1.369
+## 12   12        Ireland 1.375
+## 13   13      Australia 1.386
+## 14   14        Finland 1.404
+## 15   15         Sweden 1.479
+## 16   16        Germany 1.494
+## 17  =17        Belgium 1.496
+## 18  =17         Norway 1.496
+## 19   19         Bhutan 1.501
+## 20   20       Malaysia 1.525
+## 21   21    Netherlands 1.528
+## 22   22        Romania 1.541
+## 23   23      Mauritius 1.544
+## 24   24        Hungary 1.559
+## 25   25       Slovakia 1.568
+## 26   26        Croatia 1.615
+## 27   27          Qatar 1.616
+## 28   28       Bulgaria 1.628
+## 
+## [[2]]
+##    RANK        COUNTRY.SCORE     X
+## 1    29               Poland 1.657
+## 2    30              Estonia 1.680
+## 3    31                Italy 1.690
+## 4    32           Costa Rica 1.691
+## 5    33             Botswana 1.693
+## 6    34               Latvia 1.700
+## 7    35              Uruguay 1.704
+## 8    36            Lithuania 1.705
+## 9    37               Taiwan 1.707
+## 10   38                Spain 1.712
+## 11  =39               Kuwait 1.723
+## 12  =39             Mongolia 1.723
+## 13   41 United Arab Emirates 1.752
+## 14   42       United Kingdom 1.770
+## 15   43                Ghana 1.776
+## 16   44               Zambia 1.794
+## 17   45                Chile 1.804
+## 18   46         Sierra Leone 1.820
+## 19   47              Senegal 1.824
+## 20   48          South Korea 1.829
+## 21   49            Indonesia 1.831
+## 22   50                 Laos 1.843
+## 23   51               Serbia 1.846
+## 24   52             Tanzania 1.850
+## 25   53              Namibia 1.861
+## 26   54          Timor-Leste 1.863
+## 27   55              Albania 1.872
+## 28   56               Panama 1.875
+## 
+## [[3]]
+##                     RANK.COUNTRY SCORE
+## 1                     =57 Greece 1.877
+## 2                    =57 Liberia 1.877
+## 3                      59 Malawi 1.885
+## 4          =60 Equatorial Guinea 1.891
+## 5                 =60 The Gambia 1.891
+## 6             62 North Macedonia 1.900
+## 7                  63 Madagascar 1.905
+## 8                     =64 Cyprus 1.920
+## 9                    =64 Vietnam 1.920
+## 10                     66 France 1.930
+## 11                   67 Eswatini 1.934
+## 12                       68 Oman 1.941
+## 13                 69 Montenegro 1.944
+## 14                 70 Kazakhstan 1.948
+## 15                    71 Moldova 1.950
+## 16                     72 Jordan 1.958
+## 17                      73 Nepal 1.974
+## 18                  74 Argentina 1.978
+## 19                   75 Paraguay 1.991
+## 20         76 Dominican Republic 1.992
+## 21                  77 Sri Lanka 2.003
+## 22                   78 Cambodia 2.011
+## 23 Bosnia and 79 2.04Herzegovina    NA
+## 24                    80 Jamaica 2.041
+## 25                     81 Rwanda 2.049
+## 26                     82 Guyana 2.050
+## 27                    83 Morocco 2.057
+## 
+## [[4]]
+##                           RANK.COUNTRY.SCORE
+## 1                            138 Niger 2.608
+## 2                            139 India 2.628
+## 3                         140 Colombia 2.646
+## 4                          141 Cameroon 2.65
+## 5                             142 Iran 2.672
+## 6                        143 Palestine 2.699
+## 7                             144 Mali 2.729
+## 8                           145 Israel 2.775
+## 9                          146 Lebanon 2.828
+## 10                         147 Nigeria 2.865
+## 11                         148 Ukraine 2.927
+## 12                       149 Venezuela 2.936
+## 13                          150 Turkey 2.959
+## 14                     151 North Korea 2.962
+## 15                        152 Pakistan 2.973
+## 16                           153 Sudan 3.043
+## 17                          154 Russia 3.049
+## 18         Central African 155 3.237Republic
+## 19 Democratic Republic 156 3.243of the Congo
+## 20                           157 Libya 3.258
+## 21                         158 Somalia 3.302
+## 
+## [[5]]
+##                   RANK.COUNTRY.SCORE
+## 1                 112 Djibouti 2.215
+## 2              113 El Salvador 2.243
+## 3                 114 Thailand 2.245
+## 4                115 Guatemala 2.267
+## 5             116 Turkmenistan 2.276
+## 6                 =117 Algeria 2.287
+## 7              =117 Mauritania 2.287
+## 8                 119 Honduras 2.288
+## 9                 120 Azerbaijan 2.3
+## 10 United States of 121 2.307America
+## 11            122 Burkina Faso 2.316
+## 12            123 South Africa 2.317
+## 13    124 Republic of the 2.343Congo
+## 14                   125 Kenya 2.375
+## 15                  126 Brazil 2.413
+## 16                 127 Myanmar 2.424
+## 17            128 Saudi Arabia 2.443
+## 18             129 Philippines 2.471
+## 19                   130 Egypt 2.481
+## 20                131 Zimbabwe 2.485
+## 21                 132 Burundi 2.506
+## 22                133 Ethiopia 2.526
+## 23                    134 Chad 2.538
+## 24               135 Nicaragua 2.553
+## 25                 136 Eritrea 2.567
+## 26                  137 Mexico 2.572
+## 
+## [[6]]
+##    RANK             COUNTRY  SCO
+## 1    84                Peru 2.00
+## 2    85              Kosovo 2.00
+## 3   =86             Bolivia 2.00
+## 4   =86                Cuba 2.00
+## 5    88 Trinidad and Tobago 2.00
+## 6    89              Guinea 2.00
+## 7    90             Ecuador 2.00
+## 8    91              Angola 2.00
+## 9    92             Tunisia 2.00
+## 10   93     Kyrgyz Republic 2.00
+## 11   94             Belarus 2.11
+## 12  =95               Gabon 2.11
+## 13  =95             Georgia 2.11
+## 14   97          Bangladesh 2.12
+## 15   98             Lesotho 2.13
+## 16  =99             Armenia 2.13
+## 17  =99          Mozambique 2.13
+## 18 =101       Guinea-Bissau 2.15
+## 19 =101    Papua New Guinea 2.15
+## 20  103          Uzbekistan 2.15
+## 21  104               China 2.16
+## 22  105      Cote d&#39; Ivoire 2.16
+## 23  106               Benin 2.18
+## 24  107          Tajikistan 2.18
+## 25  108                Togo 2.20
+## 26  109              Uganda 2.20
+## 27  110             Bahrain 2.20
+## 28  111               Haiti 2.21</code></pre>
+<pre class="r fold-hide"><code># STEP 2b:  EXTRACT TEXT
+# ++++++++++++++++++++++
+# Fallback if table method fails
+gpi_table_text &lt;- extract_text(&quot;archetypes/global-peace-index/global-peace-index-2020.pdf&quot;,
+             pages = c(10,10,10,11,11,11), 
+             area = list(c1p10, c2p10, c3p10, c1p11, c2p11, c3p11),
+             )
+
+as.data.frame(gpi_table_text)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["gpi_table_text"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"1 Iceland 1.078\\r\\n2 New Zealand 1.198\\r\\n3 Portugal 1.247\\r\\n4 Austria 1.275\\r\\n5 Denmark 1.283\\r\\n6 Canada 1.298\\r\\n7 Singapore 1.321\\r\\n8 Czech Republic 1.337\\r\\n9 Japan 1.36\\r\\n10 Switzerland 1.366\\r\\n11 Slovenia 1.369\\r\\n12 Ireland 1.375\\r\\n13 Australia 1.386\\r\\n14 Finland 1.404\\r\\n15 Sweden 1.479\\r\\n16 Germany 1.494\\r\\n=17 Belgium 1.496\\r\\n=17 Norway 1.496\\r\\n19 Bhutan 1.501\\r\\n20 Malaysia 1.525\\r\\n21 Netherlands 1.528\\r\\n22 Romania 1.541\\r\\n23 Mauritius 1.544\\r\\n24 Hungary 1.559\\r\\n25 Slovakia 1.568\\r\\n26 Croatia 1.615\\r\\n27 Qatar 1.616\\r\\n28 Bulgaria 1.628\\r\\nRANK COUNTRY SCORE\\r\\n"},{"1":"29 Poland 1.657\\r\\n30 Estonia 1.68\\r\\n31 Italy 1.69\\r\\n32 Costa Rica 1.691\\r\\n33 Botswana 1.693\\r\\n34 Latvia 1.7\\r\\n35 Uruguay 1.704\\r\\n36 Lithuania 1.705\\r\\n37 Taiwan 1.707\\r\\n38 Spain 1.712\\r\\n=39 Kuwait 1.723\\r\\n=39 Mongolia 1.723\\r\\n41 United Arab Emirates 1.752\\r\\n42 United Kingdom 1.77\\r\\n43 Ghana 1.776\\r\\n44 Zambia 1.794\\r\\n45 Chile 1.804\\r\\n46 Sierra Leone 1.82\\r\\n47 Senegal 1.824\\r\\n48 South Korea 1.829\\r\\n49 Indonesia 1.831\\r\\n50 Laos 1.843\\r\\n51 Serbia 1.846\\r\\n52 Tanzania 1.85\\r\\n53 Namibia 1.861\\r\\n54 Timor-Leste 1.863\\r\\n55 Albania 1.872\\r\\n56 Panama 1.875\\r\\nRANK COUNTRY SCORE\\r\\n"},{"1":"=57 Greece 1.877\\r\\n=57 Liberia 1.877\\r\\n59 Malawi 1.885\\r\\n=60 Equatorial Guinea 1.891\\r\\n=60 The Gambia 1.891\\r\\n62 North Macedonia 1.9\\r\\n63 Madagascar 1.905\\r\\n=64 Cyprus 1.92\\r\\n=64 Vietnam 1.92\\r\\n66 France 1.93\\r\\n67 Eswatini 1.934\\r\\n68 Oman 1.941\\r\\n69 Montenegro 1.944\\r\\n70 Kazakhstan 1.948\\r\\n71 Moldova 1.95\\r\\n72 Jordan 1.958\\r\\n73 Nepal 1.974\\r\\n74 Argentina 1.978\\r\\n75 Paraguay 1.991\\r\\n76 Dominican Republic 1.992\\r\\n77 Sri Lanka 2.003\\r\\n78 Cambodia 2.011\\r\\n79 Bosnia and Herzegovina 2.04\\r\\n80 Jamaica 2.041\\r\\n81 Rwanda 2.049\\r\\n82 Guyana 2.05\\r\\n83 Morocco 2.057\\r\\nRANK COUNTRY SCORE\\r\\n"},{"1":"138 Niger 2.608\\r\\n139 India 2.628\\r\\n140 Colombia 2.646\\r\\n141 Cameroon 2.65\\r\\n142 Iran 2.672\\r\\n143 Palestine 2.699\\r\\n144 Mali 2.729\\r\\n145 Israel 2.775\\r\\n146 Lebanon 2.828\\r\\n147 Nigeria 2.865\\r\\n148 Ukraine 2.927\\r\\n149 Venezuela 2.936\\r\\n150 Turkey 2.959\\r\\n151 North Korea 2.962\\r\\n152 Pakistan 2.973\\r\\n153 Sudan 3.043\\r\\n154 Russia 3.049\\r\\n155 Central African Republic 3.237\\r\\n156 Democratic Republic of the Congo 3.243\\r\\n157 Libya 3.258\\r\\n158 Somalia 3.302\\r\\nRANK COUNTRY SCORE\\r\\n"},{"1":"112 Djibouti 2.215\\r\\n113 El Salvador 2.243\\r\\n114 Thailand 2.245\\r\\n115 Guatemala 2.267\\r\\n116 Turkmenistan 2.276\\r\\n=117 Algeria 2.287\\r\\n=117 Mauritania 2.287\\r\\n119 Honduras 2.288\\r\\n120 Azerbaijan 2.3\\r\\n121 United States of America 2.307\\r\\n122 Burkina Faso 2.316\\r\\n123 South Africa 2.317\\r\\n124 Republic of the Congo 2.343\\r\\n125 Kenya 2.375\\r\\n126 Brazil 2.413\\r\\n127 Myanmar 2.424\\r\\n128 Saudi Arabia 2.443\\r\\n129 Philippines 2.471\\r\\n130 Egypt 2.481\\r\\n131 Zimbabwe 2.485\\r\\n132 Burundi 2.506\\r\\n133 Ethiopia 2.526\\r\\n134 Chad 2.538\\r\\n135 Nicaragua 2.553\\r\\n136 Eritrea 2.567\\r\\n137 Mexico 2.572\\r\\nRANK COUNTRY SCORE\\r\\n"},{"1":"84 Peru 2.06\\r\\n85 Kosovo 2.07\\r\\n=86 Bolivia 2.074\\r\\n=86 Cuba 2.074\\r\\n88 Trinidad and Tobago 2.078\\r\\n89 Guinea 2.08\\r\\n90 Ecuador 2.08\\r\\n91 Angola 2.08\\r\\n92 Tunisia 2.09\\r\\n93 Kyrgyz Republic 2.09\\r\\n94 Belarus 2.111\\r\\n=95 Gabon 2.116\\r\\n=95 Georgia 2.116\\r\\n97 Bangladesh 2.121\\r\\n98 Lesotho 2.131\\r\\n=99 Armenia 2.135\\r\\n=99 Mozambique 2.135\\r\\n=101 Guinea-Bissau 2.157\\r\\n=101 Papua New Guinea 2.157\\r\\n103 Uzbekistan 2.158\\r\\n104 China 2.166\\r\\n105 Cote d' Ivoire 2.169\\r\\n106 Benin 2.182\\r\\n107 Tajikistan 2.188\\r\\n108 Togo 2.20\\r\\n109 Uganda 2.20\\r\\n110 Bahrain 2.20\\r\\n111 Haiti 2.211\\r\\nRANK COUNTRY SCOR\\r\\n"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="clean-up-the-results" class="section level3">
+<h3>Clean up the results</h3>
+<div id="creating-the-final-output" class="section level4">
+<h4>creating the final output</h4>
+<pre class="r fold-hide"><code># STEP 3:  Combine results and clean
+# ++++++++++++++++++++++++++++++++++
+# Bring all columns and pages together
+gpi_table_clean &lt;- reduce(gpi_table, bind_rows)
+
+#rename the columns
+names(gpi_table_clean)[1] &lt;- &#39;gpi_rank&#39;
+names(gpi_table_clean)[2] &lt;- &#39;gpi_country&#39;
+names(gpi_table_clean)[3] &lt;- &#39;gpi_score&#39;
+
+gp_table_final &lt;- gpi_table_clean
+
+gp_table_final</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["gpi_rank"],"name":[1],"type":["chr"],"align":["left"]},{"label":["gpi_country"],"name":[2],"type":["chr"],"align":["left"]},{"label":["gpi_score"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["COUNTRY.SCORE"],"name":[4],"type":["chr"],"align":["left"]},{"label":["X"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["RANK.COUNTRY"],"name":[6],"type":["chr"],"align":["left"]},{"label":["RANK.COUNTRY.SCORE"],"name":[7],"type":["chr"],"align":["left"]},{"label":["SCO"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"Iceland","3":"1.078","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"2","2":"New Zealand","3":"1.198","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"3","2":"Portugal","3":"1.247","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"4","2":"Austria","3":"1.275","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"5","2":"Denmark","3":"1.283","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"6","2":"Canada","3":"1.298","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"7","2":"Singapore","3":"1.321","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"8","2":"Czech Republic","3":"1.337","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"9","2":"Japan","3":"1.360","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"10","2":"Switzerland","3":"1.366","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"11","2":"Slovenia","3":"1.369","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"12","2":"Ireland","3":"1.375","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"13","2":"Australia","3":"1.386","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"14","2":"Finland","3":"1.404","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"15","2":"Sweden","3":"1.479","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"16","2":"Germany","3":"1.494","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"=17","2":"Belgium","3":"1.496","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"=17","2":"Norway","3":"1.496","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"19","2":"Bhutan","3":"1.501","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"20","2":"Malaysia","3":"1.525","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"21","2":"Netherlands","3":"1.528","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"22","2":"Romania","3":"1.541","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"23","2":"Mauritius","3":"1.544","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"24","2":"Hungary","3":"1.559","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"25","2":"Slovakia","3":"1.568","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"26","2":"Croatia","3":"1.615","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"27","2":"Qatar","3":"1.616","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"28","2":"Bulgaria","3":"1.628","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA"},{"1":"29","2":"NA","3":"NA","4":"Poland","5":"1.657","6":"NA","7":"NA","8":"NA"},{"1":"30","2":"NA","3":"NA","4":"Estonia","5":"1.680","6":"NA","7":"NA","8":"NA"},{"1":"31","2":"NA","3":"NA","4":"Italy","5":"1.690","6":"NA","7":"NA","8":"NA"},{"1":"32","2":"NA","3":"NA","4":"Costa Rica","5":"1.691","6":"NA","7":"NA","8":"NA"},{"1":"33","2":"NA","3":"NA","4":"Botswana","5":"1.693","6":"NA","7":"NA","8":"NA"},{"1":"34","2":"NA","3":"NA","4":"Latvia","5":"1.700","6":"NA","7":"NA","8":"NA"},{"1":"35","2":"NA","3":"NA","4":"Uruguay","5":"1.704","6":"NA","7":"NA","8":"NA"},{"1":"36","2":"NA","3":"NA","4":"Lithuania","5":"1.705","6":"NA","7":"NA","8":"NA"},{"1":"37","2":"NA","3":"NA","4":"Taiwan","5":"1.707","6":"NA","7":"NA","8":"NA"},{"1":"38","2":"NA","3":"NA","4":"Spain","5":"1.712","6":"NA","7":"NA","8":"NA"},{"1":"=39","2":"NA","3":"NA","4":"Kuwait","5":"1.723","6":"NA","7":"NA","8":"NA"},{"1":"=39","2":"NA","3":"NA","4":"Mongolia","5":"1.723","6":"NA","7":"NA","8":"NA"},{"1":"41","2":"NA","3":"NA","4":"United Arab Emirates","5":"1.752","6":"NA","7":"NA","8":"NA"},{"1":"42","2":"NA","3":"NA","4":"United Kingdom","5":"1.770","6":"NA","7":"NA","8":"NA"},{"1":"43","2":"NA","3":"NA","4":"Ghana","5":"1.776","6":"NA","7":"NA","8":"NA"},{"1":"44","2":"NA","3":"NA","4":"Zambia","5":"1.794","6":"NA","7":"NA","8":"NA"},{"1":"45","2":"NA","3":"NA","4":"Chile","5":"1.804","6":"NA","7":"NA","8":"NA"},{"1":"46","2":"NA","3":"NA","4":"Sierra Leone","5":"1.820","6":"NA","7":"NA","8":"NA"},{"1":"47","2":"NA","3":"NA","4":"Senegal","5":"1.824","6":"NA","7":"NA","8":"NA"},{"1":"48","2":"NA","3":"NA","4":"South Korea","5":"1.829","6":"NA","7":"NA","8":"NA"},{"1":"49","2":"NA","3":"NA","4":"Indonesia","5":"1.831","6":"NA","7":"NA","8":"NA"},{"1":"50","2":"NA","3":"NA","4":"Laos","5":"1.843","6":"NA","7":"NA","8":"NA"},{"1":"51","2":"NA","3":"NA","4":"Serbia","5":"1.846","6":"NA","7":"NA","8":"NA"},{"1":"52","2":"NA","3":"NA","4":"Tanzania","5":"1.850","6":"NA","7":"NA","8":"NA"},{"1":"53","2":"NA","3":"NA","4":"Namibia","5":"1.861","6":"NA","7":"NA","8":"NA"},{"1":"54","2":"NA","3":"NA","4":"Timor-Leste","5":"1.863","6":"NA","7":"NA","8":"NA"},{"1":"55","2":"NA","3":"NA","4":"Albania","5":"1.872","6":"NA","7":"NA","8":"NA"},{"1":"56","2":"NA","3":"NA","4":"Panama","5":"1.875","6":"NA","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.877","4":"NA","5":"NA","6":"=57 Greece","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.877","4":"NA","5":"NA","6":"=57 Liberia","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.885","4":"NA","5":"NA","6":"59 Malawi","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.891","4":"NA","5":"NA","6":"=60 Equatorial Guinea","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.891","4":"NA","5":"NA","6":"=60 The Gambia","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.900","4":"NA","5":"NA","6":"62 North Macedonia","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.905","4":"NA","5":"NA","6":"63 Madagascar","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.920","4":"NA","5":"NA","6":"=64 Cyprus","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.920","4":"NA","5":"NA","6":"=64 Vietnam","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.930","4":"NA","5":"NA","6":"66 France","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.934","4":"NA","5":"NA","6":"67 Eswatini","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.941","4":"NA","5":"NA","6":"68 Oman","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.944","4":"NA","5":"NA","6":"69 Montenegro","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.948","4":"NA","5":"NA","6":"70 Kazakhstan","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.950","4":"NA","5":"NA","6":"71 Moldova","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.958","4":"NA","5":"NA","6":"72 Jordan","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.974","4":"NA","5":"NA","6":"73 Nepal","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.978","4":"NA","5":"NA","6":"74 Argentina","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.991","4":"NA","5":"NA","6":"75 Paraguay","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"1.992","4":"NA","5":"NA","6":"76 Dominican Republic","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"2.003","4":"NA","5":"NA","6":"77 Sri Lanka","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"2.011","4":"NA","5":"NA","6":"78 Cambodia","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"Bosnia and 79 2.04Herzegovina","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"2.041","4":"NA","5":"NA","6":"80 Jamaica","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"2.049","4":"NA","5":"NA","6":"81 Rwanda","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"2.050","4":"NA","5":"NA","6":"82 Guyana","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"2.057","4":"NA","5":"NA","6":"83 Morocco","7":"NA","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"138 Niger 2.608","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"139 India 2.628","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"140 Colombia 2.646","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"141 Cameroon 2.65","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"142 Iran 2.672","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"143 Palestine 2.699","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"144 Mali 2.729","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"145 Israel 2.775","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"146 Lebanon 2.828","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"147 Nigeria 2.865","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"148 Ukraine 2.927","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"149 Venezuela 2.936","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"150 Turkey 2.959","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"151 North Korea 2.962","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"152 Pakistan 2.973","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"153 Sudan 3.043","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"154 Russia 3.049","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"Central African 155 3.237Republic","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"Democratic Republic 156 3.243of the Congo","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"157 Libya 3.258","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"158 Somalia 3.302","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"112 Djibouti 2.215","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"113 El Salvador 2.243","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"114 Thailand 2.245","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"115 Guatemala 2.267","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"116 Turkmenistan 2.276","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"=117 Algeria 2.287","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"=117 Mauritania 2.287","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"119 Honduras 2.288","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"120 Azerbaijan 2.3","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"United States of 121 2.307America","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"122 Burkina Faso 2.316","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"123 South Africa 2.317","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"124 Republic of the 2.343Congo","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"125 Kenya 2.375","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"126 Brazil 2.413","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"127 Myanmar 2.424","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"128 Saudi Arabia 2.443","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"129 Philippines 2.471","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"130 Egypt 2.481","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"131 Zimbabwe 2.485","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"132 Burundi 2.506","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"133 Ethiopia 2.526","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"134 Chad 2.538","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"135 Nicaragua 2.553","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"136 Eritrea 2.567","8":"NA"},{"1":"NA","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"137 Mexico 2.572","8":"NA"},{"1":"84","2":"Peru","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.00"},{"1":"85","2":"Kosovo","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.00"},{"1":"=86","2":"Bolivia","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.00"},{"1":"=86","2":"Cuba","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.00"},{"1":"88","2":"Trinidad and Tobago","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.00"},{"1":"89","2":"Guinea","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.00"},{"1":"90","2":"Ecuador","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.00"},{"1":"91","2":"Angola","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.00"},{"1":"92","2":"Tunisia","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.00"},{"1":"93","2":"Kyrgyz Republic","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.00"},{"1":"94","2":"Belarus","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.11"},{"1":"=95","2":"Gabon","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.11"},{"1":"=95","2":"Georgia","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.11"},{"1":"97","2":"Bangladesh","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.12"},{"1":"98","2":"Lesotho","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.13"},{"1":"=99","2":"Armenia","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.13"},{"1":"=99","2":"Mozambique","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.13"},{"1":"=101","2":"Guinea-Bissau","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.15"},{"1":"=101","2":"Papua New Guinea","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.15"},{"1":"103","2":"Uzbekistan","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.15"},{"1":"104","2":"China","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.16"},{"1":"105","2":"Cote d' Ivoire","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.16"},{"1":"106","2":"Benin","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.18"},{"1":"107","2":"Tajikistan","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.18"},{"1":"108","2":"Togo","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.20"},{"1":"109","2":"Uganda","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.20"},{"1":"110","2":"Bahrain","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.20"},{"1":"111","2":"Haiti","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"2.21"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="pdftools-option" class="section level3">
+<h3>pdftools option</h3>
+<div id="full-pdf-extraction" class="section level4">
+<h4>Full pdf extraction</h4>
+<pre class="r fold-hide"><code>test &lt;- pdf_data(&quot;archetypes/global-peace-index/global-peace-index-2020.pdf&quot;)
+# test
+
+txt_test &lt;- pdf_text(&quot;archetypes/global-peace-index/global-peace-index-2020.pdf&quot;)
+# txt_test</code></pre>
+</div>
+</div>
+<div id="references" class="section level3">
+<h3>References</h3>
+<div id="citations-for-narrative-and-data-sources" class="section level4">
+<h4>citations for narrative and data sources</h4>
+<ul>
+<li>Source: Vision of Humanity and Institute for Economics &amp; Peace, Global Peace Index Report, 2020</li>
+</ul>
+<script type="text/javascript">
+
+// Must be included to position footer
+$(function() {
+  $('.main-container').after($('.footer'));
+})
+
+</script>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Footer-->
+<div class="footer text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Use</div>
+        <p class="footer-text text-center">This work is licensed under<br>Attribution 4.0 International<br><strong>CC BY 4.0</strong></p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Source</div>
+        <p class="footer-text text-center">
+          <a href="https://github.com/UN-AVT/kamino-web" class="centered">
+          <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32" style="margin-top: 0px;">
+          </a>
+        </p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Creation</div>
+        <p class="footer-text text-center">Hand crafted with ♥ by<br>the <strong>Kamino Crew</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+
+</body>
+</html>
