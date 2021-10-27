@@ -28,15 +28,15 @@ html {
   width: 100vw !important;
   max-width: 100vw !important;
   min-width: 100vw !important;
+  height: 68px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: -10px;
-  margin-bottom: 25px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   padding-top: 0px;
   padding-bottom: 5px;
   padding-left: 15px;
   padding-right: 15px;
-  height: 48px;
   background-color: #FFFFFF;
 }
 
@@ -47,7 +47,7 @@ html {
 .footer {
   padding-top: 30px; 
   padding-bottom: 25px;
-	border-top: solid 4px #111111;
+  border-top: solid 4px #111111;
   background-color: #FFFFFF;
 }
 
