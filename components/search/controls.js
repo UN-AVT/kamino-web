@@ -93,19 +93,19 @@ search_submit.addEventListener("click", function() {
 
 /* Reset submit button */
 const reset_submit = document.getElementById("reset-submit");
-search_submit.addEventListener("click", function() { 
+reset_submit.addEventListener("click", function() { 
 
 
 });
 
 /* Radio for boolean parameter */
-var search_view = "table"; // default
+var search_layout = "table"; // default
 var set_view = function(view) {
-    search_view = view;
+    search_layout = view;
 }
 
 var get_view = function() {
-    return search_view;
+    return search_layout;
 }
 
 const search_info = document.getElementById("search-info");

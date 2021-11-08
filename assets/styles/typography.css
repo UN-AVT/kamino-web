@@ -1,0 +1,93 @@
+
+
+/* font styles */
+/* 400, 500, 600 */
+.fnt-norm-b { 
+    font-family: "Saira";
+    font-weight: 600;
+}
+
+.fnt-norm-m { 
+    font-family: "Saira";
+    font-weight: 500;
+}
+
+.fnt-norm-r { 
+    font-family: "Saira";
+    font-weight: 400;
+}
+
+.fnt-semcon-b { 
+    font-family: "Saira Semi Condensed"; 
+    font-weight: 600;
+}
+
+.fnt-semcon-m { 
+    font-family: "Saira Semi Condensed"; 
+    font-weight: 500;
+}
+
+.fnt-semcon-r { 
+    font-family: "Saira Semi Condensed"; 
+    font-weight: 400;
+}
+
+.fnt-con-b { 
+    font-family: "Saira Condensed";
+    font-weight: 600;
+}
+
+.fnt-con-m { 
+    font-family: "Saira Condensed";
+    font-weight: 500;
+}
+
+.fnt-con-r { 
+    font-family: "Saira Condensed";
+    font-weight: 400;
+}
+
+.fnt-extcon-b { 
+    font-family: "Saira Extra Condensed";
+    font-weight: 600;
+}	
+
+.fnt-extcon-m { 
+    font-family: "Saira Extra Condensed";
+    font-weight: 500;
+}	
+
+.fnt-extcon-r { 
+    font-family: "Saira Extra Condensed";
+    font-weight: 400;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.fs-largest {
+    font-size: 150%;
+}
+
+.fs-large {
+    font-size: 125%;
+}
+
+.fs-medium {
+    font-size: 100%;
+}
+
+.fs-small {
+    font-size: 80%;
+}
+
+.fs-smallest {
+    font-size: 60%;
+}
+
+.text-center {
+    text-align: center;
+    text-justify: inter-word;
+    text-align-last: center;
+}

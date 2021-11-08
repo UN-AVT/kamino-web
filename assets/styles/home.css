@@ -133,20 +133,38 @@ html {
   display: flex;
   color: #fff;
   height: calc(100vh - 48px);
-  width: 100vw;
+  max-height: calc(100vh - 48px);
   min-height: 500px;
+  width: 100vw;
   background-color: #ffffff;
-  background-image: url('../cover/cover-01.svg');
+  background-image: url('../cover/cover-grid.svg');
   background-size: cover;
   /* background-size: contain; */
   background-position: center;
   background-repeat: no-repeat;
 }
 
-.masthead-img {
-  height: calc(100vh - 48px);
-  min-height: 500px;
-  margin: auto auto;
+.cover-hud {
+  position: relative;
+  height: calc(100vh - 48px)  !important;
+  min-height: calc(100vh - 48px) !important;
+  max-height: calc(100vh - 48px)  !important;
+  overflow: hidden;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 20px;
+  margin-right: -60px;
+}
+
+.cover-map {
+  position: relative;
+  height: calc(100vh - 48px)  !important;
+  min-height: calc(100vh - 48px)  !important;
+  max-height: calc(100vh - 48px)  !important;
+  overflow: hidden;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 20px;
 }
 
 .container {
@@ -327,7 +345,7 @@ p {
 }
 
 .card {
-  min-height: 425px !important;
+  min-height: 400px !important;
 }
 
 .badge-para {

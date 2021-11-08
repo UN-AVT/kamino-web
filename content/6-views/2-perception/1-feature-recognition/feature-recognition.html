@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Designing Views</title>
+
+<script src="../../../../vendor/knitr/header-attrs-2.11/header-attrs.js"></script>
+<script src="../../../../vendor/knitr/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="../../../../vendor/knitr/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="../../../../vendor/knitr/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="../../../../vendor/knitr/navigation-1.1/tabsets.js"></script>
+<script src="../../../../vendor/knitr/navigation-1.1/codefolding.js"></script>
+<link href="../../../../vendor/knitr/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/highlightjs-9.12.0/highlight.js"></script>
+<link href="../../../../vendor/knitr/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="../../../../vendor/knitr/pagedtable-1.1/js/pagedtable.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GHLBJTGCKN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GHLBJTGCKN');
+  </script>
+<div class="border-bottom">
+  
+  <div class="header">
+    
+  <img src="../../../../assets/logo/logo.svg" alt="" height="36">
+
+  <div class="nav" style="float: right;">
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="home.html" 
+        data-bs-toggle="tooltip" 
+        data-bs-placement="bottom"
+        title="Home">
+        <img src="../../../../assets/icons/campground-solid.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="explorer.html" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom" 
+        title="Search for content">
+        <img src="../../../../assets/icons/compass.svg" alt="" height="32">
+      </a>
+      <a class="nav-link" 
+        style="color: #111111;" 
+        href="https://github.com/UN-AVT" 
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom"
+        title="Project">
+        <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32">
+      </a>
+    </div>
+
+</div>
+</div>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<link rel="stylesheet" href="../../../../assets/styles/content.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+
+<div class="activity">
+<p>VIEWS</p>
+</div>
+<div id="feature-recognition" class="section level1">
+<h1>Feature Recognition</h1>
+<div id="pop-out-effects-and-designing-for-visual-cues" class="section level2">
+<h2>Pop-out effects and designing for visual cues</h2>
+<div class="figure" style="text-align: center">
+<img src="jessica-ruscello-unsplash.jpg" alt="Photo by Jessica Ruscello on Unsplash" width="60%" />
+<p class="caption">
+Photo by Jessica Ruscello on Unsplash
+</p>
+</div>
+<blockquote>
+<p>A work of art doesn’t exist outside the perception of the audience…<br />
+— Abbas Kiarostami<br />
+</p>
+</blockquote>
+<hr />
+<p>The objective of this task is to enable you to design and incorporate <strong>visual cues</strong> to enhance the impact of your visual design. Enhancing the perception of a visual representation is a critical component of the design process. The perception of information visualization is deeply rooted in studies of neuroscience and psychoanalysis. Among the most significant findings of this research is the processes involved in <strong>visual querying</strong> and <strong>searching</strong> of visual objects to direct attention to the features of highest interest supporting the analysis.</p>
+<div id="visual-query-and-search" class="section level3">
+<h3>Visual Query and Search</h3>
+<p>One of the most notable works describing this concept is provided by Colin Ware in his book <em>Visual Thinking: for Design</em>.</p>
+<blockquote>
+<p>Visual Thinking consists of a series of acts of attention, driving eye movements<br />
+and tuning our pattern-finding circuits. These acts of attention are called visual queries.<br />
+— Ware<br />
+</p>
+</blockquote>
+<p>This definition suggests the importance of understanding how visual query concepts provide opportunity to the designer for <strong>tuning</strong> the visual product using perceptual cues. Ware states this point clearly:</p>
+<blockquote>
+<p>The goal of information design must be to design displays so that visual queries are processed<br />
+both rapidly and correctly for every important cognitive task the display is intended to support.<br />
+Ware<br />
+</p>
+</blockquote>
+<p>As visual queries serve as <strong>acts of attention</strong>, visual search is referred to as the common task of <strong>looking for something</strong> in a visual environment. As we consider the message of our visualization products, understanding the workings of visual queries and search enables us to guide and direct the <strong>focus</strong> of attention to <em>something</em> which is analytically important. With these principles we can design to <strong>enhance understanding</strong> and provide a path for interpreting and eliciting the meaning we intend to convey.</p>
+<p>The principles of visual perception guide us with design techniques to direct the eye to specific areas so that the important features of analysis <strong>pop-out</strong> and are detected. For this we apply certain <strong>biasing</strong> and <strong>organizing</strong> mechanisms to enhance the <strong>salience</strong> of the most critical information.</p>
+<p><img src="assets/pop-out-effect.svg" width="800px" /></p>
+</div>
+<div id="make-it-pop" class="section level3">
+<h3>Make it pop</h3>
+<div id="tuning-strategies" class="section level4">
+<h4>Tuning strategies</h4>
+<p>Visual search strategies involve scanning for a specific instance of information to understand certain data properties and attributes. Our design techniques are used to direct the eye to the target area so that feature-based pop-out mechanisms can function as the final step.</p>
+<blockquote>
+<p>The efficiency of a visual perception is the speed and accuracy with which it is carried out.<br />
+Fast operations lead to a percetually salient formation of patterns.<br />
+— Cleveland<br />
+</p>
+</blockquote>
+<p>Pop-out effects depend on the <strong>relationship</strong> of a visual search target to the other objects that surround it. If that target is distinct in some feature channel, it will draw attention. For visualization design, we have four basic <strong>feature channels</strong> to work with: <strong>color</strong>, <strong>shape</strong>, <strong>motion</strong>, and <strong>spatial grouping</strong>. Each of these channels has tunable properties such as <strong>orientation</strong>, <strong>size</strong> and <strong>shape</strong>. These properties provide a pop-out palette we can use to influence the sensory impact of a view.</p>
+<p>Put simply, if you want to make something easy to find, make it different. So let’s put this concept to the test.</p>
+<p><img src="assets/pop-out-example.svg" width="800px" /></p>
+<p>Creating an effective representation involves choosing the channel and property changes that will work best for the specific layout and characteristics of the visualization. The strongest effects occur when a target is <strong>different</strong> and all other objects are similar. The pop-out concept demonstrates how visual properties can be used to “plan” eye focus in guiding views to take notice of specific analytical features we want them to see.</p>
+</div>
+</div>
+<div id="references" class="section level3">
+<h3>References</h3>
+<div id="citations-for-narrative-and-data-sources" class="section level4">
+<h4>citations for narrative and data sources</h4>
+<script type="text/javascript">
+
+// Must be included to position footer
+$(function() {
+  $('.main-container').after($('.footer'));
+})
+
+</script>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Footer-->
+<div class="footer text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Use</div>
+        <p class="footer-text text-center">This work is licensed under<br>Attribution 4.0 International<br><strong>CC BY 4.0</strong></p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Source</div>
+        <p class="footer-text text-center">
+          <a href="https://github.com/UN-AVT/kamino-web" class="centered">
+          <img src="../../../../assets/icons/github-alt-brands.svg" alt="" height="32" style="margin-top: 0px;">
+          </a>
+        </p>
+      </div>
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="footer-title text-uppercase mb-4">Creation</div>
+        <p class="footer-text text-center">Hand crafted with ♥ by<br>the <strong>Kamino Crew</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+
+</body>
+</html>

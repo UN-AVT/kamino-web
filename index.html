@@ -8,12 +8,23 @@
   <meta name="author" content="Kamino">
   <title>Kamino</title>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GHLBJTGCKN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GHLBJTGCKN');
+  </script>
+
   <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css" >
   <script src="vendor/bootstrap/bootstrap.bundle.min.js"></script>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
   
   <script src="vendor/jquery/jquery-3.5.1.min.js"></script>
+  <script src="vendor/d3/d3-selection@3.js"></script>
   
   <link rel="stylesheet" href="assets/styles/home.css">
 
@@ -30,6 +41,24 @@
       <img src="assets/logo/logo.svg" alt="" height="36">
 
       <div class="nav" style="float: right;">
+        <!--
+          <a class="nav-link" 
+            style="color: #111111;" 
+            href="about.html" 
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom" 
+            title="About">
+            <img src="assets/icons/camp-fire.svg" alt="" height="32">
+          </a>
+          <a class="nav-link" 
+            style="color: #111111;" 
+            href="learning-path.html" 
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom" 
+            title="Learning path">
+            <img src="assets/icons/learning-path.svg" alt="" height="32">
+          </a>
+          -->
           <a class="nav-link" 
             style="color: #111111;" 
             href="explorer.html" 
@@ -40,11 +69,11 @@
           </a>
           <a class="nav-link" 
             style="color: #111111;" 
-            href="https://github.com/UN-AVT" 
+            href="https://github.com/UN-AVT/kamino-source" 
             data-bs-toggle="tooltip"
             data-bs-placement="bottom"
-            title="Project">
-            <img src="assets/icons/github-alt-brands.svg" alt="" height="32">
+            title="Solution source code">
+            <img src="assets/icons/code-sources.svg" alt="" height="32">
           </a>
         </div>
 
@@ -53,16 +82,40 @@
     
   <div class="text-center">
     <div id="masthead" class="masthead">
+      <object class="cover-hud" data="assets/cover/cover-hud.svg" type="image/svg+xml" id="cover-hud" onload=""></object>  
+      <object class="cover-map" data="assets/cover/cover-map.svg" type="image/svg+xml" id="cover-map" onload="run_animation();"></object>
     </div>
   </div>
   
+  <!-- END COVER -->
+  <h1 class="pb-2 cover-heading text-center">Buen Kamino!</h1>
+
+  <!-- Footer-->
+  <div class="footer text-center bc-white border-top" style="padding-top: 30px; padding-bottom: 25px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <div class="footer-title text-uppercase mb-4">Use</div>
+          <p class="text-center">This work is licensed under<br>Attribution 4.0 International<br><strong>CC BY 4.0</strong></p>
+        </div>
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <div class="footer-title text-uppercase mb-4">Source</div>
+          <p class="text-center">
+            <a href="https://github.com/UN-AVT/kamino-web" class="centered">
+            <img class="d-inline-block" src="assets/icons/github-alt-brands.svg" alt="" height="32">
+            </a>
+          </p>
+        </div>
+        <div class="col-lg-4">
+          <div class="footer-title text-uppercase mb-4">Creation</div>
+          <p class="text-center">Hand crafted with ♥ by<br>the <strong>Kamino Crew</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="helpers/tooltips.js"></script>
-  <script src="components/animation/hud.js"></script>
-  <script>
-    // setTimeout(function(){ 
-      // run_animation(); }, 3000
-    // );
-  </script>
+  <script src="components/cover/hud.js"></script>
 
 </body>
 

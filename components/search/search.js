@@ -90,7 +90,7 @@ var render_result = function (catalog) {
                 <td>${task}</td>
                 <td>${subactivity}</td>
                 <td>${activity}</td>
-                <td style="text-align: center"><a href="content/${content_url}" title="GO" target="_blank" rel="noopener noreferrer">🔗</a></td>
+                <td style="text-align: center"><a href="${content_url}" title="GO" target="_blank" rel="noopener noreferrer">🔗</a></td>
             </tr>
         `
 
