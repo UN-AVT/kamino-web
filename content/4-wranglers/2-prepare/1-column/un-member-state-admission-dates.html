@@ -11,7 +11,7 @@
 
 
 
-<title>Kamino</title>
+<title>UN Member State admission dates</title>
 
 <script src="../../../../vendor/knitr/header-attrs-2.11/header-attrs.js"></script>
 <script src="../../../../vendor/knitr/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -37,6 +37,15 @@
 <script src="../../../../vendor/knitr/pagedtable-1.1/js/pagedtable.js"></script>
 <script src="../../../../vendor/knitr/kePrint-0.0.1/kePrint.js"></script>
 <link href="../../../../vendor/knitr/lightable-0.0.1/lightable.css" rel="stylesheet" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GHLBJTGCKN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GHLBJTGCKN');
+  </script>
 <div class="border-bottom">
   
   <div class="header">
@@ -223,8 +232,8 @@ pre code {
 <div class="activity">
 <p>WRANGLERS</p>
 </div>
-<div id="case-member-states-of-the-united-nations" class="section level1">
-<h1>Case: Member States of the United Nations</h1>
+<div id="un-member-state-admission-dates" class="section level1">
+<h1>UN Member State admission dates</h1>
 <div id="manage-column" class="section level2">
 <h2>Manage Column</h2>
 <div class="figure" style="text-align: center">
@@ -1593,107 +1602,21 @@ Austria_Europe
 </table>
 </div>
 </div>
-<div id="as-reusable-solution" class="section level3">
-<h3>As reusable solution</h3>
-<pre class="r"><code>####################################################################################
-# Required libraries
-library(tidyverse)
-library(dplyr)
-
-
-####################################################################################
-# Load data
-df &lt;- read_csv(paste(getwd(),&quot;/data_source_file.csv&quot;,sep=&quot;/&quot;))
-df
-
-#Call the function to load the data
-load_data(&quot;./archetypes/UN-Member-State-admission-dates.csv&quot;)
-####################################################################################
-
-####################################################################################
-# Rename one or more columns 
-f_rename_column &lt;- function(df_rename,...) {
- rename(df_rename,...)
-}
-
-# Call the function with value to the parameters
-f_rename_column(df,c(MEMBER_STATE=&#39;Member&#39;, ADMISSION_DATE=&#39;StateDate of Admission&#39;))
-####################################################################################
-
-####################################################################################
-# Rename multiple columns with the same rule 
-f_rename_replace &lt;- function(df_rename_replace,value) {
-   set_names(df_rename_replace,~stringr::str_replace_all(.,value, &quot;&quot;))
-}
-
-# Call the function with value to the parameters
-f_rename_replace(df,&quot;UN_&quot;)
-####################################################################################
-
-####################################################################################
-# Rename all columns 
-f_rename_all &lt;- function(df_rename_all) {
-  #names(df_rename_all) &lt;- toupper(names(df_rename_all))
-  names(df_rename_all) &lt;- tolower(names(df_rename_all))
-  df_rename_all
-}
-
-# Call the function with value to the parameters
-f_rename_all(df)
-####################################################################################
-
-####################################################################################
-# Add a column with a constant value 
-f_column_const &lt;- function(df_column_const,...) {
-  add_column(df_column_const,...)
-}
-
-# Call the function with value to the parameters
-f_column_const(df,new_col=(&#39;I am new&#39;))
-####################################################################################
-
-####################################################################################
-# Select columns
-f_column_select &lt;- function(df_column_select,...) {
-  df_column_select %&gt;% select(...)
-}
-
-# Call the function with value to the parameters
-f_column_select(df,c(Member,&#39;StateDate of Admission&#39;,UN_REGION_NAME))
-####################################################################################
-
-####################################################################################
-# Separate columns
-f_column_separate &lt;- function(df_column_separate,column_name,...) {
-  df_column_separate %&gt;% separate(column_name, ...,&quot;/&quot;)
-  
-}
-
-# Call the function with value to the parameters
-f_column_separate(df,&#39;StateDate of Admission&#39;,c(&#39;day&#39;,&#39;month&#39;,&#39;year&#39;))
-####################################################################################
-
-####################################################################################
-# Combine columns
-f_column_combine &lt;- function(df_column_combine,...) {
-  df_column_combine %&gt;% unite( ..., sep = &quot;_&quot;, remove = TRUE, na.rm = FALSE)
-}
-
-# Call the function with value to the parameters
-f_column_combine(df,&quot;member_region&quot;,Member,UN_REGION_NAME)
-####################################################################################</code></pre>
-</div>
 <div id="references" class="section level3">
 <h3>References</h3>
 <div id="the-citations-and-data-sources-used-for-this-case" class="section level4">
 <h4>The citations and data sources used for this case</h4>
-</div>
-<div id="the-data-file-used-in-this-wrangler-task-was-retrieved-from-un-member-state-admission-dates-source-which-was-published-by-the-united-nations-meetings-coverages-and-press-releases-website." class="section level4">
-<h4>The data file used in this wrangler task was retrieved from <a href="https://www.un.org/press/en/2006/org1469.doc.htm" target="_blank">UN Member State Admission Dates</a> source which was published by the United Nations Meetings Coverages and Press Releases website.</h4>
-<pre><code>## [1] U. Nations. _UNITED NATIONS MEMBER STATES | Meetings Coverage and
-## Press Releases_. Un.org, 2019. &lt;URL:
-## https://www.un.org/press/en/2006/org1469.doc.htm&gt; (visited on
-## 02/13/2021).</code></pre>
+<p>The data file used in this wrangler task was retrieved from <a href="https://www.un.org/press/en/2006/org1469.doc.htm" target="_blank">UN Member State Admission Dates</a> source which was published by the United Nations Meetings Coverages and Press Releases website.</p>
+<pre>
+@misc{unitednations_2019_united,
+  author = {United Nations},
+  title = {UNITED NATIONS MEMBER STATES | Meetings Coverage and Press Releases},
+  url = {https://www.un.org/press/en/2006/org1469.doc.htm},
+  urldate = {2021-02-13},
+  year = {2019},
+  organization = {Un.org}
+}
+</pre>
 <script type="text/javascript">
 
 // Must be included to position footer

@@ -11,7 +11,7 @@
 
 
 
-<title>Kamino</title>
+<title>Pandas in Zoos</title>
 
 <script src="../../../../vendor/knitr/header-attrs-2.11/header-attrs.js"></script>
 <script src="../../../../vendor/knitr/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -37,6 +37,15 @@
 <script src="../../../../vendor/knitr/pagedtable-1.1/js/pagedtable.js"></script>
 <script src="../../../../vendor/knitr/kePrint-0.0.1/kePrint.js"></script>
 <link href="../../../../vendor/knitr/lightable-0.0.1/lightable.css" rel="stylesheet" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GHLBJTGCKN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GHLBJTGCKN');
+  </script>
 <div class="border-bottom">
   
   <div class="header">
@@ -223,8 +232,8 @@ pre code {
 <div class="activity">
 <p>WRANGLERS</p>
 </div>
-<div id="pandas-housed-in-zoos-outside-china" class="section level1">
-<h1>Pandas housed in zoos outside China</h1>
+<div id="pandas-in-zoos" class="section level1">
+<h1>Pandas in Zoos</h1>
 <div id="clean-data" class="section level2">
 <h2>Clean Data</h2>
 <div class="figure" style="text-align: center">
@@ -6986,13 +6995,17 @@ Smithsonian’s National Zoo
 <h3>References</h3>
 <div id="the-citations-and-data-sources-used-for-this-case" class="section level4">
 <h4>The citations and data sources used for this case</h4>
-<p>The original data file used in this wrangler task was captured from the <a href="https://www.giantpandaglobal.com/" target="_blank">Giant Panda Global</a> source which was published by Giant Panda Global website. The post-clean data file along with other sources helped data scientists plot <a href="https://public.tableau.com/profile/wendy.shijia#!/vizhome/giantpandasoverseas/Bamboo" target="_blank">this chart</a> available at Tableau Public.</p>
-<pre><code>## [1] W.  Shijia. _Tableau Public_. public.tableau.com, Dec. 2020. &lt;URL:
-## https://public.tableau.com/profile/wendy.shijia#&gt; (visited on
-## 03/23/2021).
-## 
-## [2] J. Jeroen. _GiantPandaGlobal.com_. GiantPandaGlobal.com, Oct. 2000.
-## &lt;URL: https://www.giantpandaglobal.com/&gt;.</code></pre>
+<p>The original data file used in this wrangler task was captured from the <a href="https://www.giantpandaglobal.com/" target="_blank">Giant Panda Global</a> source which was published by Giant Panda Global website.</p>
+<pre>
+@misc{jeroen_2000_giantpandaglobalcom,
+  author = {Jeroen, Jacobs},
+  month = {10},
+  title = {GiantPandaGlobal.com},
+  url = {https://www.giantpandaglobal.com/},
+  year = {2000},
+  organization = {GiantPandaGlobal.com}
+}
+</pre>
 <script type="text/javascript">
 
 // Must be included to position footer

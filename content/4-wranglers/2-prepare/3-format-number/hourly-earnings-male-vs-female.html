@@ -11,7 +11,7 @@
 
 
 
-<title>Kamino</title>
+<title>Hourly Earnings Male vs Female</title>
 
 <script src="../../../../vendor/knitr/header-attrs-2.11/header-attrs.js"></script>
 <script src="../../../../vendor/knitr/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -37,6 +37,15 @@
 <script src="../../../../vendor/knitr/pagedtable-1.1/js/pagedtable.js"></script>
 <script src="../../../../vendor/knitr/kePrint-0.0.1/kePrint.js"></script>
 <link href="../../../../vendor/knitr/lightable-0.0.1/lightable.css" rel="stylesheet" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GHLBJTGCKN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GHLBJTGCKN');
+  </script>
 <div class="border-bottom">
   
   <div class="header">
@@ -223,14 +232,14 @@ pre code {
 <div class="activity">
 <p>WRANGLERS</p>
 </div>
-<div id="average-hourly-earnings-of-employees" class="section level1">
-<h1>Average Hourly Earnings of Employees</h1>
+<div id="hourly-earnings-male-vs-female" class="section level1">
+<h1>Hourly Earnings Male vs Female</h1>
 <div id="format-numbers" class="section level2">
 <h2>Format Numbers</h2>
 <div class="figure" style="text-align: center">
-<img src="leon-MUZFKa_mttU-unsplash.jpg" alt="Photo by Leon on Unsplash" width="60%" />
+<img src="felix-koutchinski-unsplash.jpg" alt="Photo by Felix Koutchinski on Unsplash" width="60%" />
 <p class="caption">
-Photo by Leon on Unsplash
+Photo by Felix Koutchinski on Unsplash
 </p>
 </div>
 <div class="figure-text">
@@ -48229,108 +48238,6 @@ Vietnam
 </div>
 </div>
 </div>
-<div id="as-reusable-solution" class="section level3">
-<h3>As reusable solution</h3>
-<pre class="r"><code>####################################################################################
-# Required libraries
-library(sitools)
-library(dplyr)
-####################################################################################
-
-
-####################################################################################
-# Convert Double Format to Scientific Format
-f_scientific &lt;- function(df_scientific) {
-  df_scientific&lt;&lt;-format(df_scientific,scientific = TRUE)
-}
-
-# Call the function with your values to the parameters
-df_1$population &lt;- f_scientific(df_1$population)
-####################################################################################
-
-
-####################################################################################
-# Use comma seperators for numerical data
-f_commasep&lt;- function(df_commasep) {
-  df_commasep&lt;&lt;-format(df_commasep, big.mark=&quot;,&quot;)
-}
-
-# Call the function with your values to the parameters
-df_1$population &lt;- f_commasep(df_1$population)
-####################################################################################
-
-
-####################################################################################
-# Convert from Long to Readable Format
-f_readable&lt;- function(df_readable) {
-  df_readable&lt;&lt;-f2si(df_readable)
-}
-
-# Call the function with your values to the parameters
-df_1$population &lt;- f_readable(df_1$population)
-####################################################################################
-
-
-####################################################################################
-# Change numerical Data to Currency Format
-f_currency &lt;- function(df_currency) {
-  df_currency &lt;- paste0(&quot;$ &quot;, df_currency)
-}
-
-# Call the function with your values to the parameters
-df_1$avg_hourly_wage_men &lt;-  f_currency(df_1$avg_hourly_wage_men)
-####################################################################################
-
-
-####################################################################################
-# Change numerical Data to Decimal Format
-f_decimal &lt;- function(df_decimal, num) {
-  df_decimal &lt;- format(round(df_decimal,num), nsmall=num)
-}
-
-# Call the function with your values to the parameters
-df_1$avg_hourly_wage_men &lt;-  f_decimal(df_1$avg_hourly_wage_men,3)
-####################################################################################
-
-
-####################################################################################
-# Calculate the percentage increase/decrease for each yeaar
-f_percentage&lt;- function(df_percentage){
-  
-  data &lt;- df_percentage%&gt;%
-    group_by(Entity)%&gt;%
-    mutate(avg_hourly_wage_diff_men=(avg_hourly_wage_men/lag(avg_hourly_wage_men) - 1)*100)%&gt;%
-    mutate(avg_hourly_wage_diff_women=(avg_hourly_wage_women/lag(avg_hourly_wage_women) - 1)*100)%&gt;%
-    dplyr::select(Entity,Year,avg_hourly_wage_diff_men,avg_hourly_wage_diff_women)
-  
-  data &lt;- na.omit(data)
-  
-  data$avg_hourly_wage_diff_men&lt;-format(round(data$avg_hourly_wage_diff_men,1), nsmall=1)
-  data$avg_hourly_wage_diff_men&lt;-paste0(data$avg_hourly_wage_diff_men,&quot; %&quot;)
-  
-  data$avg_hourly_wage_diff_women&lt;-format(round(data$avg_hourly_wage_diff_women,1), nsmall=1)
-  data$avg_hourly_wage_diff_women&lt;-paste0(data$avg_hourly_wage_diff_women,&quot; %&quot;)
-  return(data)
-}
-
-# Call the function with your values to the parameters
-df_2 &lt;- f_percentage(df_1)
-####################################################################################
-
-
-####################################################################################
-# Convert Double Format to Scientific Format
-f_fraction &lt;- function(df_fraction){
-  df_fraction%&gt;%
-    mutate(avg_hourly_wage_women_men_ratio=avg_hourly_wage_women/avg_hourly_wage_men)%&gt;%
-    mutate(fraction=as.character(fractions(avg_hourly_wage_women_men_ratio)))%&gt;%
-    dplyr::select(Entity,Year,avg_hourly_wage_women_men_ratio,fraction)
-}
-
-# Call the function with your values to the parameters
-df_2 &lt;- f_fraction(df_1)
-####################################################################################</code></pre>
-</div>
 </div>
 </div>
 <div id="references" class="section level1">
@@ -48338,8 +48245,16 @@ df_2 &lt;- f_fraction(df_1)
 <div id="the-citations-and-data-sources-used-for-this-case" class="section level2">
 <h2>The citations and data sources used for this case</h2>
 <p>The data source was from <a href="https://ilostat.ilo.org/" target="_blank">ILOSTAT</a>. ILOSTAT relies on multiple sources. The list of sources for each indicator, country by country, can be found in the ILOSTAT documentation under the bulk download facility, available <a href="http://www.ilo.org/ilostat/faces/oracle/webcenter/portalapp/pagehierarchy/Page30.jspx" target="_blank">here</a></p>
-<pre><code>## [1] I. L. Organization. _ILOSTAT_. ILOSTAT, 2018. &lt;URL:
-## https://ilostat.ilo.org/&gt; (visited on 05/28/2021).</code></pre>
+<pre>
+@misc{internationallabourorganization_2018_ilostat,
+  author = {International Labour Organization},
+  title = {ILOSTAT},
+  url = {https://ilostat.ilo.org/},
+  urldate = {2021-05-28},
+  year = {2018},
+  organization = {ILOSTAT}
+}
+</pre>
 <script type="text/javascript">
 
 // Must be included to position footer
